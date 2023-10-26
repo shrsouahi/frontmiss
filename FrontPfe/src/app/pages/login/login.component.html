@@ -1,0 +1,43 @@
+<div class="login-container">
+  <div class="error-message" *ngIf="showErrorMessage">
+    E-mail ou mot de passe incorrect.
+  </div>
+
+  <div [formGroup]="loginForm" class="login-content" (ngSubmit)="signIn()">
+    <p class="title">Connexion</p>
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input formControlName="email" matInput type="email" />
+
+      <mat-error *ngIf="loginForm.controls['email']?.hasError('required')">
+        Tappez Votre E-mail !
+      </mat-error>
+
+      <mat-error *ngIf="loginForm.controls['email'].hasError('email')"
+        >Email invalid !
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Mot de passe</mat-label>
+      <input
+        formControlName="password"
+        matInput
+        [type]="hide ? 'password' : 'text'"
+      />
+      <mat-icon (click)="hide = !hide" matSuffix>{{
+        hide ? "visibility_off" : "visibility"
+      }}</mat-icon>
+      <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+        Tappez Votre mot de passe!
+      </mat-error>
+    </mat-form-field>
+    <p class="forgot-label">Mot de passe oublié ?</p>
+    <button class="btnlog" mat-raised-button (click)="signIn()">
+      Se connecter
+    </button>
+    <p class="alternative">
+      Besoin de créer un nouveau compte?
+      <span [routerLink]="['/signup']">INSCRIVEZ-VOUS</span>
+    </p>
+  </div>
+</div>

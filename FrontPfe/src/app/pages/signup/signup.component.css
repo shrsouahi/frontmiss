@@ -1,0 +1,55 @@
+.register-container{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  min-height:100vh;
+}
+
+.register-content{
+  width:30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.title{
+  font-size:34px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom:67px;
+  color: #775145;
+}
+.forgot-label{
+  font-size: 16px;
+  color:black;
+  text-align: right ;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.title2{
+  font-weight: 500;
+  text-align:center;
+  margin-top: 3px;
+  margin-bottom:16px;
+ 
+}
+
+
+.btnlog{
+  background:#F4DBD8;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.error-message {
+  color:#cc0000;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+  position: absolute;
+  top: 250px; 
+  left: 0;
+  right: 0;
+  text-transform: uppercase; 
+}
