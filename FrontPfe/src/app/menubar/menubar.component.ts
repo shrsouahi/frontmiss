@@ -2,9 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CategoryService } from 'src/app/services/category-service.service';
 import { Category } from '../models/Category.model';
 import { MatSidenav } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
 screen;
-import { Router } from '@angular/router'; // Import the Router
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menubar',
@@ -51,6 +50,6 @@ export class MenubarComponent implements OnInit {
 
   selectCategory(category: Category) {
     // Navigate to the details page with the category code
-    this.router.navigate(['/category', category.codeCategory]);
+    this.router.navigate(['/category/', category.codeCategory]);
   }
 }
