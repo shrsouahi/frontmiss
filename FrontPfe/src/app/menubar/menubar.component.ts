@@ -4,6 +4,7 @@ import { Category } from '../models/Category.model';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 screen;
+import { Router } from '@angular/router'; // Import the Router
 
 @Component({
   selector: 'app-menubar',
@@ -14,10 +15,12 @@ export class MenubarComponent implements OnInit {
   @ViewChild('sidenav') sidenav!: MatSidenav;
   categories: Category[] = [];
   currentCategory: string | null = null;
-  selectedChildCategory: Category | null = null; // New property to track selected child category
-  router: any;
+  selectedChildCategory: Category | null = null;
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(
+    private categoryService: CategoryService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.fetchCategories();
