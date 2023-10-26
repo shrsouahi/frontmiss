@@ -67,8 +67,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "FrontPfe:build",
-            "proxyConfig": "proxy.conf.json"
+            "browserTarget": "FrontPfe:build"
           }
         },
         "test": {

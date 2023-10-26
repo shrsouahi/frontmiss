@@ -35,34 +35,6 @@
   font-family: 'Lato', sans-serif;
 }
 
-/* Add this to your CSS to style the search field */
-.search {
-  display: flex;
-  align-items: center;
-  margin-right: 10px; /* Adjust the margin to your desired spacing */
-  font-family: 'Lato', sans-serif;
-
-}
-
-.search-field {
-  width: 350px; /* Adjust the width to make it smaller or larger */
-  height:50px;
-  background-color: #f1f1f1; /* Background color similar to Forever 21 */
-  border-radius: 5px; /* Rounded corners */
-}
-
-.search-input {
-  width: 100%;
-  padding: 8px 12px; /* Adjust padding as needed */
-  font-size: 14px; /* Adjust font size as needed */
-  border: none;
-  outline: none;
-}
-
-/* Style for the clear button (X) */
-.search-field .mat-icon-button {
-  padding: 0;
-}
 
 .logo {
   height: 50px; /* Adjust the height as needed */
