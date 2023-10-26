@@ -1,1 +1,14 @@
-worrrrrrrrrks
+<div class="category-details">
+  <h1>{{ category?.nomCategory }} Articles</h1>
+  <p *ngIf="articles.length === 0">No articles found for this category.</p>
+  <div *ngFor="let article of articles">
+    <div class="article">
+      <h2>{{ article.nomArticle }}</h2>
+      <p>{{ article.descriptionArticle }}</p>
+      <p>Price: {{ article.prixArticle }}</p>
+      <p>Discounted Price: {{ article.prixSolde || "N/A" }}</p>
+      <p>Stock Quantity: {{ article.quantiteStock }}</p>
+      <p>Barcode: {{ article.bareCode }}</p>
+    </div>
+  </div>
+</div>

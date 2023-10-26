@@ -36,12 +36,15 @@ export class CategoryDetailsComponent implements OnInit {
     this.categoryService.getCategories().subscribe((categories: Category[]) => {
       this.category = categories.find((cat) => cat.codeCategory === categoryId);
     });
-
+    console.log('Category ID:', categoryId);
     // Now, you can use categoryId to load articles using ArticleService
-    this.articleService
-      .getArticlesByCodeCategory(categoryId)
-      .subscribe((data: any) => {
+    this.articleService.getArticlesByCodeCategory(categoryId).subscribe(
+      (data: any) => {
         this.articles = data;
-      });
+      },
+      (error) => {
+        console.error('Error fetching articles:', error);
+      }
+    );
   }
 }

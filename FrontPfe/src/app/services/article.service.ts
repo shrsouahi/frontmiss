@@ -11,7 +11,7 @@ export class ArticleService {
   constructor(private http: HttpClient) {}
 
   getArticlesByCodeCategory(codeCategory: number): Observable<Article[]> {
-    const url = `${this.apiUrl}/articles/categorie/?codeCategory=${codeCategory}`;
+    const url = `${this.apiUrl}/articles/categorie/${codeCategory}`;
     return this.http.get<Article[]>(url);
   }
 }
