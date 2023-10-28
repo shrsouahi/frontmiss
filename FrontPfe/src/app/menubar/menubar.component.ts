@@ -23,6 +23,7 @@ export class MenubarComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchCategories();
+    //if (this.isconnected(){ this.userservice.get ....}
   }
 
   fetchCategories() {
