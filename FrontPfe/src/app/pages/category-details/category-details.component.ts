@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/models/Category.model';
 import { ArticleService } from 'src/app/services/article.service';
 import { CategoryService } from 'src/app/services/category-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category-details',
@@ -17,7 +18,8 @@ export class CategoryDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private categoryService: CategoryService,
-    private articleService: ArticleService
+    private articleService: ArticleService,
+    private router: Router
   ) {
     this.route.paramMap.subscribe((params) => {
       const categoryIdParam = params.get('id');
@@ -46,5 +48,10 @@ export class CategoryDetailsComponent implements OnInit {
         console.error('Error fetching articles:', error);
       }
     );
+  }
+
+  // Function to navigate to article details page
+  viewArticleDetails(articleId: number) {
+    this.router.navigate(['/article', articleId]);
   }
 }

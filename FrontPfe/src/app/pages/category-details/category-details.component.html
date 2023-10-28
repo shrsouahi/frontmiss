@@ -3,19 +3,29 @@
 
   <p *ngIf="articles.length === 0">Pas d'articles pour cette catégorie.</p>
   <div class="articles-container">
-    <mat-card *ngFor="let article of articles" class="mat-card">
-      <mat-card-content class="article-content">
-        <div class="article-image">
-          <img
-            src="assets\images\phtottest.png"
-            alt="{{ article.nomArticle }}"
-          />
-        </div>
-        <div class="article-details">
-          <mat-card-title>{{ article.nomArticle }}</mat-card-title>
-          <p>Prix : ${{ article.prixArticle }} TND</p>
-        </div>
-      </mat-card-content>
-    </mat-card>
+    <a
+      *ngFor="let article of articles"
+      [routerLink]="'/article/' + article.idArticle"
+    >
+      <mat-card class="mat-card">
+        <mat-card-content class="article-content">
+          <div class="article-image">
+            <img
+              src="assets\images\phtottest.png"
+              alt="{{ article.nomArticle }}"
+            />
+          </div>
+          <div class="article-details">
+            <mat-card-title>{{ article.nomArticle }}</mat-card-title>
+            <p>Prix : {{ article.prixArticle }} TND</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </a>
+  </div>
+  <!-- Category description -->
+  <div class="category-description">
+    <h2>Description de la catégorie {{ category?.nomCategory }}</h2>
+    <p>{{ category?.description }}</p>
   </div>
 </div>

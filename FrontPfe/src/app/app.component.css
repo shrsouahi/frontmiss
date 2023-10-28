@@ -1,0 +1,13 @@
+
+
+content {
+  min-height: calc(100vh - 100px); 
+  padding-bottom: 100px; /* This should match the height of the footer */
+}
+/* Style for the footer */
+app-footer {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}

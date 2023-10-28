@@ -16,6 +16,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from '@angular/material/menu';
 import { CategoryDetailsComponent } from './pages/category-details/category-details.component';
+import { ArticleDetailsComponent } from './pages/article-details/article-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import { CategoryDetailsComponent } from './pages/category-details/category-deta
     SignupComponent,
     FooterComponent,
     CategoryDetailsComponent,
+    ArticleDetailsComponent,
   ],
   imports: [
     BrowserModule,

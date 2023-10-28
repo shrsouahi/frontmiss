@@ -55,3 +55,28 @@ h1 {
   width: 350px;
   height: 400px;
 }
+
+/* Remove underlines from links within the mat-card */
+.mat-card-content a {
+  text-decoration: none;
+}
+
+/* Remove underlines from all anchor elements */
+a {
+  text-decoration: none;
+}
+
+.category-description {
+  text-align: center; /* Center the text horizontally */
+  margin: 70px 0 70px; /* Add margin for spacing */
+
+}
+.category-description h2 {
+  font-size: 24px;
+  color: #333; /* Change color as needed */
+}
+
+.category-description p {
+  font-size: 20px;
+  color: #555; /* Change color as needed */
+}

@@ -14,4 +14,8 @@ export class ArticleService {
     const url = `${this.apiUrl}/articles/categorie/${codeCategory}`;
     return this.http.get<Article[]>(url);
   }
+  getArticleById(idarticle: number): Observable<Article> {
+    const url = `${this.apiUrl}/articles/article/${idarticle}`;
+    return this.http.get<Article>(url);
+  }
 }
