@@ -15,13 +15,13 @@ p {
 
 button {
   padding: 10px 20px;
-  background-color: #007bff; /* Set your desired button color */
-  color: white;
+  background-color:#F4DBD8; /* Set your desired button color */
+  color: #555;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #0056b3; /* Set the button color on hover */
+  background-color:#C09891; /* Set the button color on hover */
 }

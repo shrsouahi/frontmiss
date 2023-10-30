@@ -1,6 +1,7 @@
 // article.model.ts
 
 import { Category } from './Category.model';
+import { ImageArticle } from './ImageArticle.model';
 
 export class Article {
   idArticle: number;
@@ -10,7 +11,8 @@ export class Article {
   prixArticle: number;
   prixSolde: number;
   quantiteStock: number;
-  categories: Category[]; // Assuming you have a Category model
+  categories: Category[];
+  images: ImageArticle[];
 
   constructor(
     idArticle: number,
@@ -20,7 +22,8 @@ export class Article {
     prixArticle: number,
     prixSolde: number,
     quantiteStock: number,
-    categories: Category[]
+    categories: Category[],
+    images: ImageArticle[]
   ) {
     this.idArticle = idArticle;
     this.bareCode = bareCode;
@@ -30,5 +33,6 @@ export class Article {
     this.prixSolde = prixSolde;
     this.quantiteStock = quantiteStock;
     this.categories = categories;
+    this.images = images;
   }
 }

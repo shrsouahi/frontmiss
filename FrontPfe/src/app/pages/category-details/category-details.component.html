@@ -11,13 +11,14 @@
         <mat-card-content class="article-content">
           <div class="article-image">
             <img
-              src="assets\images\phtottest.png"
+              src="{{ article.images[1]?.url_image }}"
               alt="{{ article.nomArticle }}"
             />
+            <div class="details-button">voir détails</div>
           </div>
           <div class="article-details">
             <mat-card-title>{{ article.nomArticle }}</mat-card-title>
-            <p>Prix : {{ article.prixArticle }} TND</p>
+            <p class="prix">Prix : {{ article.prixArticle }} TND</p>
           </div>
         </mat-card-content>
       </mat-card>
