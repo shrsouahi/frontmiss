@@ -2,12 +2,12 @@ import { Article } from './Article.model';
 
 export class ImageArticle {
   idImage: number;
-  urlImage: string;
-  article: Article; // Assuming you have an Article model
+  url_image: string;
+  article: Article;
 
-  constructor(idImage: number, urlImage: string, article: Article) {
+  constructor(idImage: number, url_image: string, article: Article) {
     this.idImage = idImage;
-    this.urlImage = urlImage;
+    this.url_image = url_image;
     this.article = article;
   }
 }

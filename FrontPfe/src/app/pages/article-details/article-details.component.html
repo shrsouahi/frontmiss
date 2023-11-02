@@ -1,5 +1,57 @@
-<div class="article-details">
-  <h2>{{ article?.nomArticle }}</h2>
-  <p>Prix: {{ article?.prixArticle }} TND</p>
-  <button (click)="addToCart()">Ajouter au panier</button>
+<div class="page-content">
+  <div class="article-details">
+    <!-- Add a section to display images -->
+    <div class="article-images" *ngIf="article && article.images">
+      <div *ngIf="article.images.length > 0; else noImages">
+        <div class="big-image">
+          <img [src]="currentBigImage" alt="{{ article.nomArticle }}" />
+        </div>
+        <ul class="small-images">
+          <li
+            *ngFor="let image of article.images; let first = first"
+            [class.big-image]="first"
+          >
+            <img
+              src="{{ image.url_image }}"
+              alt="{{ article.nomArticle }}"
+              (click)="changeBigImage(image.url_image)"
+            />
+          </li>
+        </ul>
+      </div>
+
+      <ng-template #noImages>
+        <p>Pas d'images disponibles pour cet article.</p>
+      </ng-template>
+    </div>
+
+    <div class="other-content">
+      <h2>{{ article?.nomArticle }}</h2>
+      <p>Prix : {{ article?.prixArticle }} TND</p>
+
+      <!-- Add a dropdown list for sizes -->
+      <div class="Size-selection">
+        <label for="size">Taille:</label>
+        <select id="size" name="size" [(ngModel)]="selectedSize">
+          <option value="" disabled selected>Choisir une taille</option>
+          <option *ngFor="let size of sizes" [value]="size.labelSize">
+            {{ size.labelSize }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Add article description -->
+      <div class="article-description">
+        <h3>Description</h3>
+        <p>{{ article?.descriptionArticle }}</p>
+      </div>
+
+      <!-- Add a button for "Disponible en stock" -->
+      <button [disabled] class="disponible-button">Disponible en stock</button>
+
+      <button class="button_ajout" (click)="addToCart()">
+        Ajouter au panier
+      </button>
+    </div>
+  </div>
 </div>

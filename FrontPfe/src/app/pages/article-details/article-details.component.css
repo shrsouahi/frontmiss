@@ -1,27 +1,128 @@
-.article-details {
-  padding: 20px;
+.page-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  margin-bottom: 140px;
 }
 
+/* Style the article details container */
+.article-details {
+  display: flex; /* Use flexbox to create a horizontal layout */
+  align-items: flex-start; /* Align content at the top */
+  padding: 20px;
+  text-align: left;
+}
+
+/* Style the left column for images */
+.article-images {
+  flex: 1; /* Make the images take up available space */
+  margin-right: 20px; /* Add spacing between the columns */
+  margin-top: 100px;
+}
+
+/* Style the right column for other content */
+.other-content {
+  flex: 1; /* Make the other content take up available space */
+  margin-top: 100px;
+}
+
+/* Style the size selection container */
+.Size-selection {
+  max-width: 200px;
+  margin-bottom: 20px; /* Add space below the size selection */
+}
+
+/* Style the size selection label and select box */
+.Size-selection label {
+  font-size: 16px;
+  display: block;
+  margin-bottom: 10px; /* Add space below the label */
+}
+
+.Size-selection select {
+  font-size: 16px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px; /* Add space below the select box */
+}
+
+/* Style the button */
+.button_ajout{
+  padding: 10px 40px;
+  background-color: #F4DBD8;
+  color: #555;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 150px; 
+  margin-left: 10px;
+}
+
+.button_ajout:hover {
+  background-color: #C09891;
+}
+
+/* Additional styles for h2 and p elements */
 h2 {
-  font-size: 24px;
   margin-bottom: 20px;
+  color: #C09891;;
+}
+
+h3 {
+  margin-bottom: 20px;
+  color: #555;
+  text-decoration: underline;
 }
 
 p {
   font-size: 18px;
   margin-bottom: 20px;
+  color: #2A0800;
 }
 
-button {
-  padding: 10px 20px;
-  background-color:#F4DBD8; /* Set your desired button color */
-  color: #555;
-  border: none;
-  border-radius: 5px;
+.big-image img {
+  width: 100%;      /* Fill its container's width */
+  max-width: 500px; /* Limit the maximum width */
+  height: auto;     /* Maintain the aspect ratio */
+  max-height: 500px;/* Limit the maximum height */
+}
+.big-image{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style the small images */
+.small-images {
+  display: flex;
+  list-style-type: none;
+  padding: 10px;
+}
+
+.small-images li {
+  margin-right: 10px; 
+}
+
+.small-images img {
+ width: 70px;
+ height: 70px;
   cursor: pointer;
 }
 
-button:hover {
-  background-color:#C09891; /* Set the button color on hover */
+/* Style the "Disponible en stock" button */
+.disponible-button {
+  padding: 10px 20px;
+  background-color: #ccc; /* Set your desired disabled button color */
+  color: #555;
+  border: none;
+  border-radius: 5px;
+  cursor: not-allowed;
+}
+
+/* Style the "Disponible en stock" button on hover (if needed) */
+.disponible-button:hover {
+  background-color: #ccc; /* Keep the same color on hover */
 }
