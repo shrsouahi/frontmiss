@@ -5,12 +5,16 @@ import { CategoryDetailsComponent } from './pages/category-details/category-deta
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { ArticleDetailsComponent } from './pages/article-details/article-details.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { ProfilComponent } from './pages/profil/profil.component';
 const routes: Routes = [
   { path: 'acceuil', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'category/:id', component: CategoryDetailsComponent },
   { path: 'article/:idarticle', component: ArticleDetailsComponent },
+  { path: 'panier', component: CartComponent },
+  { path: 'profil', component: ProfilComponent },
 ];
 
 @NgModule({

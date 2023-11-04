@@ -35,4 +35,13 @@ export class UserService {
   checkEmailExists(email: string): Observable<string> {
     return this.http.post<string>(`${this.apiUrl}/users/adduser`, { email });
   }
+
+  logout() {
+    localStorage.removeItem('user'); // Remove user data
+    localStorage.removeItem('isLoggedIn'); // Remove the "isLoggedIn" flag
+  }
+
+  isLoggedIn(): boolean {
+    return localStorage.getItem('isLoggedIn') === 'true';
+  }
 }

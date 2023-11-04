@@ -4,6 +4,7 @@ import { Category } from '../models/Category.model';
 import { MatSidenav } from '@angular/material/sidenav';
 screen;
 import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-menubar',
@@ -15,10 +16,12 @@ export class MenubarComponent implements OnInit {
   categories: Category[] = [];
   currentCategory: string | null = null;
   selectedChildCategory: Category | null = null;
+  isUserConnected: boolean = !!localStorage.getItem('user');
 
   constructor(
     private categoryService: CategoryService,
-    private router: Router
+    private router: Router,
+    public userService: UserService
   ) {}
 
   ngOnInit(): void {

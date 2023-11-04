@@ -5,6 +5,7 @@ import { ArticleService } from 'src/app/services/article.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SizeService } from 'src/app/services/size.service';
 import { Size } from 'src/app/models/Size.model';
+import { QuantitySizeService } from 'src/app/services/quantity-size.service';
 
 @Component({
   selector: 'app-article-details',
@@ -14,24 +15,37 @@ import { Size } from 'src/app/models/Size.model';
 export class ArticleDetailsComponent implements OnInit {
   article: Article | undefined;
   sizes: Size[] = [];
-  selectedSize: string | undefined;
+  selectedSize: string;
   currentBigImage: string = '';
+  // Declare a boolean variable to track the availability of the selected size
+  sizeAvailable: boolean = true;
+  // Declare a variable for available sizes
+  availableSizes: string[] = [];
+  addToCartMessage: string = '';
+  isAddingToCart: boolean = false;
+  articleQuantityStock: number = 0; //default value for quantityStock total
+  articleAvailableInStock: boolean = true; // Initialize as true by default
 
   constructor(
     private route: ActivatedRoute,
     private articleService: ArticleService,
     private sanitizer: DomSanitizer,
-    private sizeService: SizeService
-  ) {}
+    private sizeService: SizeService,
+    private quantitySizeService: QuantitySizeService
+  ) {
+    this.selectedSize = '';
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const idarticle = params.get('idarticle');
       console.log('Article ID:', idarticle);
-      if (idarticle) {
+      if (idarticle !== null) {
         this.loadArticleDetails(+idarticle);
+
+        this.fetchAvailableSizes(+idarticle);
       }
-      this.fetchSizes(); // Fetch sizes when the component is initialized
+      this.fetchSizes();
     });
   }
 
@@ -43,7 +57,9 @@ export class ArticleDetailsComponent implements OnInit {
     this.articleService.getArticleById(idarticle).subscribe(
       (article) => {
         this.article = article;
-        // Replace backslashes with forward slashes in image URLs
+        // Set the article's quantity stock
+        this.articleQuantityStock = article.quantiteStock;
+
         if (this.article && this.article.images) {
           this.article.images.forEach((image) => {
             if (image.url_image) {
@@ -80,8 +96,59 @@ export class ArticleDetailsComponent implements OnInit {
     );
   }
 
+  fetchAvailableSizes(articleId: number) {
+    this.quantitySizeService.getAvailableSizesForArticle(articleId).subscribe(
+      (quantitySizes) => {
+        // Filter out sizes with quantity = 0
+        this.availableSizes = quantitySizes
+          .filter((size) => size.quantityStockArticle > 0)
+          .map((size) => size.size.labelSize);
+
+        this.checkSizeAvailability(); // Check size availability
+      },
+      (error) => {
+        console.error('Error fetching available sizes:', error);
+      }
+    );
+  }
+
+  checkSizeAvailability() {
+    if (this.selectedSize) {
+      this.sizeAvailable = this.availableSizes.includes(this.selectedSize);
+    }
+  }
+
+  selectSize(size: string) {
+    this.selectedSize = size;
+    this.checkSizeAvailability(); // Check size availability when the size is selected
+  }
+
+  onSizeChange() {
+    if (this.selectedSize) {
+      // Check if the selected size is available
+      const selectedSizeAvailable = this.availableSizes.includes(
+        this.selectedSize
+      );
+      this.sizeAvailable = selectedSizeAvailable;
+    }
+  }
+
   addToCart() {
-    // Implement your add to cart logic here
-    console.log('Added to cart:', this.article);
+    if (this.sizeAvailable) {
+      this.isAddingToCart = true;
+      // Implement your add to cart logic here
+
+      setTimeout(() => {
+        this.addToCartMessage = 'Article ajouté au panier.';
+        this.isAddingToCart = false;
+        console.log('Added to cart:', this.article);
+      }, 2000); // Assuming a 2-second loading simulation
+    } else {
+      this.addToCartMessage = "La taille sélectionnée n'est pas disponible.";
+    }
+  }
+
+  clearAddToCartMessage() {
+    this.addToCartMessage = '';
   }
 }

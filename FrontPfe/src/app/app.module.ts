@@ -17,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from '@angular/material/menu';
 import { CategoryDetailsComponent } from './pages/category-details/category-details.component';
 import { ArticleDetailsComponent } from './pages/article-details/article-details.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { ProfilComponent } from './pages/profil/profil.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +29,8 @@ import { ArticleDetailsComponent } from './pages/article-details/article-details
     FooterComponent,
     CategoryDetailsComponent,
     ArticleDetailsComponent,
+    CartComponent,
+    ProfilComponent,
   ],
   imports: [
     BrowserModule,

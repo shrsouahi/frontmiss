@@ -32,12 +32,25 @@
       <!-- Add a dropdown list for sizes -->
       <div class="Size-selection">
         <label for="size">Taille:</label>
-        <select id="size" name="size" [(ngModel)]="selectedSize">
+        <select
+          id="size"
+          name="size"
+          [(ngModel)]="selectedSize"
+          (change)="onSizeChange()"
+          (change)="clearAddToCartMessage()"
+        >
+          >
           <option value="" disabled selected>Choisir une taille</option>
           <option *ngFor="let size of sizes" [value]="size.labelSize">
             {{ size.labelSize }}
           </option>
         </select>
+        <div
+          *ngIf="!sizeAvailable && selectedSize"
+          class="size-not-available-message"
+        >
+          Taille non disponible
+        </div>
       </div>
 
       <!-- Add article description -->
@@ -46,12 +59,27 @@
         <p>{{ article?.descriptionArticle }}</p>
       </div>
 
-      <!-- Add a button for "Disponible en stock" -->
-      <button [disabled] class="disponible-button">Disponible en stock</button>
+      <ng-template #notAvailable>
+        <button [disabled] class="non-disponible-button">
+          Article non Disponible en stock
+        </button>
+      </ng-template>
 
-      <button class="button_ajout" (click)="addToCart()">
-        Ajouter au panier
+      <!-- Add a button for "Disponible en stock" 
+      <button [disabled] class="disponible-button">
+        Article Disponible en stock
+      </button> -->
+
+      <button
+        *ngIf="articleQuantityStock > 0; else notAvailable"
+        [disabled]="!articleAvailableInStock"
+        class="button_ajout"
+        (click)="addToCart()"
+      >
+        <span *ngIf="isAddingToCart">Ajout en cours...</span>
+        <span *ngIf="!isAddingToCart">Ajouter au panier</span>
       </button>
+      <p class="add-to-cart-message">{{ addToCartMessage }}</p>
     </div>
   </div>
 </div>
