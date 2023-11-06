@@ -70,6 +70,7 @@ export class LoginComponent implements OnInit {
             const userJSON = JSON.stringify(registeredUser);
 
             // Store the serialized user information in local storage
+
             localStorage.setItem('user', userJSON);
             localStorage.setItem('isLoggedIn', 'true');
             this.router.navigate(['/acceuil']);

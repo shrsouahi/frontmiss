@@ -41,9 +41,8 @@ export class CartService {
 
     // Filter the cart items based on the userId property and return as an Observable
     const filteredCartItems = cartItems.filter(
-      (cartItem) => cartItem.userId === userId || cartItem.userId === null
+      (cartItem) => cartItem.userId === userId || cartItem.userId === -1
     );
-    console.log('id:', userId);
 
     return of(filteredCartItems);
   }
@@ -52,7 +51,7 @@ export class CartService {
     // Load cart items from local storage and parse them
     const storedCartItems = JSON.parse(
       localStorage.getItem('cartItems') || '[]'
-    );
+    ) as CartItem[];
 
     return storedCartItems;
   }

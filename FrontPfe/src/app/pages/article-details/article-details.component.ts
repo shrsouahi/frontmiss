@@ -150,65 +150,66 @@ export class ArticleDetailsComponent implements OnInit {
       this.sizeAvailable = selectedSizeAvailable;
     }
   }
+
   addToCart(article: Article) {
+    //const defaultUserId = -1; // Use a default integer value
     if (this.sizeAvailable) {
       this.isAddingToCart = true;
       if (this.selectedSize) {
         // Fetch the user from local storage
         const user = this.userService.getUserFromLocalStorage();
+
+        let userId: number | null;
+
         if (user) {
-          const cartItem: CartItem = {
-            idArticle: article.idArticle,
-            selectedSize: this.selectedSize,
-            quantity: 1,
-            price: article.prixArticle,
-            name: article.nomArticle,
-            originalPrice: article.prixArticle,
-            userId: user.idUser, // Set userId if a user is logged in
-          };
-          console.log('user ID:', user.idUser);
-
-          // Check if the item already exists in the cart
-          const existingItem = this.cartService.findCartItem(cartItem);
-          if (existingItem) {
-            // If it exists, increase its quantity
-            existingItem.quantity++;
-          } else {
-            // If it doesn't exist, add it to the cart
-            this.cartService.addToCart(cartItem);
-          }
-
-          setTimeout(() => {
-            this.addToCartMessage = 'Article ajouté au panier.';
-            this.isAddingToCart = false;
-          }, 2000); // Assuming a 2-second loading simulation
+          userId = user.idUser; // Set userId if a user is logged in
         } else {
-          // Handle the case when the user is not logged in
-          const cartItem: CartItem = {
-            idArticle: article.idArticle,
-            selectedSize: this.selectedSize,
-            quantity: 1,
-            price: article.prixArticle,
-            name: article.nomArticle,
-            originalPrice: article.prixArticle,
-            userId: null, // Set userId as null for visitors
-          };
-
-          // Check if the item already exists in the cart
-          const existingItem = this.cartService.findCartItem(cartItem);
-          if (existingItem) {
-            // If it exists, increase its quantity
-            existingItem.quantity++;
-          } else {
-            // If it doesn't exist, add it to the cart
-            this.cartService.addToCart(cartItem);
-          }
-
-          setTimeout(() => {
-            this.addToCartMessage = 'Article ajouté au panier.';
-            this.isAddingToCart = false;
-          }, 2000); // Assuming a 2-second loading simulation
+          userId = -1; // Set userId as -1 for visitors
         }
+
+        const cartItem: CartItem = {
+          idArticle: article.idArticle,
+          selectedSize: this.selectedSize,
+          quantity: 1,
+          price: article.prixArticle,
+          name: article.nomArticle,
+          originalPrice: article.prixArticle,
+          userId: userId, // Set userId if a user is logged in
+        };
+        console.log('user ID:', userId);
+
+        // Declare existingItem outside the if/else blocks
+        let existingItem: CartItem | undefined;
+
+        // Check if the item already exists in the cart
+        existingItem = this.cartService.findCartItem(cartItem);
+        if (existingItem) {
+          // If it exists, increase its quantity
+          existingItem.quantity++;
+        } else {
+          // If it doesn't exist, add it to the cart
+          this.cartService.addToCart(cartItem);
+        }
+
+        setTimeout(() => {
+          this.addToCartMessage = 'Article ajouté au panier.';
+          this.isAddingToCart = false;
+        }, 2000); // Assuming a 2-second loading simulation
+
+        // Check if the item already exists in the cart
+        existingItem = this.cartService.findCartItem(cartItem);
+        if (existingItem) {
+          // If it exists, increase its quantity
+          existingItem.quantity++;
+        } else {
+          // If it doesn't exist, add it to the cart
+          this.cartService.addToCart(cartItem);
+        }
+
+        setTimeout(() => {
+          this.addToCartMessage = 'Article ajouté au panier.';
+          this.isAddingToCart = false;
+        }, 2000); // Assuming a 2-second loading simulation
       }
     } else {
       this.addToCartMessage = "La taille sélectionnée n'est pas disponible.";

@@ -25,10 +25,17 @@ export class CartComponent implements OnInit {
     const storedUserJSON = localStorage.getItem('user');
     if (storedUserJSON) {
       this.user = JSON.parse(storedUserJSON);
-      this.userId = this.user?.idUser || null; // Use optional chaining (?.) to handle null
+      if (this.user) {
+        // Access properties or methods of this.user safely
+        const userId = this.user.idUser;
+        // ... other code using this.user
+      } else {
+        // Handle the case when this.user is null
+      }
+      this.userId = this.user?.idUser || -1; // Use optional chaining (?.) to handle null
     } else {
       this.user = null; // Set user to null if no data is found in local storage
-      this.userId = null;
+      this.userId = -1;
     }
     const userId = this.user ? this.user.idUser : null;
     console.log('idtest', userId);
@@ -59,7 +66,6 @@ export class CartComponent implements OnInit {
       this.calculateTotal();
     });
   }
-
   get calculatedTotal(): number {
     return this.calculateTotalForAllItems();
   }
