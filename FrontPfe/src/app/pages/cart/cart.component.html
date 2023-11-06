@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="cart-container">
+  <div class="cart-container" *ngIf="!isCartEmpty">
     <table>
       <thead>
         <tr>
@@ -12,45 +12,41 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Product Name 1</td>
-          <td>Size S</td>
-          <td>$19.99</td>
+        <tr *ngFor="let item of cartItems">
+          <td>{{ item.name }}</td>
+          <td>{{ item.selectedSize }}</td>
+          <td>{{ item.originalPrice }} TND</td>
           <td>
-            <input type="number" value="1" />
+            <input
+              type="number"
+              [(ngModel)]="item.quantity"
+              (ngModelChange)="updateQuantity(item, $event)"
+              min="0"
+            />
           </td>
-          <td>$19.99</td>
+
+          <td>{{ item.originalPrice * item.quantity }} TND</td>
           <td>
-            <button>Supprimer</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Product Name 2</td>
-          <td>Size M</td>
-          <td>$29.99</td>
-          <td>
-            <input type="number" value="2" />
-          </td>
-          <td>$59.98</td>
-          <td>
-            <button>Supprimer</button>
+            <button mat-icon-button (click)="removeItemFromCart(item)">
+              <mat-icon>delete</mat-icon>
+            </button>
           </td>
         </tr>
-        <!-- You can add more rows for additional products with their respective sizes -->
       </tbody>
       <tfoot>
         <tr>
           <td colspan="4">Total</td>
-          <td>$79.97</td>
+          <td>{{ calculatedTotal }} TND</td>
           <td></td>
         </tr>
       </tfoot>
     </table>
-    <button class="vider-panier-button">Vider Panier</button>
+    <button class="vider-panier-button" (click)="clearCart()">
+      Vider Panier
+    </button>
   </div>
-
   <!-- Delivery Mode Section -->
-  <div class="delivery-section">
+  <div class="delivery-section" *ngIf="!isCartEmpty">
     <h3>Mode de livraison</h3>
     <table class="delivery-table">
       <tbody>
@@ -60,22 +56,26 @@
             <input
               type="radio"
               id="homeDelivery"
-              name="deliveryOption"
-              value="homeDelivery"
+              name="deliveryChoice"
+              value="domicile"
+              [(ngModel)]="deliveryChoice"
+              (ngModelChange)="calculateDeliveryAndTotal()"
             />
           </td>
           <td>7.000 TND</td>
           <td>livraison à domicile par ARAMEX</td>
-          <td>Payez à la livraison 0 frais à partir de 200dt d'achats</td>
+          <td>Payez votre commande à la livraison</td>
         </tr>
         <tr>
-          <!-- Second Line -->
+          <!-- Second choice -->
           <td>
             <input
               type="radio"
-              id="shopPickup"
-              name="deliveryOption"
-              value="shopPickup"
+              id="freeDelivery"
+              name="deliveryChoice"
+              value="free"
+              [(ngModel)]="deliveryChoice"
+              (ngModelChange)="calculateDeliveryAndTotal()"
             />
           </td>
           <td>0 TND</td>
@@ -87,25 +87,30 @@
   </div>
 
   <!-- Summary Table -->
-  <div class="summary-section">
+  <div class="summary-section" *ngIf="!isCartEmpty">
     <h3>Total panier</h3>
     <table class="summary-table">
       <tbody>
         <tr>
-          <td>Sub-Total</td>
-          <td>$79.97</td>
+          <td>Sous-total</td>
+          <td>{{ calculatedTotal }} TND</td>
         </tr>
         <tr>
-          <td>Delivery Price</td>
-          <td>$0.00</td>
+          <td>Frais de livraison</td>
+          <td>{{ deliveryCost }} TND</td>
         </tr>
         <tr>
           <td>Total</td>
-          <td>$79.97</td>
+          <td>{{ calculatedTotal + deliveryCost }} TND</td>
         </tr>
       </tbody>
     </table>
     <!-- Checkout Button -->
     <button class="checkout-button">Valider Panier</button>
+  </div>
+
+  <div class="empty-cart-message-container" *ngIf="isCartEmpty">
+    <p>Vous n'avez aucun article dans votre panier. continuez vos achats.</p>
+    <img src="assets/images/cartempty.png" alt="" />
   </div>
 </div>

@@ -1,3 +1,49 @@
+<!-- account-information.component.html -->
+
 <div>
-  <button (click)="logout()">Logout</button>
+  <h1>Mon Compte</h1>
+</div>
+<div class="account-info-section">
+  <h2>Informations de Compte</h2>
+  <p><span>Nom & Prénom:</span> {{ user.fName }} {{ user.lName }}</p>
+  <p><span>Email: </span>{{ user.email }}</p>
+  <p><span>Numéro de Téléphone:</span> {{ user.phone }}</p>
+  <a href="#">éditer informations</a>
+</div>
+<!-- default-shipping-address.component.html -->
+<div class="shipping-address-section">
+  <h2>Adresse de Livraison par Défaut</h2>
+  <p>Adresse : {{ user.adresse }}</p>
+  <p>Ville : {{ user.ville }}</p>
+  <p>region : {{ user.region }}</p>
+  <a href="#">éditer adresse</a>
+</div>
+
+<div class="command-section">
+  <h2>Commandes récentes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID Commande</th>
+        <th>Date de Commande</th>
+        <th>Total</th>
+        <th>Statut</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Loop through your recent orders and populate the table rows -->
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><button>Visulaiser</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <button class="logout-button" (click)="logout()">Se déconnecter</button>
 </div>

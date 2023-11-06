@@ -25,9 +25,11 @@ export class SignupComponent implements OnInit {
 
     return null;
   }
+
   showEmailExistsError: boolean = false;
   hide: boolean = true;
   hideConfirmPassword: boolean = true;
+
   registerForm: FormGroup = new FormGroup(
     {
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -57,6 +59,13 @@ export class SignupComponent implements OnInit {
           this.router.navigate(['/acceuil']);
         },
         (error) => {
+          if (error.status === 409) {
+            // If the email already exists, set showEmailExistsError to true
+            this.showEmailExistsError = true;
+          } else {
+            // Handle other registration errors
+            console.error('Error during registration:', error);
+          }
           // Handle registration error
           console.error('Error during registration:', error);
         }

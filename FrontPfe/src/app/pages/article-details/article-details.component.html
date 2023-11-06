@@ -71,10 +71,10 @@
       </button> -->
 
       <button
-        *ngIf="articleQuantityStock > 0; else notAvailable"
+        *ngIf="article && articleQuantityStock > 0; else notAvailable"
         [disabled]="!articleAvailableInStock"
         class="button_ajout"
-        (click)="addToCart()"
+        (click)="addToCart(article)"
       >
         <span *ngIf="isAddingToCart">Ajout en cours...</span>
         <span *ngIf="!isAddingToCart">Ajouter au panier</span>

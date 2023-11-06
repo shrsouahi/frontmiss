@@ -2,7 +2,6 @@
   <div class="error-message" *ngIf="showEmailExistsError">
     L'adresse e-mail existe déjà.
   </div>
-
   <div [formGroup]="registerForm" class="register-content">
     <p class="title">Créer un compte</p>
     <p class="title2">Informations personnelles</p>
@@ -26,9 +25,7 @@
       <mat-label>E-mail</mat-label>
       <input formControlName="email" matInput type="email" />
 
-      <mat-error
-        *ngIf="registerForm.controls['PhoneNumber']?.hasError('required')"
-      >
+      <mat-error *ngIf="registerForm.controls['email']?.hasError('required')">
         Tappez Votre E-mail !
       </mat-error>
     </mat-form-field>
@@ -37,9 +34,7 @@
       <mat-label>Numéro</mat-label>
       <input formControlName="phone" matInput type="number" />
 
-      <mat-error
-        *ngIf="registerForm.controls['PhoneNumber']?.hasError('required')"
-      >
+      <mat-error *ngIf="registerForm.controls['phone']?.hasError('required')">
         Tappez Votre numéro de téléphone!
       </mat-error>
     </mat-form-field>

@@ -143,3 +143,21 @@ h3{
   color: #BEA8A7;
   font-style: italic;
 }
+
+.empty-cart-message-container {
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;  
+  text-align: center;
+}
+
+.empty-cart-message-container p {
+  font-size: 1.5rem; /* Taille de police */
+}
+
+.empty-cart-message-container img {
+  max-width: 500px;  
+  margin-top: 20px;  
+}
