@@ -12,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class LoginComponent implements OnInit {
   hide: boolean = true;
   showErrorMessage = false;
+  user: User | null = null; // Declare the user property
 
   emailControl: FormControl = new FormControl('', [
     Validators.required,
@@ -45,6 +46,9 @@ export class LoginComponent implements OnInit {
       this.userservice.signIn(email, password).subscribe(
         (registeredUser) => {
           if (registeredUser) {
+            // Set the user property with the authenticated user
+            this.user = registeredUser;
+
             this.userservice.setUserId(registeredUser.idUser);
             console.log('User logged in successfully:', registeredUser);
 

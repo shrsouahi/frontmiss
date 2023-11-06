@@ -166,6 +166,7 @@ export class ArticleDetailsComponent implements OnInit {
             originalPrice: article.prixArticle,
             userId: user.idUser, // Set userId if a user is logged in
           };
+          console.log('user ID:', user.idUser);
 
           // Check if the item already exists in the cart
           const existingItem = this.cartService.findCartItem(cartItem);

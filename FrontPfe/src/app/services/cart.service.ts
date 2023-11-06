@@ -36,16 +36,30 @@ export class CartService {
     }
   }
 
-  //getCartItems(userId: number | null): Observable<CartItem[]> {
-  // Filter the cart items based on the userId property passed as a parameter
-  // const userCartItems = this.cartItems.filter(
-  //   (cartItem) => cartItem.userId === userId || cartItem.userId === null
-  //);
-  //return of(userCartItems);
-
   getCartItems(userId: number | null): Observable<CartItem[]> {
-    return of(this.cartItems);
+    const cartItems = this.loadCartItemsFromLocalStorage();
+
+    // Filter the cart items based on the userId property and return as an Observable
+    const filteredCartItems = cartItems.filter(
+      (cartItem) => cartItem.userId === userId || cartItem.userId === null
+    );
+    console.log('id:', userId);
+
+    return of(filteredCartItems);
   }
+
+  private loadCartItemsFromLocalStorage(): CartItem[] {
+    // Load cart items from local storage and parse them
+    const storedCartItems = JSON.parse(
+      localStorage.getItem('cartItems') || '[]'
+    );
+
+    return storedCartItems;
+  }
+
+  //getCartItems(userId: number | null): Observable<CartItem[]> {
+  //return of(this.cartItems);
+  //}
 
   clearCart() {
     this.cartItems = [];

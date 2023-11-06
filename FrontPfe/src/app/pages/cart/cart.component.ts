@@ -17,14 +17,21 @@ export class CartComponent implements OnInit {
   userId: number | null = null;
   user: User | null = null; // Declare the user property
 
-  constructor(private cartService: CartService) {
-    const storedUserId = localStorage.getItem('userId');
-    this.userId = storedUserId ? +storedUserId : null;
-  }
+  constructor(private cartService: CartService) {}
 
   ngOnInit() {
     // If a user is logged in, use their userId; otherwise, use null for visitors
+    // Retrieve the user data from local storage
+    const storedUserJSON = localStorage.getItem('user');
+    if (storedUserJSON) {
+      this.user = JSON.parse(storedUserJSON);
+      this.userId = this.user?.idUser || null; // Use optional chaining (?.) to handle null
+    } else {
+      this.user = null; // Set user to null if no data is found in local storage
+      this.userId = null;
+    }
     const userId = this.user ? this.user.idUser : null;
+    console.log('idtest', userId);
     this.cartService.getCartItems(userId).subscribe((articles) => {
       console.log('Filtered userCartItems:', articles);
       // Process your data here
