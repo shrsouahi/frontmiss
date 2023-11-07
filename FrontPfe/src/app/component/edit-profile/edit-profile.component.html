@@ -1,0 +1,36 @@
+<form [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="name">First Name</label>
+    <input type="text" id="name" formControlName="name" [disabled]="true" />
+  </div>
+  <div class="form-group">
+    <label for="lastname">Last Name</label>
+    <input
+      type="text"
+      id="lastname"
+      formControlName="lastname"
+      [disabled]="true"
+    />
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" formControlName="email" [disabled]="true" />
+  </div>
+  <div class="form-group">
+    <label for="phoneNumber">Phone Number</label>
+    <input type="text" id="phoneNumber" formControlName="phoneNumber" />
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" id="password" formControlName="password" />
+  </div>
+  <div class="form-group">
+    <label for="Confirmpassword">Confirm Password</label>
+    <input
+      type="password"
+      id="Confirmpassword"
+      formControlName="Confirmpassword"
+    />
+  </div>
+  <button type="submit">Save</button>
+</form>

@@ -18,54 +18,52 @@ export class CartComponent implements OnInit {
   user: User | null = null; // Declare the user property
 
   constructor(private cartService: CartService) {}
-
   ngOnInit() {
-    // If a user is logged in, use their userId; otherwise, use null for visitors
     // Retrieve the user data from local storage
     const storedUserJSON = localStorage.getItem('user');
-    if (storedUserJSON) {
-      this.user = JSON.parse(storedUserJSON);
-      if (this.user) {
-        // Access properties or methods of this.user safely
-        const userId = this.user.idUser;
-        // ... other code using this.user
-      } else {
-        // Handle the case when this.user is null
+    this.user = storedUserJSON ? JSON.parse(storedUserJSON) : null;
+    this.userId = this.user?.idUser || null; // Use optional chaining (?.) to handle null
+
+    // Fetch cart items and handle errors
+    this.cartService.getCartItems(this.userId).subscribe(
+      (articles) => {
+        // Process your data here
+        this.syncLocalStorageWithCart(articles);
+      },
+      (error) => {
+        console.error('Error fetching cart items:', error);
+        // You can handle the error here, e.g., show a message to the user.
       }
-      this.userId = this.user?.idUser || -1; // Use optional chaining (?.) to handle null
-    } else {
-      this.user = null; // Set user to null if no data is found in local storage
-      this.userId = -1;
-    }
-    const userId = this.user ? this.user.idUser : null;
-    console.log('idtest', userId);
-    this.cartService.getCartItems(userId).subscribe((articles) => {
-      console.log('Filtered userCartItems:', articles);
-      // Process your data here
-      const storedCartItems = localStorage.getItem('cartItems');
-      if (storedCartItems) {
-        this.cartItems = JSON.parse(storedCartItems);
-        // Ensure that local storage items are synced with service items
-        this.cartItems = this.cartItems.filter((item) =>
-          articles.some((article) => article.idArticle === item.idArticle)
-        );
-      } else {
-        this.cartItems = articles.map((cartItem) => ({
-          idArticle: cartItem.idArticle,
-          name: cartItem.name,
-          selectedSize: cartItem.selectedSize,
-          price: cartItem.price,
-          quantity: 1,
-          originalPrice: cartItem.originalPrice,
-          userId: this.userId, // Set userId based on the current user
-        }));
-      }
-      if (this.cartItems.length > 0) {
-        this.isCartEmpty = false;
-      }
-      this.calculateTotal();
-    });
+    );
   }
+
+  // Separate method to synchronize local storage with cart items
+  syncLocalStorageWithCart(articles: CartItem[]) {
+    const storedCartItems = localStorage.getItem('cartItems');
+    if (storedCartItems) {
+      this.cartItems = JSON.parse(storedCartItems);
+      // Ensure that local storage items are synced with service items
+      this.cartItems = this.cartItems.filter((item) =>
+        articles.some((article) => article.idArticle === item.idArticle)
+      );
+    } else {
+      this.cartItems = articles.map((cartItem) => ({
+        idArticle: cartItem.idArticle,
+        name: cartItem.name,
+        selectedSize: cartItem.selectedSize,
+        price: cartItem.price,
+        quantity: 1,
+        originalPrice: cartItem.originalPrice,
+        userId: this.userId, // Set userId based on the current user
+      }));
+    }
+
+    if (this.cartItems.length > 0) {
+      this.isCartEmpty = false;
+    }
+    this.calculateTotal();
+  }
+
   get calculatedTotal(): number {
     return this.calculateTotalForAllItems();
   }

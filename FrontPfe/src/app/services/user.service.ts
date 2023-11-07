@@ -18,6 +18,7 @@ export class UserService {
   getUserId(): number {
     return this.idUser;
   }
+
   constructor(private http: HttpClient) {
     this.idUser = 0;
   }
@@ -33,7 +34,9 @@ export class UserService {
   }
 
   checkEmailExists(email: string): Observable<string> {
-    return this.http.post<string>(`${this.apiUrl}/users/adduser`, { email });
+    return this.http.post<string>(`${this.apiUrl}/users/checkemailexists`, {
+      email,
+    });
   }
 
   logout() {
@@ -44,8 +47,19 @@ export class UserService {
   isLoggedIn(): boolean {
     return localStorage.getItem('isLoggedIn') === 'true';
   }
+
   getUserFromLocalStorage(): User | null {
     const userString = localStorage.getItem('user');
     return userString ? JSON.parse(userString) : null;
+  }
+
+  getUserById(idUser: number): Observable<User> {
+    const url = `${this.apiUrl}/users/user/${idUser}`; // Construct the URL here
+    return this.http.get<User>(url);
+  }
+  // method to update the user's profile
+  updateUserProfile(updatedUser: User): Observable<User> {
+    const url = `${this.apiUrl}/users/updateUser/${this.idUser}`; // Assuming your API endpoint
+    return this.http.put<User>(url, updatedUser);
   }
 }

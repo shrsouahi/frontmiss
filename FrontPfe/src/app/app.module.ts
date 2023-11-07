@@ -19,6 +19,7 @@ import { CategoryDetailsComponent } from './pages/category-details/category-deta
 import { ArticleDetailsComponent } from './pages/article-details/article-details.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { ProfilComponent } from './pages/profil/profil.component';
+
 @NgModule({
   declarations: [
     AppComponent,

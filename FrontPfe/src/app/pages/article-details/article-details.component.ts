@@ -153,19 +153,13 @@ export class ArticleDetailsComponent implements OnInit {
 
   addToCart(article: Article) {
     //const defaultUserId = -1; // Use a default integer value
+    const defaultUserId = -1; // Use a default integer value for visitors
     if (this.sizeAvailable) {
       this.isAddingToCart = true;
       if (this.selectedSize) {
         // Fetch the user from local storage
         const user = this.userService.getUserFromLocalStorage();
-
-        let userId: number | null;
-
-        if (user) {
-          userId = user.idUser; // Set userId if a user is logged in
-        } else {
-          userId = -1; // Set userId as -1 for visitors
-        }
+        const userId = user ? user.idUser : defaultUserId; // Set userId if a user is logged in; otherwise, use the default for visitors
 
         const cartItem: CartItem = {
           idArticle: article.idArticle,
@@ -190,11 +184,6 @@ export class ArticleDetailsComponent implements OnInit {
           // If it doesn't exist, add it to the cart
           this.cartService.addToCart(cartItem);
         }
-
-        setTimeout(() => {
-          this.addToCartMessage = 'Article ajouté au panier.';
-          this.isAddingToCart = false;
-        }, 2000); // Assuming a 2-second loading simulation
 
         // Check if the item already exists in the cart
         existingItem = this.cartService.findCartItem(cartItem);

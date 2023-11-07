@@ -37,14 +37,50 @@ export class CartService {
   }
 
   getCartItems(userId: number | null): Observable<CartItem[]> {
+    // Load all cart items from local storage
     const cartItems = this.loadCartItemsFromLocalStorage();
 
-    // Filter the cart items based on the userId property and return as an Observable
-    const filteredCartItems = cartItems.filter(
-      (cartItem) => cartItem.userId === userId || cartItem.userId === -1
-    );
+    if (userId === null) {
+      // If no user is logged in (visitor), return all cart items as is
+      return of(cartItems);
+    } else {
+      // User is logged in, retrieve and merge with the visitor's cart
+      const visitorCartItems = cartItems.filter(
+        (cartItem) => cartItem.userId === -1
+      );
+      const userCartItems = cartItems.filter(
+        (cartItem) => cartItem.userId === userId
+      );
 
-    return of(filteredCartItems);
+      // Merge the visitor's cart items with the user's cart items
+      const mergedCartItems = this.mergeCarts(visitorCartItems, userCartItems);
+
+      // Return the merged cart items as an Observable
+      return of(mergedCartItems);
+    }
+  }
+  mergeCarts(
+    visitorCartItems: CartItem[],
+    userCartItems: CartItem[]
+  ): CartItem[] {
+    // Merge the visitor's cart items with the user's cart items
+    const mergedCartItems = [...userCartItems];
+
+    for (const visitorCartItem of visitorCartItems) {
+      const existingItem = mergedCartItems.find(
+        (userCartItem) => userCartItem.idArticle === visitorCartItem.idArticle
+      );
+
+      if (existingItem) {
+        // If the item already exists in the user's cart, update its quantity
+        existingItem.quantity += visitorCartItem.quantity;
+      } else {
+        // If the item doesn't exist in the user's cart, add it
+        mergedCartItems.push(visitorCartItem);
+      }
+    }
+
+    return mergedCartItems;
   }
 
   private loadCartItemsFromLocalStorage(): CartItem[] {
@@ -61,6 +97,7 @@ export class CartService {
   //}
 
   clearCart() {
+    //to clear the user's cart when logging out
     this.cartItems = [];
     this.saveCart();
   }
@@ -103,7 +140,6 @@ export class CartService {
         item.selectedSize === cartItem.selectedSize
     );
   }
-
   loadUserId(): number | null {
     const userId = localStorage.getItem('userId');
     this.userId = userId ? +userId : null;
