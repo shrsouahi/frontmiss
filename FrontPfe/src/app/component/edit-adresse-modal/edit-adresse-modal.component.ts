@@ -11,8 +11,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./edit-adresse-modal.component.css'],
 })
 export class EditAddressModalComponent {
-  editAdresseForm: FormGroup; // Make sure to use the correct form group name
-  addressData: any; // Update the type as per your requirements
+  editAdresseForm: FormGroup;
   user: User;
 
   constructor(
@@ -23,12 +22,12 @@ export class EditAddressModalComponent {
     private httpClient: HttpClient
   ) {
     this.user = data; // Initialize user data from the injected data
-    this.addressData = data; // Initialize address data from the injected data
+    //this.addressData = data; // Initialize address data from the injected data
     // Initialize your address form controls here
     this.editAdresseForm = this.fb.group({
-      adresse: [this.addressData.adresse, Validators.required],
-      region: [this.addressData.region, Validators.required],
-      ville: [this.addressData.ville, Validators.required],
+      adresse: [this.user.adresse, Validators.required],
+      region: [this.user.region, Validators.required],
+      ville: [this.user.ville, Validators.required],
     });
   }
 
@@ -45,6 +44,7 @@ export class EditAddressModalComponent {
       password: this.user.password,
       adresse: this.editAdresseForm.value.adresse,
       region: this.editAdresseForm.value.region,
+      ville: this.editAdresseForm.value.ville,
     };
     this.userService
       .updateUserProfile(updatedUserData, this.user.idUser) // Pass the user ID in the function call

@@ -24,13 +24,11 @@ export class EditProfileModalComponent {
   ) {
     this.user = data; // Initialize user data from the injected data
 
-    // Initialize your form controls here
-
     this.editProfileForm = this.fb.group({
-      name: [this.user.fName, Validators.required], // Add Validators.required
-      lastname: [this.user.lName, Validators.required], // Add Validators.required
+      name: [this.user.fName, Validators.required],
+      lastname: [this.user.lName, Validators.required],
       email: [{ value: this.user.email, disabled: true }],
-      phoneNumber: [this.user.phone, Validators.required], // Add Validators.required
+      phoneNumber: [this.user.phone, Validators.required],
     });
   }
 
@@ -45,13 +43,16 @@ export class EditProfileModalComponent {
       phone: this.editProfileForm.value.phoneNumber,
       email: this.user.email,
       password: this.user.password,
+      adresse: this.user.adresse,
+      region: this.user.region,
+      ville: this.user.ville,
     };
 
     this.userService
-      .updateUserProfile(updatedUserData, this.user.idUser) // Pass the user ID in the function call
+      .updateUserProfile(updatedUserData, this.user.idUser)
       .subscribe(
         (result) => {
-          console.log('User updated:', result);
+          console.log('User :', result);
           this.dialogRef.close(updatedUserData);
         },
         (error) => {

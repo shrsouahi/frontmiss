@@ -70,3 +70,18 @@ a {
   margin: 0 10px; /* Adjust the margin for better spacing */
 }
 
+.cart-item-count {
+  position: absolute;
+  top: 0px; 
+  right: 0px;  
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 16px;  
+  height: 16px;
+  text-align: center;  
+  font-size: 10px;  
+  line-height: 16px;  
+}
+
+

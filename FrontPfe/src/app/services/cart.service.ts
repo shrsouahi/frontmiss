@@ -1,12 +1,16 @@
 // cart.service.ts
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { CartItem } from '../models/cart-item.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
+  private cartItemCountSubject: BehaviorSubject<number> = new BehaviorSubject(
+    0
+  );
+  cartItemCount$: Observable<number> = this.cartItemCountSubject.asObservable();
   private cartItems: CartItem[] = [];
   private userId: number | null;
 
@@ -18,12 +22,12 @@ export class CartService {
   }
 
   addToCart(cartItem: CartItem) {
-    //if (this.userId) {
-    //cartItem.userId = this.userId;
-    // }
     cartItem.price = cartItem.originalPrice * cartItem.quantity; // Calculate the original price
     this.cartItems.push(cartItem);
     localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+    this.saveCart();
+
+    this.cartItemCountSubject.next(this.cartItems.length); // Update the cart item count
   }
 
   removeFromCart(cartItem: CartItem) {
@@ -92,10 +96,6 @@ export class CartService {
     return storedCartItems;
   }
 
-  //getCartItems(userId: number | null): Observable<CartItem[]> {
-  //return of(this.cartItems);
-  //}
-
   clearCart() {
     //to clear the user's cart when logging out
     this.cartItems = [];
@@ -144,5 +144,9 @@ export class CartService {
     const userId = localStorage.getItem('userId');
     this.userId = userId ? +userId : null;
     return this.userId;
+  }
+
+  getCartItemCount(): number {
+    return this.cartItems.length;
   }
 }

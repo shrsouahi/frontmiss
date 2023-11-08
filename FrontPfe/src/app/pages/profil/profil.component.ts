@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { EditAddressModalComponent } from 'src/app/component/edit-adresse-modal/edit-adresse-modal.component';
 import { EditPasswordModalComponent } from 'src/app/component/edit-password-modal/edit-password-modal.component';
 import { EditProfileModalComponent } from 'src/app/component/edit-profile-modal/edit-profile-modal.component';
+import { User } from 'src/app/models/User.model';
 import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -55,7 +56,6 @@ export class ProfilComponent implements OnInit {
 
   logout() {
     // console.log(this.user.idUser);
-
     // Clear the user's cart when logging out
     this.cartservice.clearCart();
     this.userService.logout();
@@ -76,18 +76,10 @@ export class ProfilComponent implements OnInit {
     });
   }
 
-  // New method for opening the address editing modal
   openEditAdresseModal() {
     const dialogRef = this.dialog.open(EditAddressModalComponent, {
       width: '500px',
       data: this.user,
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        // Handle the updated address data here
-        console.log('Updated Address Data:', result);
-      }
     });
   }
 }

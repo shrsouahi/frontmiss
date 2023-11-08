@@ -131,7 +131,7 @@ p {
 }
 
 .add-to-cart-message {
-  color: red; /* You can choose your desired color */
+  color: green; /* You can choose your desired color */
   font-size: 16px;
   margin-top: 10px; /* Adjust the margin as needed */
 }

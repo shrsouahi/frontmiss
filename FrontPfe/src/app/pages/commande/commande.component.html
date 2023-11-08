@@ -1,5 +1,8 @@
 <div class="container">
   <h1 mat-dialog-title class="modal-title">Informations de livraison</h1>
+  <h4 class="modal-title">
+    Vérifiez ou Changez Vos informations de livraison si vous voulez
+  </h4>
   <form [formGroup]="orderForm">
     <div class="form-group">
       <mat-form-field class="large-input">
@@ -142,8 +145,6 @@
       Valider Commande
     </button>
 
-    <button mat-button (click)="onCancelClick()" class="cancel-button">
-      Annuler Commande
-    </button>
+    <button mat-button class="cancel-button">Annuler Commande</button>
   </div>
 </div>

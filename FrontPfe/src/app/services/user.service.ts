@@ -63,6 +63,7 @@ export class UserService {
 
   // method to update the user's profile
   updateUserProfile(updatedUser: User, idUser: number): Observable<User> {
+    console.log('updateuser', updatedUser.idUser);
     const url = `${this.apiUrl}/users/updateUser/${idUser}`;
     return this.http.put<User>(url, updatedUser).pipe(
       tap((updatedUserData) => {

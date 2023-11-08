@@ -5,6 +5,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 screen;
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { CartService } from '../services/cart.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-menubar',
@@ -17,17 +19,21 @@ export class MenubarComponent implements OnInit {
   currentCategory: string | null = null;
   selectedChildCategory: Category | null = null;
   isUserConnected: boolean = !!localStorage.getItem('user');
+  cartItemCount: number | undefined;
 
   constructor(
     private categoryService: CategoryService,
     private router: Router,
-    public userService: UserService
+    public userService: UserService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
     this.fetchCategories();
-    //if (this.isconnected(){ this.userservice.get ....}
+    this.updateCartItemCount();
   }
+
+  ngOnDestroy(): void {}
 
   fetchCategories() {
     this.categoryService.getCategories().subscribe((data) => {
@@ -55,5 +61,8 @@ export class MenubarComponent implements OnInit {
   selectCategory(category: Category) {
     // Navigate to the details page with the category code
     this.router.navigate(['/category/', category.codeCategory]);
+  }
+  updateCartItemCount() {
+    this.cartItemCount = this.cartService.getCartItemCount();
   }
 }
