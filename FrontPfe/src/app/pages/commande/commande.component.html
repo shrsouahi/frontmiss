@@ -1,0 +1,149 @@
+<div class="container">
+  <h1 mat-dialog-title class="modal-title">Informations de livraison</h1>
+  <form [formGroup]="orderForm">
+    <div class="form-group">
+      <mat-form-field class="large-input">
+        <mat-label for="name" class="form-label">Nom :</mat-label>
+        <input
+          matInput
+          type="text"
+          id="name"
+          formControlName="name"
+          [disabled]="true"
+          required
+        />
+        <mat-error *ngIf="orderForm?.get('name')?.hasError('required')">
+          Nom est requis
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="large-input">
+        <mat-label for="lastname" class="form-label">Prénom :</mat-label>
+        <input
+          matInput
+          type="text"
+          id="lastname"
+          formControlName="lastname"
+          [disabled]="true"
+          required
+        />
+        <mat-error *ngIf="orderForm?.get('lastname')?.hasError('required')">
+          Prénom est requis
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="large-input">
+        <mat-label for="email" class="form-label">Email :</mat-label>
+        <input
+          matInput
+          type="email"
+          id="email"
+          formControlName="email"
+          [disabled]="true"
+          required
+        />
+        <mat-error *ngIf="orderForm?.get('email')?.hasError('required')">
+          Email est requis
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="large-input">
+        <mat-label for="phoneNumber" class="form-label">
+          Numéro de téléphone :
+        </mat-label>
+        <input
+          matInput
+          type="text"
+          id="phoneNumber"
+          formControlName="phoneNumber"
+          required
+        />
+        <mat-error *ngIf="orderForm?.get('phoneNumber')?.hasError('required')">
+          Numéro de téléphone est requis
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field class="large-input">
+        <mat-label for="adresse" class="form-label">Adresse :</mat-label>
+        <input
+          matInput
+          type="text"
+          id="adresse"
+          formControlName="adresse"
+          required
+        />
+        <mat-error *ngIf="orderForm?.get('adresse')?.hasError('required')">
+          Adresse est requise
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="large-input">
+        <mat-label for="ville" class="form-label">Ville :</mat-label>
+        <input
+          matInput
+          type="text"
+          id="ville"
+          formControlName="ville"
+          required
+        />
+        <mat-error *ngIf="orderForm?.get('ville')?.hasError('required')">
+          Ville est requise
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="large-input">
+        <mat-label for="region" class="form-label">Région :</mat-label>
+        <input
+          matInput
+          type="text"
+          id="region"
+          formControlName="region"
+          required
+        />
+        <mat-error *ngIf="orderForm?.get('region')?.hasError('required')">
+          Région est requise
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <div class="summary-section">
+    <h3>Total de Votre commande</h3>
+    <table class="summary-table">
+      <tbody>
+        <tr>
+          <td>Sous-total</td>
+          <td>TND</td>
+        </tr>
+        <tr>
+          <td>Frais de livraison</td>
+          <td>TND</td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td>TND</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button
+      mat-button
+      cdkFocusInitial
+      class="save-button"
+      (click)="onSaveClick()"
+    >
+      Valider Commande
+    </button>
+
+    <button mat-button (click)="onCancelClick()" class="cancel-button">
+      Annuler Commande
+    </button>
+  </div>
+</div>

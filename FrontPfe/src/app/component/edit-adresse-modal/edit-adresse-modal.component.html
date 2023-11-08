@@ -1,0 +1,66 @@
+<h1 mat-dialog-title class="modal-title">
+  Modifier votre adresse de livraison
+</h1>
+<div mat-dialog-content>
+  <form [formGroup]="editAdresseForm">
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label for="adresse" class="form-label">Adresse:</mat-label>
+        <input
+          matInput
+          type="text"
+          id="adresse"
+          formControlName="adresse"
+          required
+        />
+        <mat-error *ngIf="editAdresseForm.get('adresse')?.hasError('required')">
+          Adresse est requise
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label for="region" class="form-label">région</mat-label>
+        <input
+          matInput
+          type="text"
+          id="region"
+          formControlName="region"
+          required
+        />
+        <mat-error *ngIf="editAdresseForm.get('region')?.hasError('required')">
+          La région est requise
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label for="ville" class="form-label">Ville</mat-label>
+        <input
+          matInput
+          type="text"
+          id="ville"
+          formControlName="ville"
+          required
+        />
+        <mat-error *ngIf="editAdresseForm.get('ville')?.hasError('required')">
+          La ville est requise
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()" class="cancel-button">
+    Annuler
+  </button>
+  <button
+    mat-button
+    [mat-dialog-close]="editAdresseForm.value"
+    cdkFocusInitial
+    class="save-button"
+    (click)="onSaveClick()"
+  >
+    Enregistrer
+  </button>
+</div>

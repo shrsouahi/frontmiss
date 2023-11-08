@@ -1,0 +1,123 @@
+/* Styles for the modal title */
+.modal-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Center the title vertically and horizontally */
+.mat-dialog-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px; /* Adjust the height as needed */
+}
+
+/* Styles for the form container */
+.form-container {
+  max-width: 500px; /* Adjust the maximum width as needed */
+  margin: 0 auto; /* Center horizontally */
+}
+
+/* Styles for the form groups */
+.form-group {
+  margin-left: 200px;
+  margin-bottom: 20px;
+}
+
+/* Styles for the form labels */
+.form-label {
+  font-weight: bold;
+}
+
+/* Styles for the error messages */
+.mat-error {
+  color: red;
+}
+
+/* Styles for the buttons */
+.cancel-button {
+  background-color: #ccc;
+  color: #fff;
+  margin-bottom: 30px;
+  margin-left: 50px;
+}
+
+.save-button {
+  background-color: #BEA8A7;
+  color: #fff;
+  margin-bottom: 30px;
+  margin-left: 60px;
+}
+/* Custom padding for mat-dialog-content */
+mat-dialog-content {
+  padding: 16px;
+}
+
+/* Style the h1 title */
+h1 {
+  margin-top: 20px;
+  margin-right:350px;
+}
+
+
+/* Style the h3 title in the summary section */
+.summary-section h3 {
+  font-size: 18px;
+  margin: 0;
+  background-color: #f0f0f0; /* Add a background color to the title for better visibility */
+  padding: 10px; /* Add some padding to the title */
+}
+
+/* Style the summary table */
+.summary-table {
+  width: 100%;
+}
+
+/* Center the container and add some spacing */
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: 20px;
+  margin-left: 25%;
+}
+
+/* Style the summary table */
+table {
+  width: 70%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  margin: 20px auto; /* Adjust the margin as needed */
+}
+
+thead {
+  background-color: #BEA8A7;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+input[type="number"] {
+  width: 90px;
+  padding: 5px;
+}
+
+tfoot {
+  font-weight: bold;
+}
+/* Styles for the input fields */
+.large-input  {
+  width: 50%; /* Increase the width as needed */
+  height: 70px; /* Adjust the height as needed */
+}
+
+ .mat-input-element {
+  width: 100%; /* 100% width inside mat-form-field */
+  height: 100%; /* 100% height inside mat-form-field */
+  font-size: 18px; /* Adjust the font size as needed */
+  padding: 10px;
+}

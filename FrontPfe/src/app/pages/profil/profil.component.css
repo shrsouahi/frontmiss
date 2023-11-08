@@ -94,3 +94,8 @@ table td button:hover {
   background-color: #ccc;
   
 }
+
+a{
+  text-decoration:none;
+  color:#555;
+}

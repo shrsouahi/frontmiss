@@ -19,6 +19,11 @@ import { CategoryDetailsComponent } from './pages/category-details/category-deta
 import { ArticleDetailsComponent } from './pages/article-details/article-details.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { ProfilComponent } from './pages/profil/profil.component';
+import { EditProfileModalComponent } from './component/edit-profile-modal/edit-profile-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { EditPasswordModalComponent } from './component/edit-password-modal/edit-password-modal.component';
+import { EditAddressModalComponent } from './component/edit-adresse-modal/edit-adresse-modal.component';
+import { CommandeComponent } from './pages/commande/commande.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +37,10 @@ import { ProfilComponent } from './pages/profil/profil.component';
     ArticleDetailsComponent,
     CartComponent,
     ProfilComponent,
+    EditProfileModalComponent,
+    EditPasswordModalComponent,
+    EditAddressModalComponent,
+    CommandeComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +54,7 @@ import { ProfilComponent } from './pages/profil/profil.component';
     FlexLayoutModule,
     HttpClientModule,
     MatMenuModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
