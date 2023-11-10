@@ -117,21 +117,39 @@
     </div>
   </form>
 
+  <!-- Summary of Order Card -->
+  <div class="order-summary-card">
+    <h3>Récapitulatif de la commande</h3>
+    <div class="order-summary">
+      <div class="order-summary-item" *ngFor="let item of cartItems">
+        <div class="order-summary-row">
+          <img [src]="item.image" alt="{{ item.name }}" class="article-image" />
+          <div class="order-summary-details">
+            <span class="article-name">{{ item.name }}</span>
+            <span class="article-quantity"> Quantité: {{ item.quantity }}</span>
+            <span class="article-taille"> Taille: {{ item.selectedSize }}</span>
+            <span class="article-price"> Prix: {{ item.originalPrice }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="summary-section">
     <h3>Total de Votre commande</h3>
     <table class="summary-table">
       <tbody>
         <tr>
           <td>Sous-total</td>
-          <td>TND</td>
+          <td>{{ total }} TND</td>
         </tr>
         <tr>
           <td>Frais de livraison</td>
-          <td>TND</td>
+          <td>{{ deliveryCost }} TND</td>
         </tr>
         <tr>
           <td>Total</td>
-          <td>TND</td>
+          <td>{{ total + deliveryCost }} TND</td>
         </tr>
       </tbody>
     </table>

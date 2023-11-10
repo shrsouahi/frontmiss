@@ -168,9 +168,12 @@ export class ArticleDetailsComponent implements OnInit {
           price: article.prixArticle,
           name: article.nomArticle,
           originalPrice: article.prixArticle,
-          userId: userId, // Set userId if a user is logged in
+          userId: userId, // Set userId if a user is logged in,
+          image: article.images.length > 0 ? article.images[0].url_image : '',
         };
         console.log('user ID:', userId);
+
+        console.log('article.images:', cartItem.image);
 
         // Declare existingItem outside the if/else blocks
         let existingItem: CartItem | undefined;

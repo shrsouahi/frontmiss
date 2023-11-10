@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { CartItem } from 'src/app/models/cart-item.model';
 import { CartService } from 'src/app/services/cart.service';
-
+import { ActivatedRoute, Params } from '@angular/router';
 @Component({
   selector: 'app-commande',
   templateUrl: './commande.component.html',
@@ -11,8 +12,16 @@ import { CartService } from 'src/app/services/cart.service';
 export class CommandeComponent implements OnInit {
   orderForm: FormGroup;
   user: any; // User information retrieved from local storage
+  cartItems!: CartItem[];
+  total!: number;
+  deliveryCost!: number;
+  deliveryChoice: any;
 
-  constructor(private fb: FormBuilder, private cartService: CartService) {
+  constructor(
+    private fb: FormBuilder,
+    private cartService: CartService,
+    private route: ActivatedRoute
+  ) {
     this.orderForm = this.fb.group({
       name: [{ value: '', disabled: true }, [Validators.required]],
       lastname: [{ value: '', disabled: true }, [Validators.required]],
@@ -24,6 +33,21 @@ export class CommandeComponent implements OnInit {
       adresse: ['', [Validators.required]],
       ville: ['', [Validators.required]],
       region: ['', [Validators.required]],
+    });
+    this.route.queryParams.subscribe((params: Params) => {
+      if (params['cartItems']) {
+        this.cartItems = JSON.parse(params['cartItems']);
+      } else {
+        this.cartItems = [];
+      }
+
+      if (params['total']) {
+        this.total = parseFloat(params['total']);
+      }
+
+      if (params['deliveryCost']) {
+        this.deliveryCost = parseFloat(params['deliveryCost']);
+      }
     });
   }
 

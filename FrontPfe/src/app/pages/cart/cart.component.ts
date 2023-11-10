@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartItem } from 'src/app/models/cart-item.model';
 import { User } from 'src/app/models/User.model';
 import { CartService } from 'src/app/services/cart.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-cart',
@@ -17,7 +19,12 @@ export class CartComponent implements OnInit {
   userId: number | null = null;
   user: User | null = null; // Declare the user property
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private userService: UserService,
+    private router: Router
+  ) {}
+
   ngOnInit() {
     // Retrieve the user data from local storage
     const storedUserJSON = localStorage.getItem('user');
@@ -54,7 +61,8 @@ export class CartComponent implements OnInit {
         price: cartItem.price,
         quantity: 1,
         originalPrice: cartItem.originalPrice,
-        userId: this.userId, // Set userId based on the current user
+        userId: this.userId, // Set userId based on the current user,
+        image: cartItem.image,
       }));
     }
 
@@ -74,6 +82,7 @@ export class CartComponent implements OnInit {
     //this.cartCleared = true; // Set the flag when the cart is cleared
     //localStorage.setItem('cartCleared', 'true');
   }
+
   removeItemFromCart(cartItem: CartItem) {
     this.cartService.removeFromCart(cartItem);
     this.cartService.getCartItems(this.userId).subscribe((items) => {
@@ -101,6 +110,7 @@ export class CartComponent implements OnInit {
     // Update the total whenever the quantity changes for a specific item
     this.calculateTotal();
   }
+
   private calculateTotalForAllItems(): number {
     return this.cartItems.reduce(
       (total, cartItem) => total + cartItem.quantity * cartItem.originalPrice,
@@ -115,5 +125,19 @@ export class CartComponent implements OnInit {
       this.deliveryCost = 0.0;
     }
     this.calculateTotal();
+  }
+
+  redirectToOrderPage() {
+    if (this.userService.isLoggedIn()) {
+      this.router.navigate(['commande'], {
+        queryParams: {
+          cartItems: JSON.stringify(this.cartItems),
+          total: this.calculatedTotal,
+          deliveryCost: this.deliveryCost,
+        },
+      });
+    } else {
+      this.router.navigate(['login']);
+    }
   }
 }

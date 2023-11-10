@@ -1,5 +1,6 @@
 <div class="container">
   <div class="cart-container" *ngIf="!isCartEmpty">
+    <h1>Mon Panier</h1>
     <table>
       <thead>
         <tr>
@@ -13,7 +14,16 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of cartItems">
-          <td>{{ item.name }}</td>
+          <td>
+            <div class="article-info">
+              <img
+                [src]="item.image"
+                alt="{{ item.name }}"
+                class="article-image"
+              />
+              <span class="article-name">{{ item.name }}</span>
+            </div>
+          </td>
           <td>{{ item.selectedSize }}</td>
           <td>{{ item.originalPrice }} TND</td>
           <td>
@@ -24,7 +34,6 @@
               min="0"
             />
           </td>
-
           <td>{{ item.originalPrice * item.quantity }} TND</td>
           <td>
             <button mat-icon-button (click)="removeItemFromCart(item)">
@@ -106,7 +115,9 @@
       </tbody>
     </table>
     <!-- Checkout Button -->
-    <button class="checkout-button">Valider Panier</button>
+    <button class="checkout-button" (click)="redirectToOrderPage()">
+      Valider Panier
+    </button>
   </div>
 
   <div class="empty-cart-message-container" *ngIf="isCartEmpty">

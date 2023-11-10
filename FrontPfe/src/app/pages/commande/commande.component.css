@@ -124,3 +124,53 @@ tfoot {
   font-size: 18px; /* Adjust the font size as needed */
   padding: 10px;
 }
+
+.order-summary-card {
+  /* Add styling to the order summary card */
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.order-summary {
+  margin: 20px 0;
+}
+
+.order-summary-item {
+
+  margin-bottom: 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.order-summary-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.image-container {
+  /* Add styling for the image container */
+  margin: 0 auto;
+}
+
+.article-image {
+  /* Add styling for the article image */
+  max-width: 100px; /* Adjust the size as needed */
+}
+
+.article-name {
+  /* Add styling for the article name */
+  font-weight: bold;
+}
+
+.article-quantity {
+ 
+  color: #777;
+  display: block; 
+}
+
+.article-taille{
+  color:black;
+  display: block; 
+}
