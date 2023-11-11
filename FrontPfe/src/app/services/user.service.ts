@@ -10,7 +10,6 @@ import { tap } from 'rxjs/operators'; // Import the tap operator
 export class UserService {
   private apiUrl = 'http://localhost:8081';
   private idUser: number; // Store user ID here
-
   private userDataSubject = new BehaviorSubject<User>({} as User);
   userData$ = this.userDataSubject.asObservable();
 

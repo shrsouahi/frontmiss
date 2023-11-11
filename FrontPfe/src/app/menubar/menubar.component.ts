@@ -63,6 +63,8 @@ export class MenubarComponent implements OnInit {
     this.router.navigate(['/category/', category.codeCategory]);
   }
   updateCartItemCount() {
-    this.cartItemCount = this.cartService.getCartItemCount();
+    this.cartService.cartItemCount$.subscribe((count) => {
+      this.cartItemCount = count;
+    });
   }
 }

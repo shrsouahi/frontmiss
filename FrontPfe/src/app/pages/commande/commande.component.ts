@@ -1,9 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
 import { CartItem } from 'src/app/models/cart-item.model';
 import { CartService } from 'src/app/services/cart.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { CommandeService } from 'src/app/services/commande.service';
+import { User } from 'src/app/models/User.model';
+import { Commande } from 'src/app/models/Commande.model'; // Import Commande and OrderStatus
+import { QuantityOrder } from 'src/app/models/QuantityOrder.model'; // Import QuantityOrder
+import { OrderStatus } from 'src/app/models/OrderStatus.model';
+import { CommandeDTO } from 'src/app/models/CommandeDTO.model';
+
 @Component({
   selector: 'app-commande',
   templateUrl: './commande.component.html',
@@ -15,12 +22,15 @@ export class CommandeComponent implements OnInit {
   cartItems!: CartItem[];
   total!: number;
   deliveryCost!: number;
-  deliveryChoice: any;
+  deliveryChoice!: string;
+  userFromLocalStorage: User | null = null;
 
   constructor(
     private fb: FormBuilder,
     private cartService: CartService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private userService: UserService,
+    private commandeService: CommandeService
   ) {
     this.orderForm = this.fb.group({
       name: [{ value: '', disabled: true }, [Validators.required]],
@@ -34,6 +44,7 @@ export class CommandeComponent implements OnInit {
       ville: ['', [Validators.required]],
       region: ['', [Validators.required]],
     });
+
     this.route.queryParams.subscribe((params: Params) => {
       if (params['cartItems']) {
         this.cartItems = JSON.parse(params['cartItems']);
@@ -52,16 +63,16 @@ export class CommandeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userFromLocalStorage =
+      this.userService.getUserFromLocalStorage() || null;
     this.retrieveUserDataFromLocalStorage();
   }
 
   retrieveUserDataFromLocalStorage() {
     console.log('Retrieving user data from local storage');
-    // Retrieve user data from local storage (replace 'userData' with your key)
     const userData = localStorage.getItem('user');
     if (userData) {
       this.user = JSON.parse(userData);
-      // Set the user data in the form
       this.orderForm.patchValue({
         name: this.user.fName,
         lastname: this.user.lName,
@@ -75,17 +86,69 @@ export class CommandeComponent implements OnInit {
   }
 
   onSaveClick(): void {
-    if (this.orderForm.valid) {
-      const orderData = this.orderForm.value;
-      // Handle the order creation logic here, and the user's input for address
-      // Clear the cart (if needed)
-      // Show a success message or navigate to a thank you page
-      // Close the dialog or navigate to another page
+    if (this.userFromLocalStorage) {
+      const idUser = this.userFromLocalStorage.idUser;
+      const updatedUser: User = {
+        idUser: idUser,
+        fName: this.orderForm.get('name')?.value,
+        lName: this.orderForm.get('lastname')?.value,
+        email: this.orderForm.get('email')?.value,
+        phone: this.orderForm.get('phoneNumber')?.value,
+        adresse: this.orderForm.get('adresse')?.value,
+        ville: this.orderForm.get('ville')?.value,
+        region: this.orderForm.get('region')?.value,
+        password: this.userFromLocalStorage?.password,
+      };
 
-      // Clear the cart
-      this.cartService.clearCart();
+      // Create an instance of the CommandeDTO class
+      const commandeDTO = new CommandeDTO(
+        '', // The reference might be generated on the server
+        this.total,
+        new Date().toISOString(), // Format on the server if needed
+        this.deliveryChoice,
+        'CREATED'
+      );
 
-      // Handle the rest of the order creation logic...
+      // Map cartItems to the desired format
+      const formattedCartItems = this.cartItems.map((cartItem) => ({
+        idArticle: cartItem.idArticle,
+        selectedSize: cartItem.selectedSize,
+        quantity: cartItem.quantity,
+        price: cartItem.price,
+        name: cartItem.name,
+        originalPrice: cartItem.originalPrice,
+        userId: cartItem.userId,
+        image: cartItem.image,
+      }));
+
+      // Prepare the orderData
+      const orderData = {
+        commande: commandeDTO,
+        cartItems: formattedCartItems,
+      };
+
+      // Call your service to save the orderData
+      this.userService
+        .updateUserProfile(updatedUser, updatedUser.idUser)
+        .subscribe(
+          (updatedUserData) => {
+            console.log('User updated successfully:', updatedUserData);
+
+            this.commandeService.saveCommande(orderData).subscribe(
+              (response) => {
+                console.log('Order saved successfully:', response);
+                this.cartService.clearCart();
+                // Additional logic or navigation can be added here
+              },
+              (error) => {
+                console.error('Error saving order:', error);
+              }
+            );
+          },
+          (error) => {
+            console.error('Error updating user:', error);
+          }
+        );
     }
   }
 }

@@ -132,8 +132,9 @@ export class CartComponent implements OnInit {
       this.router.navigate(['commande'], {
         queryParams: {
           cartItems: JSON.stringify(this.cartItems),
-          total: this.calculatedTotal,
+          total: this.calculatedTotal + this.deliveryCost,
           deliveryCost: this.deliveryCost,
+          deliveryChoice: this.deliveryChoice,
         },
       });
     } else {
