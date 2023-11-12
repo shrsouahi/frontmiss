@@ -2,6 +2,7 @@
 
 import { OrderStatus } from './OrderStatus.model';
 import { QuantityOrder } from './QuantityOrder.model';
+import { User } from './User.model';
 
 export class Commande {
   idCommande: number;
@@ -11,6 +12,7 @@ export class Commande {
   orderDate: String;
   shippingMethod: string;
   quantityOrders: QuantityOrder[];
+  user: User; // Add the user property
 
   constructor(
     idCommande: number,
@@ -19,7 +21,8 @@ export class Commande {
     total: number,
     orderDate: String,
     shippingMethod: string,
-    quantityOrders: QuantityOrder[]
+    quantityOrders: QuantityOrder[],
+    user: User
   ) {
     this.idCommande = idCommande;
     this.reference = reference;
@@ -28,6 +31,7 @@ export class Commande {
     this.orderDate = orderDate;
     this.shippingMethod = shippingMethod;
     this.quantityOrders = quantityOrders;
+    this.user = user;
   }
 
   getStatusLabel(): string {

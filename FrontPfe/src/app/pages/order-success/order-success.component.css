@@ -1,0 +1,30 @@
+/* Add these styles to your global styles or component styles file */
+
+.card {
+  max-width: 50%;
+  margin: 0 auto; /* Center the card horizontally */
+  /* Add some top margin for spacing */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 10%;
+  margin-bottom: 10%;
+  background-color:#F4DBD8;
+}
+
+.order-success-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.list-group {
+  margin-top: 10px;
+}
+
+.list-group-item {
+  text-align: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+ 

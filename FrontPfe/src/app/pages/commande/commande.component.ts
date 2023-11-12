@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CartItem } from 'src/app/models/cart-item.model';
 import { CartService } from 'src/app/services/cart.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { CommandeService } from 'src/app/services/commande.service';
 import { User } from 'src/app/models/User.model';
@@ -30,7 +30,8 @@ export class CommandeComponent implements OnInit {
     private cartService: CartService,
     private route: ActivatedRoute,
     private userService: UserService,
-    private commandeService: CommandeService
+    private commandeService: CommandeService,
+    private router: Router
   ) {
     this.orderForm = this.fb.group({
       name: [{ value: '', disabled: true }, [Validators.required]],
@@ -58,6 +59,10 @@ export class CommandeComponent implements OnInit {
 
       if (params['deliveryCost']) {
         this.deliveryCost = parseFloat(params['deliveryCost']);
+      }
+
+      if (params['deliveryChoice']) {
+        this.deliveryChoice = params['deliveryChoice'];
       }
     });
   }
@@ -103,11 +108,14 @@ export class CommandeComponent implements OnInit {
       // Create an instance of the CommandeDTO class
       const commandeDTO = new CommandeDTO(
         '', // The reference might be generated on the server
-        this.total,
+
+        this.total + this.deliveryCost,
         new Date().toISOString(), // Format on the server if needed
         this.deliveryChoice,
-        'CREATED'
+        'CREATED',
+        this.userFromLocalStorage
       );
+      console.log('User before saving Commande:', this.userFromLocalStorage);
 
       // Map cartItems to the desired format
       const formattedCartItems = this.cartItems.map((cartItem) => ({
@@ -137,8 +145,12 @@ export class CommandeComponent implements OnInit {
             this.commandeService.saveCommande(orderData).subscribe(
               (response) => {
                 console.log('Order saved successfully:', response);
+
+                // Store idCommande in localStorage
+                localStorage.setItem('idCommande', response.idCommande);
                 this.cartService.clearCart();
-                // Additional logic or navigation can be added here
+                // Navigate to the "ordersucess" page
+                this.router.navigate(['/ordersucess']);
               },
               (error) => {
                 console.error('Error saving order:', error);

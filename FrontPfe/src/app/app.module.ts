@@ -24,6 +24,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { EditPasswordModalComponent } from './component/edit-password-modal/edit-password-modal.component';
 import { EditAddressModalComponent } from './component/edit-adresse-modal/edit-adresse-modal.component';
 import { CommandeComponent } from './pages/commande/commande.component';
+import { OrderSuccessComponent } from './pages/order-success/order-success.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { CommandeComponent } from './pages/commande/commande.component';
     EditPasswordModalComponent,
     EditAddressModalComponent,
     CommandeComponent,
+    OrderSuccessComponent,
   ],
   imports: [
     BrowserModule,

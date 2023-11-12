@@ -13,7 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
   total: number = 0.0;
-  deliveryChoice: string = 'domicile';
+  deliveryChoice: string = 'à domicile';
   deliveryCost: number = 7;
   isCartEmpty: boolean = true;
   userId: number | null = null;
@@ -119,9 +119,9 @@ export class CartComponent implements OnInit {
   }
 
   calculateDeliveryAndTotal() {
-    if (this.deliveryChoice === 'domicile') {
+    if (this.deliveryChoice === 'à domicile') {
       this.deliveryCost = 7.0;
-    } else if (this.deliveryChoice === 'free') {
+    } else if (this.deliveryChoice === 'Boutique') {
       this.deliveryCost = 0.0;
     }
     this.calculateTotal();
@@ -132,7 +132,7 @@ export class CartComponent implements OnInit {
       this.router.navigate(['commande'], {
         queryParams: {
           cartItems: JSON.stringify(this.cartItems),
-          total: this.calculatedTotal + this.deliveryCost,
+          total: this.calculatedTotal,
           deliveryCost: this.deliveryCost,
           deliveryChoice: this.deliveryChoice,
         },

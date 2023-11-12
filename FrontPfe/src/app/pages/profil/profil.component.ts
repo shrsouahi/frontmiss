@@ -5,8 +5,10 @@ import { Router } from '@angular/router';
 import { EditAddressModalComponent } from 'src/app/component/edit-adresse-modal/edit-adresse-modal.component';
 import { EditPasswordModalComponent } from 'src/app/component/edit-password-modal/edit-password-modal.component';
 import { EditProfileModalComponent } from 'src/app/component/edit-profile-modal/edit-profile-modal.component';
+import Commande from 'src/app/models/Commande.model';
 import { User } from 'src/app/models/User.model';
 import { CartService } from 'src/app/services/cart.service';
+import { CommandeService } from 'src/app/services/commande.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -16,15 +18,27 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ProfilComponent implements OnInit {
   user: any;
+  recentOrders: Commande[] = [];
   constructor(
     private userService: UserService,
     private router: Router,
     private cartservice: CartService,
     private dialog: MatDialog,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private commandeservice: CommandeService
   ) {}
 
   ngOnInit(): void {
+    if (this.user.idUser) {
+      this.commandeservice.getRecentOrders(this.user.idUser).subscribe(
+        (orders: any[]) => {
+          this.recentOrders = orders;
+        },
+        (error) => {
+          console.error('Error fetching recent orders:', error);
+        }
+      );
+    }
     // Subscribe to the user data observable
     this.userService.userData$.subscribe((userData) => {
       this.user = userData; // Update the local user property with the new data

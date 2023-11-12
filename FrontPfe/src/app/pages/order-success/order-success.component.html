@@ -1,0 +1,32 @@
+<!-- order-success.component.html -->
+<div class="card">
+  <div class="card-body order-success-container">
+    <h2 class="text-center">
+      Commande Créée avec succès <mat-icon>check</mat-icon>
+    </h2>
+    <p class="text-center">Merci Pour votre confiance {{ userFName }}</p>
+    <p class="text-center">
+      Référence : {{ commande?.reference }} , garder cette référence au cas d'un
+      problème lié avec votre commande.
+    </p>
+    <p class="text-center">
+      La livraison se fait dans 2 à 3 jours(sans conmpter les jours de weekend)
+    </p>
+
+    <p class="text-center">
+      Le paiement est à livraison .Veuillez nous contacter si vous avez besoin
+      d'aide
+    </p>
+    <h2 class="text-center">Récupulatif de paiement :</h2>
+    <ul class="list-group" *ngIf="commande && commande.quantityOrders">
+      <li class="list-group-item" *ngFor="let item of commande.quantityOrders">
+        {{ item.article?.nomArticle }} - {{ item.quantity }} unités
+      </li>
+    </ul>
+    <p class="text-center">Frais de livraison : {{ deliveryCost }} TND</p>
+
+    <p class="text-center">
+      Prix total de la commande: {{ commande.total }} TND
+    </p>
+  </div>
+</div>
