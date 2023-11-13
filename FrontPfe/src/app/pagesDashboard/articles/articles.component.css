@@ -1,45 +1,99 @@
 /* articles.component.css */
 
-.container {
-  margin: 50px;
-  overflow: auto; /* Add overflow property to allow scrolling */
+.container{
+  overflow: auto;
+  padding: 20px; 
+  text-align: left;
 }
 
-.filters {
-  margin-top: 20px;
-  margin-bottom: 20px;
+.container h1 {
+  
+  color: #37474f;  
+  margin-bottom: 10px; 
+  margin-left:10px;
 }
 
-.filters input,
-.filters select,
-.filters button {
+div {
+  margin: 30px;
+} 
+ 
+input,
+select,
+button {
   margin-right: 10px;
 }
 
 mat-table {
   width: 100%;
   margin-top: 20px;
-
+  overflow: auto;
+  display: block; 
 }
+
 
 th,
 td {
   border: 1px solid #ddd;
   padding: 8px;
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  text-align: center;
 }
 
-th {
+ th {
+ color:#2A0800;
+ font-weight: bold;
+}
+
+/* articles.component.css */
+
+.filters {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+mat-form-field {
+  min-width: 150px; /* Adjust as needed */
+}
+
+.apply {
   background-color: #BEABA7;
   color: white;
 }
 
-.actions-button {
+
+/* articles.component.css */
+
+.pagination {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  margin-top: 20px;
 }
 
- 
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 3px;
+}
+
+.pagination button:hover {
+  background-color: #eee;
+}
+
+.reset {
+  background-color: #775144;
+  color: white;
+  margin-right: 10px;}
+
+  .ajout{
+    background-color: #C09891;
+    color: white;
+    margin-right: 10px;
+  }
+  mat-icon {
+    margin-right: 8px;
+    color:#555
+  }

@@ -1,23 +1,39 @@
 <!-- articles.component.html -->
 <div class="container">
+  <h1>Articles</h1>
   <div class="filters">
-    <input [(ngModel)]="keywordFilter" placeholder="Search by Keyword" />
-    <select [(ngModel)]="selectedCategory">
-      <option value="">Select Category</option>
-      <option
-        *ngFor="let category of categories"
-        [value]="category.nomCategory"
+    <mat-form-field>
+      <input
+        matInput
+        [(ngModel)]="keywordFilter"
+        placeholder="Chercher par article"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Choisir Categorie</mat-label>
+      <mat-select
+        [(ngModel)]="selectedCategory"
+        aria-placeholder="Choisir Categorie"
       >
-        {{ category.nomCategory }}
-      </option>
-    </select>
-    <button (click)="loadArticles()">Apply Filters</button>
+        <mat-option
+          *ngFor="let category of categories"
+          [value]="category.nomCategory"
+        >
+          {{ category.nomCategory }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-button class="apply" (click)="loadArticles()">Filtrer</button>
+    <button mat-button class="reset" (click)="resetFilters()">
+      Réinitialiser
+    </button>
+    <button mat-button class="ajout">Ajouter un Article</button>
   </div>
-  <table mat-table [dataSource]="articles" class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- Article Column -->
     <ng-container matColumnDef="articlename">
       <th mat-header-cell *matHeaderCellDef>Article</th>
-      <td mat-cell *matCellDef="let article of articles">
+      <td mat-cell *matCellDef="let article of dataSource.data">
         <img
           *ngIf="article.images && article.images.length > 0"
           [src]="article.images[0].url_image"
@@ -30,7 +46,7 @@
     <!-- Categorie Column -->
     <ng-container matColumnDef="categoriename">
       <th mat-header-cell *matHeaderCellDef>Categorie</th>
-      <td mat-cell *matCellDef="let article of articles">
+      <td mat-cell *matCellDef="let article of dataSource.data">
         {{ getCategoriesNames(article) }}
       </td>
     </ng-container>
@@ -38,7 +54,7 @@
     <!-- prix Column -->
     <ng-container matColumnDef="prix">
       <th mat-header-cell *matHeaderCellDef>Prix</th>
-      <td mat-cell *matCellDef="let article of articles">
+      <td mat-cell *matCellDef="let article of dataSource.data">
         {{ article.prixArticle }} TND
       </td>
     </ng-container>
@@ -46,7 +62,7 @@
     <!-- prix solde Column -->
     <ng-container matColumnDef="prixsolde">
       <th mat-header-cell *matHeaderCellDef>Prix Solde</th>
-      <td mat-cell *matCellDef="let article of articles">
+      <td mat-cell *matCellDef="let article of dataSource.data">
         {{ article.prixSolde }} TND
       </td>
     </ng-container>
@@ -54,7 +70,7 @@
     <!-- Quantité Column -->
     <ng-container matColumnDef="quantité">
       <th mat-header-cell *matHeaderCellDef>Quantité</th>
-      <td mat-cell *matCellDef="let article of articles">
+      <td mat-cell *matCellDef="let article of dataSource.data">
         {{ article.quantiteStock }}
       </td>
     </ng-container>
@@ -62,7 +78,7 @@
     <!-- Bare code Column -->
     <ng-container matColumnDef="bareCode">
       <th mat-header-cell *matHeaderCellDef>Code</th>
-      <td mat-cell *matCellDef="let article of articles">
+      <td mat-cell *matCellDef="let article of dataSource.data">
         {{ article.bareCode }}
       </td>
     </ng-container>
@@ -82,4 +98,12 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+  <mat-paginator
+    #paginator
+    [length]="totalItems"
+    [pageSize]="selectedPageSize"
+    [pageSizeOptions]="[7, 10, 15]"
+    (page)="onPageChange($event)"
+    aria-label="Choisir Page"
+  ></mat-paginator>
 </div>

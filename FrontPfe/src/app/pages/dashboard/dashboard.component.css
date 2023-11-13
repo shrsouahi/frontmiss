@@ -1,9 +1,10 @@
-mat-sidenav-container {
+/*mat-sidenav-container {
   height: 100vh;
-}
+}*/
 
 mat-sidenav {
-  margin: 0px;
+  position: fixed;
+  margin-top: 65px;
   width:15%;
   border-right: none;
   background-color:#F4DBD8;
@@ -12,8 +13,6 @@ mat-sidenav {
   padding: 16px;
   text-align: center;
 }
-
-
 a{
   text-decoration: none;
   color:#555;
@@ -25,6 +24,7 @@ a{
  }
 
 mat-sidenav-content {
+  /*height: calc(100vh - 32px);*/
   border-radius: 10px;
   margin: 16px;
   margin-left: 32px;

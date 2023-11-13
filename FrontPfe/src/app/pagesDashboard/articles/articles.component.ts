@@ -4,7 +4,7 @@ import { Article } from 'src/app/models/Article.model';
 import { Category } from 'src/app/models/Category.model';
 import { ArticleService } from 'src/app/services/article.service';
 import { CategoryService } from 'src/app/services/category-service.service';
-
+import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.component.html',
@@ -15,6 +15,7 @@ export class ArticlesComponent implements OnInit {
   keywordFilter: string = '';
   selectedCategory: string = '';
   categories: Category[] = [];
+  selectedPageSize: number = 7;
 
   displayedColumns: string[] = [
     'articlename',
@@ -29,10 +30,12 @@ export class ArticlesComponent implements OnInit {
   // Add the totalItems property
   totalItems: number = 0;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  currentPage = 1;
-  itemsPerPage = 10;
-
+  @ViewChild('paginator') paginator!: MatPaginator;
+  dataSource = new MatTableDataSource<Article>(this.articles);
+  ngAfterViewInit() {
+    this.dataSource = new MatTableDataSource(this.articles);
+    this.dataSource.paginator = this.paginator;
+  }
   constructor(
     private articleService: ArticleService,
     private categoryService: CategoryService
@@ -47,12 +50,20 @@ export class ArticlesComponent implements OnInit {
     // Call your article service to retrieve articles
     this.articleService.getAllArticles().subscribe((data) => {
       this.articles = data;
-      console.log('Total Articles:', this.articles.length);
+
+      // Apply filters
+      let filteredArticles = this.filterArticles(data);
+
+      this.articles = filteredArticles;
+      // Update the data source
+      this.dataSource.data = this.articles;
 
       // Update totalItems for pagination
+      this.totalItems = this.articles.length;
+
       // Update length property directly on the paginator
-      this.paginator.length = this.articles.length;
-      console.log('Total Items for Pagination:', this.totalItems);
+      this.paginator.length = this.totalItems;
+
       // Refresh the paginator
       this.paginator._changePageSize(this.paginator.pageSize);
     });
@@ -61,15 +72,27 @@ export class ArticlesComponent implements OnInit {
   loadCategories() {
     this.categoryService.getCategories().subscribe((data) => {
       this.categories = data;
-      // After getting the articles, set up the paginator
-      this.setupPaginator();
     });
   }
-  setupPaginator(): void {
-    this.paginator.length = this.articles.length;
-    this.paginator.pageSize = this.itemsPerPage;
-    this.paginator.pageIndex = this.currentPage - 1;
+  filterArticles(articles: Article[]): Article[] {
+    // Apply filters based on keyword and selected category
+    return articles.filter((article) => {
+      const matchesKeyword = article.nomArticle
+        .toLowerCase()
+        .includes(this.keywordFilter.toLowerCase());
+
+      const matchesCategory =
+        this.selectedCategory === '' ||
+        article.categories.some((category) =>
+          category.nomCategory
+            .toLowerCase()
+            .includes(this.selectedCategory.toLowerCase())
+        );
+
+      return matchesKeyword && matchesCategory;
+    });
   }
+
   getCategoriesNames(article: Article): string {
     // Extract category names from the article's categories array
     const categoryNames = article.categories.map(
@@ -77,14 +100,12 @@ export class ArticlesComponent implements OnInit {
     );
     return categoryNames.join(',');
   }
-
-  // articles.component.ts
-  getPagesArray(): number[] {
-    const totalItems = this.articles.length; // Update this based on your service response
-    const totalPages = Math.ceil(totalItems / this.itemsPerPage);
-    return Array.from({ length: totalPages }, (_, index) => index + 1);
-  }
   onPageChange(event: PageEvent): void {
-    this.currentPage = event.pageIndex + 1;
+    this.selectedPageSize = event.pageSize;
+  }
+  resetFilters() {
+    this.keywordFilter = '';
+    this.selectedCategory = '';
+    this.loadArticles();
   }
 }
