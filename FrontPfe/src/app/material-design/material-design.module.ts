@@ -10,7 +10,10 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
-
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 @NgModule({
   declarations: [],
   imports: [CommonModule, MatMenuModule],
@@ -25,6 +28,10 @@ import { MatOptionModule } from '@angular/material/core';
     MatCardModule,
     MatFormFieldModule,
     MatOptionModule,
+    MatListModule,
+    MatSidenavModule,
+    MatPaginatorModule,
+    MatTableModule,
   ],
 })
 export class MaterialDesignModule {}

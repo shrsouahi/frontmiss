@@ -9,6 +9,13 @@ import { CartComponent } from './pages/cart/cart.component';
 import { ProfilComponent } from './pages/profil/profil.component';
 import { CommandeComponent } from './pages/commande/commande.component';
 import { OrderSuccessComponent } from './pages/order-success/order-success.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { AccauildashboardComponent } from './pagesDashboard/accauildashboard/accauildashboard.component';
+import { StatistiquesComponent } from './pagesDashboard/statistiques/statistiques.component';
+import { ClientsComponent } from './pagesDashboard/clients/clients.component';
+import { ArticlesComponent } from './pagesDashboard/articles/articles.component';
+import { VendeursComponent } from './pagesDashboard/vendeurs/vendeurs.component';
+import { CommandesComponent } from './pagesDashboard/commandes/commandes.component';
 const routes: Routes = [
   { path: 'acceuil', component: HomeComponent },
   { path: 'login', component: LoginComponent },
@@ -19,6 +26,13 @@ const routes: Routes = [
   { path: 'profil', component: ProfilComponent },
   { path: 'commande', component: CommandeComponent },
   { path: 'ordersucess', component: OrderSuccessComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'acceuildashboard', component: AccauildashboardComponent },
+  { path: 'statistiques', component: StatistiquesComponent },
+  { path: 'clients', component: ClientsComponent },
+  { path: 'articles', component: ArticlesComponent },
+  { path: 'commandes', component: CommandesComponent },
+  { path: 'vendeurs', component: VendeursComponent },
 ];
 
 @NgModule({

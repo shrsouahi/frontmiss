@@ -1,58 +1,60 @@
-<mat-toolbar class="navbar mat-elevation-z2">
-  <button mat-icon-button (click)="toggleSidenav()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <a href="/acceuil">
-    <img src="assets\images\miss.png" alt="Miss Rose Logo" class="logo" />
-  </a>
+<div *ngIf="shouldDisplayMenubar()">
+  <mat-toolbar class="navbar mat-elevation-z2">
+    <button mat-icon-button (click)="toggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a href="/acceuil">
+      <img src="assets\images\miss.png" alt="Miss Rose Logo" class="logo" />
+    </a>
 
-  <div class="navbar">
-    <ng-container *ngFor="let category of categories">
-      <ng-container *ngIf="!category.parentCategory">
-        <a
-          (mouseenter)="toggleMenu(category.nomCategory)"
-          class="menu-button"
-          (click)="selectCategory(category)"
-        >
-          {{ category.nomCategory }}
-        </a>
+    <div class="navbar">
+      <ng-container *ngFor="let category of categories">
+        <ng-container *ngIf="!category.parentCategory">
+          <a
+            (mouseenter)="toggleMenu(category.nomCategory)"
+            class="menu-button"
+            (click)="selectCategory(category)"
+          >
+            {{ category.nomCategory }}
+          </a>
 
-        <div class="child-menu" *ngIf="isMenuOpen(category.nomCategory)">
-          <ng-container *ngFor="let childCategory of categories">
-            <button
-              mat-menu-item
-              *ngIf="
-                childCategory.parentCategory?.codeCategory ===
-                category.codeCategory
-              "
-              class="submenu-button"
-              (click)="selectCategory(childCategory)"
-            >
-              {{ childCategory.nomCategory }}
-            </button>
-          </ng-container>
-        </div>
+          <div class="child-menu" *ngIf="isMenuOpen(category.nomCategory)">
+            <ng-container *ngFor="let childCategory of categories">
+              <button
+                mat-menu-item
+                *ngIf="
+                  childCategory.parentCategory?.codeCategory ===
+                  category.codeCategory
+                "
+                class="submenu-button"
+                (click)="selectCategory(childCategory)"
+              >
+                {{ childCategory.nomCategory }}
+              </button>
+            </ng-container>
+          </div>
+        </ng-container>
       </ng-container>
-    </ng-container>
-  </div>
+    </div>
 
-  <div class="nav-icons">
-    <!-- <button mat-icon-button>
+    <div class="nav-icons">
+      <!-- <button mat-icon-button>
       <mat-icon>search</mat-icon></button
     >-->
 
-    <button
-      mat-icon-button
-      [routerLink]="userService.isLoggedIn() ? '/profil' : '/login'"
-    >
-      <mat-icon color="white">account_circle</mat-icon>
-    </button>
-
-    <a routerLink="/panier">
-      <button mat-icon-button>
-        <mat-icon color="white">shopping_cart</mat-icon>
-        <span class="cart-item-count">{{ cartItemCount }}</span>
+      <button
+        mat-icon-button
+        [routerLink]="userService.isLoggedIn() ? '/profil' : '/login'"
+      >
+        <mat-icon color="white">account_circle</mat-icon>
       </button>
-    </a>
-  </div>
-</mat-toolbar>
+
+      <a routerLink="/panier">
+        <button mat-icon-button>
+          <mat-icon color="white">shopping_cart</mat-icon>
+          <span class="cart-item-count">{{ cartItemCount }}</span>
+        </button>
+      </a>
+    </div>
+  </mat-toolbar>
+</div>

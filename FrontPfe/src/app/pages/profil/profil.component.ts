@@ -29,17 +29,6 @@ export class ProfilComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.user.idUser) {
-      this.commandeservice.getRecentOrders(this.user.idUser).subscribe(
-        (orders: any[]) => {
-          this.recentOrders = orders;
-        },
-        (error) => {
-          console.error('Error fetching recent orders:', error);
-        }
-      );
-    }
-    // Subscribe to the user data observable
     this.userService.userData$.subscribe((userData) => {
       this.user = userData; // Update the local user property with the new data
     });
@@ -53,6 +42,16 @@ export class ProfilComponent implements OnInit {
         this.userService.getUserById(user.idUser).subscribe(
           (userData) => {
             this.user = userData; // Update the local user property with the new data
+
+            this.commandeservice.getRecentOrders(this.user.idUser).subscribe(
+              (orders: any[]) => {
+                this.recentOrders = orders;
+              },
+              (error) => {
+                console.error('Error fetching recent orders:', error);
+              }
+            );
+            // Subscribe to the user data observable
           },
           (error) => {
             console.error('Error fetching user data:', error);
@@ -89,7 +88,6 @@ export class ProfilComponent implements OnInit {
       data: this.user,
     });
   }
-
   openEditAdresseModal() {
     const dialogRef = this.dialog.open(EditAddressModalComponent, {
       width: '500px',

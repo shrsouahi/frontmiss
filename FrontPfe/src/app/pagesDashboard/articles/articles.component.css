@@ -1,0 +1,45 @@
+/* articles.component.css */
+
+.container {
+  margin: 50px;
+  overflow: auto; /* Add overflow property to allow scrolling */
+}
+
+.filters {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.filters input,
+.filters select,
+.filters button {
+  margin-right: 10px;
+}
+
+mat-table {
+  width: 100%;
+  margin-top: 20px;
+
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+th {
+  background-color: #BEABA7;
+  color: white;
+}
+
+.actions-button {
+  display: flex;
+  justify-content: space-around;
+}
+
+ 

@@ -1,0 +1,52 @@
+<div *ngIf="DashboardAdminstration()">
+  <mat-toolbar color="secondary">
+    <mat-toolbar-row>
+      <a href="/acceuildashboard">
+        <img src="assets\images\miss.png" alt="Miss Rose Logo" class="logo" />
+      </a>
+      <button mat-button (click)="opened = !opened">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-sidenav-container>
+    <mat-sidenav [(opened)]="opened" mode="side">
+      <mat-list>
+        <mat-list-item>
+          <mat-icon>dashboard</mat-icon>
+          <a routerLink="/acceuildashboard">Tableau de bord</a>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>analytics</mat-icon>
+          <a routerLink="/statistiques">Statistiques</a>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>groups_2</mat-icon>
+          <a routerLink="/clients">Clients</a>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>checkroom</mat-icon>
+          <a routerLink="/articles">Articles</a>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>shopping_cart_checkout</mat-icon>
+          <a routerLink="/commandes">Commandes</a>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>support_agent</mat-icon>
+          <a routerLink="/vendeurs">Vendeurs</a>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>logout</mat-icon>
+          <button mat-button (click)="logout()" class="logout">
+            Se déconnecter
+          </button>
+        </mat-list-item>
+      </mat-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

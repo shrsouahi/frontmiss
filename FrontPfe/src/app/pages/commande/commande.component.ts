@@ -90,11 +90,14 @@ export class CommandeComponent implements OnInit {
     }
   }
 
+  onCancelClick() {
+    this.router.navigate(['/panier']);
+  }
+
   onSaveClick(): void {
     if (this.userFromLocalStorage) {
-      const idUser = this.userFromLocalStorage.idUser;
       const updatedUser: User = {
-        idUser: idUser,
+        idUser: this.userFromLocalStorage.idUser,
         fName: this.orderForm.get('name')?.value,
         lName: this.orderForm.get('lastname')?.value,
         email: this.orderForm.get('email')?.value,
@@ -103,7 +106,10 @@ export class CommandeComponent implements OnInit {
         ville: this.orderForm.get('ville')?.value,
         region: this.orderForm.get('region')?.value,
         password: this.userFromLocalStorage?.password,
+        roleUser: this.userFromLocalStorage.roleUser,
       };
+
+      console.log('User before saving Commande:', this.userFromLocalStorage);
 
       // Create an instance of the CommandeDTO class
       const commandeDTO = new CommandeDTO(
@@ -115,7 +121,6 @@ export class CommandeComponent implements OnInit {
         'CREATED',
         this.userFromLocalStorage
       );
-      console.log('User before saving Commande:', this.userFromLocalStorage);
 
       // Map cartItems to the desired format
       const formattedCartItems = this.cartItems.map((cartItem) => ({
@@ -133,6 +138,7 @@ export class CommandeComponent implements OnInit {
       const orderData = {
         commande: commandeDTO,
         cartItems: formattedCartItems,
+        user: this.userFromLocalStorage,
       };
 
       // Call your service to save the orderData

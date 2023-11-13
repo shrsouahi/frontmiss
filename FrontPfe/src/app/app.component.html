@@ -1,5 +1,9 @@
-<app-menubar></app-menubar>
-<div class="content">
+<ng-container *ngIf="shouldDisplayMenubarAndFooter()">
+  <app-menubar></app-menubar>
   <router-outlet></router-outlet>
-</div>
-<app-footer></app-footer>
+  <app-footer></app-footer>
+</ng-container>
+
+<ng-container *ngIf="DashboardAdminstration()">
+  <app-dashboard></app-dashboard>
+</ng-container>

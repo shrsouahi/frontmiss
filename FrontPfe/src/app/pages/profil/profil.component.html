@@ -1,5 +1,4 @@
 <!-- account-information.component.html -->
-
 <div>
   <h1>Mon Compte</h1>
 </div>
@@ -16,34 +15,32 @@
     >éditer mot de passe
   </a>
 </div>
-
 <div class="shipping-address-section">
   <h2>Adresse de Livraison par Défaut</h2>
-  <p>Adresse : {{ user.adresse }}</p>
-  <p>Ville : {{ user.ville }}</p>
-  <p>region : {{ user.region }}</p>
+  <p>Adresse : {{ user?.adresse }}</p>
+  <p>Ville : {{ user?.ville }}</p>
+  <p>region : {{ user?.region }}</p>
 
   <a href="javascript:void(0)" (click)="openEditAdresseModal()"
     >Modifier l'adresse par défaut
   </a>
 </div>
-
 <div class="command-section">
-  <h2>Commandes récentes</h2>
+  <h2>Historique des commandes</h2>
   <table>
     <thead>
       <tr>
-        <th>ID Commande</th>
+        <th>Référence Commande</th>
         <th>Date de Commande</th>
         <th>Total</th>
-        <th>Statut</th>
+        <th>Statut du traitement de la commande</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let order of recentOrders">
-        <td>{{ order.idCommande }}</td>
+        <td>{{ order.reference }}</td>
         <td>{{ order.orderDate }}</td>
-        <td>{{ order.total }}</td>
+        <td>{{ order.total }} TND</td>
         <td>{{ order.status }}</td>
       </tr>
     </tbody>

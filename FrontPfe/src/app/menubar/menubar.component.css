@@ -67,7 +67,7 @@ a {
 .logo {
   height: 50px;
   width: auto;
-  margin: 0 10px; /* Adjust the margin for better spacing */
+  margin: 0 10px; 
 }
 
 .cart-item-count {

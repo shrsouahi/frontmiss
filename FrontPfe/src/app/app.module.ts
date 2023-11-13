@@ -25,6 +25,13 @@ import { EditPasswordModalComponent } from './component/edit-password-modal/edit
 import { EditAddressModalComponent } from './component/edit-adresse-modal/edit-adresse-modal.component';
 import { CommandeComponent } from './pages/commande/commande.component';
 import { OrderSuccessComponent } from './pages/order-success/order-success.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { AccauildashboardComponent } from './pagesDashboard/accauildashboard/accauildashboard.component';
+import { StatistiquesComponent } from './pagesDashboard/statistiques/statistiques.component';
+import { ClientsComponent } from './pagesDashboard/clients/clients.component';
+import { ArticlesComponent } from './pagesDashboard/articles/articles.component';
+import { CommandesComponent } from './pagesDashboard/commandes/commandes.component';
+import { VendeursComponent } from './pagesDashboard/vendeurs/vendeurs.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +50,13 @@ import { OrderSuccessComponent } from './pages/order-success/order-success.compo
     EditAddressModalComponent,
     CommandeComponent,
     OrderSuccessComponent,
+    DashboardComponent,
+    AccauildashboardComponent,
+    StatistiquesComponent,
+    ClientsComponent,
+    ArticlesComponent,
+    CommandesComponent,
+    VendeursComponent,
   ],
   imports: [
     BrowserModule,

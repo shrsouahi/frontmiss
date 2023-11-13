@@ -46,6 +46,7 @@ export class EditProfileModalComponent {
       adresse: this.user.adresse,
       region: this.user.region,
       ville: this.user.ville,
+      roleUser: this.user.roleUser,
     };
 
     this.userService

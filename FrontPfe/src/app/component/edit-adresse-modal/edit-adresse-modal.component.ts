@@ -45,6 +45,7 @@ export class EditAddressModalComponent {
       adresse: this.editAdresseForm.value.adresse,
       region: this.editAdresseForm.value.region,
       ville: this.editAdresseForm.value.ville,
+      roleUser: this.user.roleUser,
     };
     this.userService
       .updateUserProfile(updatedUserData, this.user.idUser) // Pass the user ID in the function call

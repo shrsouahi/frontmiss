@@ -33,10 +33,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     //Check if the user is already logged in
-    if (localStorage.getItem('isLoggedIn') === 'true') {
-      //User is already logged in ,redirect to the Home page
-      this.router.navigate(['/acceuil']);
-    }
+    // if (localStorage.getItem('isLoggedIn') === 'true') {
+    //User is already logged in ,redirect to the Home page
+    //  this.router.navigate(['/acceuil']);
   }
 
   signIn() {
@@ -64,6 +63,7 @@ export class LoginComponent implements OnInit {
                 const userRegion = registeredUser.region;
                 const userVille = registeredUser.ville;
                 const userPhone = registeredUser.phone;
+                const userRole = registeredUser.role;
               });
 
             // Serialize the user object to JSON
@@ -73,10 +73,17 @@ export class LoginComponent implements OnInit {
 
             localStorage.setItem('user', userJSON);
             localStorage.setItem('isLoggedIn', 'true');
-            this.router.navigate(['/acceuil']);
+
+            if (registeredUser.roleUser.idRole === 1) {
+              this.router.navigate(['/acceuil']);
+            } else if (registeredUser.roleUser.idRole === 2) {
+              this.router.navigate(['/dashboard']);
+            }
           } else {
             console.error('Authentication failed');
+
             this.showErrorMessage = true;
+
             console.log('showErrorMessage is true:', this.showErrorMessage);
           }
         },

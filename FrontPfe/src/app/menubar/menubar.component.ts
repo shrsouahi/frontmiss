@@ -67,4 +67,9 @@ export class MenubarComponent implements OnInit {
       this.cartItemCount = count;
     });
   }
+
+  shouldDisplayMenubar(): boolean {
+    const user = this.userService.getUserFromLocalStorage(); // Implement a method to get the current user from your user service
+    return !user || (user.roleUser && user.roleUser.roleName === 'Client');
+  }
 }

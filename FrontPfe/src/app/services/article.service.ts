@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Article } from '../models/Article.model';
 
@@ -20,6 +20,11 @@ export class ArticleService {
   getArticleById(idarticle: number): Observable<Article> {
     const url = `${this.apiUrl}/articles/article/${idarticle}`;
     return this.http.get<Article>(url);
+  }
+
+  getAllArticles(): Observable<any> {
+    const url = `${this.apiUrl}/articles/getAllArticles`;
+    return this.http.get<any>(url);
   }
 
   saveCart() {

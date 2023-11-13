@@ -22,7 +22,7 @@ export class CommandeService {
     return this.http.get<Commande>(endpoint);
   }
 
-  getRecentOrders(userId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/commande/recent/${userId}`);
+  getRecentOrders(idUser: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/commande/recent/${idUser}`);
   }
 }
