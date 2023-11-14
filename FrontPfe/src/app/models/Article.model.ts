@@ -1,5 +1,4 @@
 // article.model.ts
-
 import { Category } from './Category.model';
 import { ImageArticle } from './ImageArticle.model';
 

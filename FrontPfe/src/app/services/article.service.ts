@@ -18,6 +18,14 @@ export class ArticleService {
     return this.http.post<Article>(url, article);
   }
 
+  updateArticle(
+    idArticle: number,
+    updatedArticle: Article
+  ): Observable<Article> {
+    const url = `${this.apiUrl}/articles/updateArticle/${idArticle}`;
+    return this.http.put<Article>(url, updatedArticle);
+  }
+
   getArticlesByCodeCategory(codeCategory: number): Observable<Article[]> {
     const url = `${this.apiUrl}/articles/categorie/${codeCategory}`;
     return this.http.get<Article[]>(url);

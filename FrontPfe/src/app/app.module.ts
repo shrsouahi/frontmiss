@@ -35,6 +35,8 @@ import { VendeursComponent } from './pagesDashboard/vendeurs/vendeurs.component'
 import { ArticleinfosComponent } from './pagesDashboard/articleinfos/articleinfos.component';
 import { DeleteConfirmationDialogComponent } from './pagesDashboard/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { AddArticleComponent } from './pagesDashboard/add-article/add-article.component';
+import { ImageUploadComponent } from './component/image-upload/image-upload.component';
+import { EditArticleComponent } from './pagesDashboard/edit-article/edit-article.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,8 @@ import { AddArticleComponent } from './pagesDashboard/add-article/add-article.co
     ArticleinfosComponent,
     DeleteConfirmationDialogComponent,
     AddArticleComponent,
+    ImageUploadComponent,
+    EditArticleComponent,
   ],
   imports: [
     BrowserModule,

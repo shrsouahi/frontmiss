@@ -94,7 +94,12 @@
         >
           <mat-icon>visibility</mat-icon>
         </button>
-        <button mat-icon-button><mat-icon>edit</mat-icon></button>
+        <button
+          mat-icon-button
+          [routerLink]="['/edit-article', article.idArticle]"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
         <button
           mat-icon-button
           (click)="openDeleteConfirmationDialog(article.idArticle)"

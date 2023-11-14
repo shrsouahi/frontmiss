@@ -7,7 +7,7 @@ import { CategoryService } from 'src/app/services/category-service.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.component.html',
@@ -43,7 +43,8 @@ export class ArticlesComponent implements OnInit {
     private articleService: ArticleService,
     private categoryService: CategoryService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -134,5 +135,9 @@ export class ArticlesComponent implements OnInit {
   }
   navigateToAddArticlePage() {
     this.router.navigate(['/add-article']);
+  }
+
+  navigateToEditArticlePage(idArticle: number): void {
+    this.router.navigate(['/edit-article', idArticle]);
   }
 }

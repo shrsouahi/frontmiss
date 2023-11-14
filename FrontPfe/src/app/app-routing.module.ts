@@ -18,6 +18,7 @@ import { VendeursComponent } from './pagesDashboard/vendeurs/vendeurs.component'
 import { CommandesComponent } from './pagesDashboard/commandes/commandes.component';
 import { ArticleinfosComponent } from './pagesDashboard/articleinfos/articleinfos.component';
 import { AddArticleComponent } from './pagesDashboard/add-article/add-article.component';
+import { EditArticleComponent } from './pagesDashboard/edit-article/edit-article.component';
 const routes: Routes = [
   { path: 'acceuil', component: HomeComponent },
   { path: 'login', component: LoginComponent },
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'vendeurs', component: VendeursComponent },
   { path: 'articleinfos/:idArticle', component: ArticleinfosComponent },
   { path: 'add-article', component: AddArticleComponent },
+  { path: 'edit-article/:idArticle', component: EditArticleComponent },
 ];
 
 @NgModule({

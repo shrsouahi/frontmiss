@@ -1,5 +1,5 @@
 <div class="add-container">
-  <h1 class="form-title">Ajout d'un article</h1>
+  <h1 class="form-title">Modifier détails article</h1>
   <form [formGroup]="articleForm" class="article-form">
     <div class="form-row">
       <mat-form-field appearance="outline" class="full-width">
@@ -56,8 +56,8 @@
     <!-- Add image upload component -->
 
     <div class="form-row">
-      <button mat-button (click)="addArticle()" class="btnlog">
-        Ajouter Article
+      <button mat-button (click)="updateArticle()" class="update">
+        Modifier détails article
       </button>
     </div>
   </form>
