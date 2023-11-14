@@ -28,8 +28,9 @@ mat-table {
   margin-top: 20px;
   overflow: auto;
   display: block; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
 }
-
 
 th,
 td {
@@ -97,3 +98,26 @@ mat-form-field {
     margin-right: 8px;
     color:#555
   }
+  .empty-table-message-container {
+    text-align: center;
+    margin-top: 20px; 
+  }
+  
+  .empty-table-message-container p {
+    font-size: 18px;  
+    font-weight: bold;
+    color:#2A0800;
+  }
+  
+  .empty-table-message-container img {
+    width:200px; 
+    height: 200px;  
+    margin-top: 10px;  }
+  
+    /* Responsive styles for smaller screens */
+@media screen and (max-width: 600px) {
+  mat-table {
+    width: 100%;
+    overflow-x: auto;
+  }
+}

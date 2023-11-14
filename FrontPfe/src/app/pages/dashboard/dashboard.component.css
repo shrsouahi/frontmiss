@@ -60,3 +60,8 @@ mat-list-item .logout{
   margin: 5px 20px; 
 }
 
+@media (max-width: 768px) {
+  mat-sidenav {
+    width: 100%; /* Adjust as needed for smaller screens */
+  }
+}

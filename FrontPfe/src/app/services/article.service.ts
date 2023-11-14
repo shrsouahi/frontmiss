@@ -13,6 +13,11 @@ export class ArticleService {
 
   constructor(private http: HttpClient) {}
 
+  addArticle(article: Article): Observable<Article> {
+    const url = `${this.apiUrl}/articles/addarticle`;
+    return this.http.post<Article>(url, article);
+  }
+
   getArticlesByCodeCategory(codeCategory: number): Observable<Article[]> {
     const url = `${this.apiUrl}/articles/categorie/${codeCategory}`;
     return this.http.get<Article[]>(url);
@@ -54,5 +59,10 @@ export class ArticleService {
 
   clearArticles() {
     localStorage.clear();
+  }
+
+  deleteArticleById(idarticle: number): Observable<void> {
+    const url = `${this.apiUrl}/articles/deleteArticle/${idarticle}`;
+    return this.http.delete<void>(url);
   }
 }

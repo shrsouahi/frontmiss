@@ -5,6 +5,9 @@ import { Category } from 'src/app/models/Category.model';
 import { ArticleService } from 'src/app/services/article.service';
 import { CategoryService } from 'src/app/services/category-service.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.component.html',
@@ -38,7 +41,9 @@ export class ArticlesComponent implements OnInit {
   }
   constructor(
     private articleService: ArticleService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -107,5 +112,27 @@ export class ArticlesComponent implements OnInit {
     this.keywordFilter = '';
     this.selectedCategory = '';
     this.loadArticles();
+  }
+
+  openDeleteConfirmationDialog(idArticle: number): void {
+    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // Call the deleteArticleById method when confirmed
+        this.articleService.deleteArticleById(idArticle).subscribe(
+          () => {
+            // Reload the articles or update the data source as needed
+            this.loadArticles();
+          },
+          (error) => {
+            console.error('Error deleting article:', error);
+          }
+        );
+      }
+    });
+  }
+  navigateToAddArticlePage() {
+    this.router.navigate(['/add-article']);
   }
 }

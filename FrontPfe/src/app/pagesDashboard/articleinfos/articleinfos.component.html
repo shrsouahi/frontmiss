@@ -1,0 +1,87 @@
+<h2>Détails Article</h2>
+<div class="page-content">
+  <div class="article-details">
+    <!-- Add a section to display images -->
+    <div class="article-images" *ngIf="article && article.images">
+      <div *ngIf="article.images.length > 0; else noImages">
+        <div class="big-image">
+          <img [src]="currentBigImage" alt="{{ article.nomArticle }}" />
+        </div>
+        <ul class="small-images">
+          <li
+            *ngFor="let image of article.images; let first = first"
+            [class.big-image]="first"
+          >
+            <img
+              src="{{ image.url_image }}"
+              alt="{{ article.nomArticle }}"
+              (click)="changeBigImage(image.url_image)"
+            />
+          </li>
+        </ul>
+        <!--   MatButton for updating article takes to the page of update -->
+        <button mat-button class="modifier-button">
+          Modifier détails article
+        </button>
+      </div>
+      <ng-template #noImages>
+        <p>Pas d'images disponibles pour cet article.</p>
+      </ng-template>
+    </div>
+    <div class="other-content">
+      <h2>{{ article?.nomArticle }}</h2>
+      <p><span>Code:</span> {{ article?.bareCode }}</p>
+      <p><span>Prix :</span> {{ article?.prixArticle }} TND</p>
+      <p><span>Prix Soldé :</span> {{ article?.prixSolde }} TND</p>
+      <p><span>Categories : </span>{{ getCategoriesNames(article!) }}</p>
+      <p><span>Quantité : </span> {{ article?.quantiteStock }}</p>
+      <div class="article-description">
+        <h3>Description:</h3>
+        <p>{{ article?.descriptionArticle }}</p>
+      </div>
+
+      <!-- Mat Table for QuantitySize -->
+      <div class="quantitysize-table">
+        <h3>Quantités par taille:</h3>
+
+        <mat-table
+          [dataSource]="quantitySizeDataSource"
+          class="mat-elevation-z8"
+        >
+          <!-- Id-taille Column -->
+          <ng-container matColumnDef="idTaille">
+            <mat-header-cell *matHeaderCellDef> Id-taille </mat-header-cell>
+            <mat-cell *matCellDef="let quantitySizeData">
+              {{ quantitySizeData.size.idSize }}
+            </mat-cell>
+          </ng-container>
+
+          <!-- Label-taille Column -->
+          <ng-container matColumnDef="labelTaille">
+            <mat-header-cell *matHeaderCellDef> Label Taille </mat-header-cell>
+            <mat-cell *matCellDef="let quantitySizeData">
+              {{ quantitySizeData.size.labelSize }}
+            </mat-cell>
+          </ng-container>
+
+          <!-- Quantity-taille Column -->
+          <ng-container matColumnDef="quantityTaille">
+            <mat-header-cell *matHeaderCellDef>
+              Quantité Taille
+            </mat-header-cell>
+            <mat-cell *matCellDef="let quantitySizeData">
+              {{ quantitySizeData.quantityStockArticle }}
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row
+            *matHeaderRowDef="quantitySizeDisplayedColumns"
+          ></mat-header-row>
+          <mat-row
+            *matRowDef="let row; columns: quantitySizeDisplayedColumns"
+          ></mat-row>
+        </mat-table>
+      </div>
+    </div>
+  </div>
+</div>

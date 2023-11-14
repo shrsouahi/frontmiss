@@ -11,9 +11,8 @@ export class QuantitySizeService {
 
   constructor(private http: HttpClient) {}
 
-  getAvailableSizesForArticle(articleId: number): Observable<QuantitySize[]> {
-    const url = `${this.baseUrl}/quantitysizes/article/${articleId}`;
-
+  getAvailableSizesForArticle(idArticle: number): Observable<QuantitySize[]> {
+    const url = `${this.baseUrl}/quantitysizes/article/${idArticle}`;
     return this.http.get<QuantitySize[]>(url);
   }
 }

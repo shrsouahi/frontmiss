@@ -1,4 +1,3 @@
-<!-- articles.component.html -->
 <div class="container">
   <h1>Articles</h1>
   <div class="filters">
@@ -27,7 +26,9 @@
     <button mat-button class="reset" (click)="resetFilters()">
       Réinitialiser
     </button>
-    <button mat-button class="ajout">Ajouter un Article</button>
+    <button mat-button class="ajout" (click)="navigateToAddArticlePage()">
+      Ajouter un Article
+    </button>
   </div>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- Article Column -->
@@ -82,16 +83,24 @@
         {{ article.bareCode }}
       </td>
     </ng-container>
-
-    <!-- Actions Column -->
     <!-- Actions Column -->
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let article">
         <!-- Include relevant data or remove this td if not needed -->
-        <button mat-icon-button><mat-icon>visibility</mat-icon></button>
+        <button
+          mat-icon-button
+          [routerLink]="['/articleinfos', article.idArticle]"
+        >
+          <mat-icon>visibility</mat-icon>
+        </button>
         <button mat-icon-button><mat-icon>edit</mat-icon></button>
-        <button mat-icon-button><mat-icon>delete</mat-icon></button>
+        <button
+          mat-icon-button
+          (click)="openDeleteConfirmationDialog(article.idArticle)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
       </td>
     </ng-container>
 
@@ -102,8 +111,16 @@
     #paginator
     [length]="totalItems"
     [pageSize]="selectedPageSize"
-    [pageSizeOptions]="[7, 10, 15]"
+    [pageSizeOptions]="[5, 7, 10, 15]"
     (page)="onPageChange($event)"
     aria-label="Choisir Page"
   ></mat-paginator>
+
+  <div
+    class="empty-table-message-container"
+    *ngIf="dataSource.data.length === 0"
+  >
+    <p>Désolé , Pas d'article correspondant.</p>
+    <img src="assets/images/cartempty-removebg-preview.png" alt="" />
+  </div>
 </div>
