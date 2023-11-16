@@ -28,7 +28,6 @@ import { OrderSuccessComponent } from './pages/order-success/order-success.compo
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AccauildashboardComponent } from './pagesDashboard/accauildashboard/accauildashboard.component';
 import { StatistiquesComponent } from './pagesDashboard/statistiques/statistiques.component';
-import { ClientsComponent } from './pagesDashboard/clients/clients.component';
 import { ArticlesComponent } from './pagesDashboard/articles/articles.component';
 import { CommandesComponent } from './pagesDashboard/commandes/commandes.component';
 import { VendeursComponent } from './pagesDashboard/vendeurs/vendeurs.component';
@@ -37,6 +36,10 @@ import { DeleteConfirmationDialogComponent } from './pagesDashboard/delete-confi
 import { AddArticleComponent } from './pagesDashboard/add-article/add-article.component';
 import { ImageUploadComponent } from './component/image-upload/image-upload.component';
 import { EditArticleComponent } from './pagesDashboard/edit-article/edit-article.component';
+import { ClientsComponent } from './pagesDashboard/clients/clients.component';
+import { DeleteclientDialogComponent } from './pagesDashboard/deleteclient-dialog/deleteclient-dialog.component';
+import { AjoutClienteComponent } from './pagesDashboard/ajout-cliente/ajout-cliente.component';
+import { CategoriesComponent } from './pagesDashboard/categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,6 @@ import { EditArticleComponent } from './pagesDashboard/edit-article/edit-article
     DashboardComponent,
     AccauildashboardComponent,
     StatistiquesComponent,
-    ClientsComponent,
     ArticlesComponent,
     CommandesComponent,
     VendeursComponent,
@@ -67,6 +69,10 @@ import { EditArticleComponent } from './pagesDashboard/edit-article/edit-article
     AddArticleComponent,
     ImageUploadComponent,
     EditArticleComponent,
+    ClientsComponent,
+    DeleteclientDialogComponent,
+    AjoutClienteComponent,
+    CategoriesComponent,
   ],
   imports: [
     BrowserModule,

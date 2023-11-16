@@ -41,6 +41,11 @@ export class UserService {
     });
   }
 
+  deleteUserById(idUser: number): Observable<string> {
+    const url = `${this.apiUrl}/users/deleteUser/${idUser}`;
+
+    return this.http.delete<string>(url);
+  }
   logout() {
     localStorage.removeItem('user'); // Remove user data
     localStorage.removeItem('isLoggedIn'); // Remove the "isLoggedIn" flag
@@ -97,5 +102,10 @@ export class UserService {
       // Store the updated user data in local storage
       localStorage.setItem('user', JSON.stringify(updatedUserDataMerged));
     }
+  }
+
+  getUsersByRole(roleName: string): Observable<User[]> {
+    const url = `${this.apiUrl}/users/byRole/${roleName}`;
+    return this.http.get<User[]>(url);
   }
 }

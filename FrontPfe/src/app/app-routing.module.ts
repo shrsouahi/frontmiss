@@ -12,13 +12,15 @@ import { OrderSuccessComponent } from './pages/order-success/order-success.compo
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AccauildashboardComponent } from './pagesDashboard/accauildashboard/accauildashboard.component';
 import { StatistiquesComponent } from './pagesDashboard/statistiques/statistiques.component';
-import { ClientsComponent } from './pagesDashboard/clients/clients.component';
 import { ArticlesComponent } from './pagesDashboard/articles/articles.component';
 import { VendeursComponent } from './pagesDashboard/vendeurs/vendeurs.component';
 import { CommandesComponent } from './pagesDashboard/commandes/commandes.component';
 import { ArticleinfosComponent } from './pagesDashboard/articleinfos/articleinfos.component';
 import { AddArticleComponent } from './pagesDashboard/add-article/add-article.component';
 import { EditArticleComponent } from './pagesDashboard/edit-article/edit-article.component';
+import { ClientsComponent } from './pagesDashboard/clients/clients.component';
+import { AjoutClienteComponent } from './pagesDashboard/ajout-cliente/ajout-cliente.component';
+import { CategoriesComponent } from './pagesDashboard/categories/categories.component';
 const routes: Routes = [
   { path: 'acceuil', component: HomeComponent },
   { path: 'login', component: LoginComponent },
@@ -39,6 +41,8 @@ const routes: Routes = [
   { path: 'articleinfos/:idArticle', component: ArticleinfosComponent },
   { path: 'add-article', component: AddArticleComponent },
   { path: 'edit-article/:idArticle', component: EditArticleComponent },
+  { path: 'ajout-cliente', component: AjoutClienteComponent },
+  {path:'categories',component:CategoriesComponent}
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Article } from 'src/app/models/Article.model';
 import { ArticleService } from 'src/app/services/article.service';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -18,11 +18,7 @@ export class ArticleinfosComponent implements OnInit {
   quantitySizeData: QuantitySize[] = [];
 
   // Define the displayed columns for the mat-table
-  quantitySizeDisplayedColumns: string[] = [
-    'idTaille',
-    'labelTaille',
-    'quantityTaille',
-  ];
+  quantitySizeDisplayedColumns: string[] = ['labelTaille', 'quantityTaille'];
 
   // Create a MatTableDataSource with your data
   quantitySizeDataSource = new MatTableDataSource<QuantitySize>(
@@ -33,7 +29,8 @@ export class ArticleinfosComponent implements OnInit {
     private route: ActivatedRoute,
     private articleService: ArticleService,
     private sanitizer: DomSanitizer,
-    private quantitySizeService: QuantitySizeService
+    private quantitySizeService: QuantitySizeService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -108,5 +105,13 @@ export class ArticleinfosComponent implements OnInit {
       (category) => category.nomCategory
     );
     return categoryNames.join(',');
+  }
+
+  navigateToEditArticle(): void {
+    // Assuming you have the article ID
+    const articleId = this.article?.idArticle;
+    if (articleId) {
+      this.router.navigate(['edit-article', articleId]);
+    }
   }
 }

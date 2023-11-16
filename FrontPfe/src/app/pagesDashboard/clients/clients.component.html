@@ -1,1 +1,113 @@
-<p>clients works!</p>
+<!-- clients.component.html -->
+
+<div class="container">
+  <h1>Clientes</h1>
+
+  <div class="filters">
+    <!-- Name filter -->
+    <mat-form-field>
+      <input
+        matInput
+        [(ngModel)]="keywordFilter"
+        placeholder="Chercher par nom"
+      />
+    </mat-form-field>
+
+    <!-- Phone filter -->
+    <mat-form-field>
+      <input
+        matInput
+        [(ngModel)]="phoneFilter"
+        placeholder="Chercher par téléphone"
+      />
+    </mat-form-field>
+
+    <button mat-button class="apply" (click)="loadClients()">Filtrer</button>
+    <button mat-button class="reset" (click)="resetFilters()">
+      Réinitialiser
+    </button>
+    <button mat-button class="ajout" (click)="navigateToAddClientPage()">
+      Ajouter une nouvelle Cliente
+    </button>
+  </div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Client Name Column -->
+    <ng-container matColumnDef="clientname">
+      <th mat-header-cell *matHeaderCellDef>Cliente</th>
+      <td mat-cell *matCellDef="let client of dataSource.data">
+        {{ client.fName }} {{ client.lName }}
+      </td>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let client of dataSource.data">
+        {{ client.email }}
+      </td>
+    </ng-container>
+
+    <!-- Adresse Column -->
+    <ng-container matColumnDef="adresse">
+      <th mat-header-cell *matHeaderCellDef>Adresse</th>
+      <td mat-cell *matCellDef="let client of dataSource.data">
+        {{ client.adresse }}
+      </td>
+    </ng-container>
+
+    <!-- Region Column -->
+    <ng-container matColumnDef="region">
+      <th mat-header-cell *matHeaderCellDef>Région</th>
+      <td mat-cell *matCellDef="let client of dataSource.data">
+        {{ client.region }}
+      </td>
+    </ng-container>
+
+    <!-- Ville Column -->
+    <ng-container matColumnDef="ville">
+      <th mat-header-cell *matHeaderCellDef>Ville</th>
+      <td mat-cell *matCellDef="let client of dataSource.data">
+        {{ client.ville }}
+      </td>
+    </ng-container>
+
+    <!-- Phone Number Column -->
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef>Numéro de téléphone</th>
+      <td mat-cell *matCellDef="let client of dataSource.data">
+        {{ client.phone }}
+      </td>
+    </ng-container>
+
+    <!-- suppersion client Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Supprimer</th>
+      <td mat-cell *matCellDef="let client">
+        <button
+          mat-icon-button
+          (click)="openDeleteConfirmationDialog(client.idUser)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    #paginator
+    [length]="totalItems"
+    [pageSize]="selectedPageSize"
+    [pageSizeOptions]="[5, 7, 10, 15]"
+    (page)="onPageChange($event)"
+    aria-label="Choisir Page"
+  ></mat-paginator>
+
+  <div
+    class="empty-table-message-container"
+    *ngIf="dataSource.data.length === 0"
+  >
+    <p>Désolé, Pas de clients correspondants.</p>
+  </div>
+</div>

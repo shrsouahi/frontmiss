@@ -1,0 +1,84 @@
+<div class="register-container">
+  <div class="error-message" *ngIf="showEmailExistsError">
+    L'adresse e-mail existe déjà.
+  </div>
+  <div [formGroup]="registerForm" class="register-content">
+    <p class="title">Ajouter un compte Cliente</p>
+    <p class="title2">Informations personnelles de la cliente</p>
+    <mat-form-field appearance="outline">
+      <mat-label>Nom de la cliente</mat-label>
+      <input formControlName="lName" matInput type="text" />
+      <mat-error *ngIf="registerForm.get('lName')?.hasError('required')"
+        >Tapez le nom de la cliente!</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Prénom de la cliente</mat-label>
+      <input formControlName="fName" matInput type="text" />
+      <mat-error *ngIf="registerForm.get('fName')?.hasError('required')"
+        >Tappez le prénom de la cliente!</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail de la cliente</mat-label>
+      <input formControlName="email" matInput type="email" />
+
+      <mat-error *ngIf="registerForm.controls['email']?.hasError('required')">
+        Tappez E-mail de la cliente !
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Numéro télephone de la cliente</mat-label>
+      <input formControlName="phone" matInput type="number" />
+
+      <mat-error *ngIf="registerForm.controls['phone']?.hasError('required')">
+        Tappez le numéro de téléphone de la cliente!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Mot de passe par défaut</mat-label>
+      <input
+        formControlName="password"
+        matInput
+        [type]="hide ? 'password' : 'text'"
+      />
+      <mat-icon (click)="hide = !hide" matSuffix>{{
+        hide ? "visibility_off" : "visibility"
+      }}</mat-icon>
+      <mat-error *ngIf="registerForm.get('password')?.hasError('required')">
+        Tappez mot de passe pour la cliente!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Confirmer Mot de passe</mat-label>
+      <input
+        formControlName="ConfirmPassword"
+        matInput
+        [type]="hideConfirmPassword ? 'ConfirmPassword' : 'text'"
+        type="password"
+      />
+      <mat-icon
+        (click)="hideConfirmPassword = !hideConfirmPassword"
+        matSuffix
+        >{{ hideConfirmPassword ? "visibility_off" : "visibility" }}</mat-icon
+      >
+      <mat-error
+        *ngIf="registerForm.get('ConfirmPassword')?.hasError('required')"
+      >
+        Champs obligatoire!
+      </mat-error>
+      <mat-error *ngIf="registerForm.hasError('passwordMismatch')">
+        Les mots de passe ne correspondent pas!
+      </mat-error>
+    </mat-form-field>
+
+    <button class="btnlog" mat-raised-button (click)="onCreateAccountClick()">
+      Créer
+    </button>
+  </div>
+</div>
