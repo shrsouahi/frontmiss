@@ -1,5 +1,11 @@
 <div class="add-container">
   <h1 class="form-title">Modifier détails article</h1>
+
+  <div class="total-stock-container">
+    <label for="quantiteStock">Quantité totale en stock:</label>
+    <span id="quantiteStockValue">{{ article.quantiteStock }}</span>
+  </div>
+
   <form [formGroup]="articleForm" class="article-form">
     <div class="form-row">
       <mat-form-field appearance="outline" class="full-width">
@@ -31,13 +37,6 @@
 
     <div class="form-row">
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Quantité stock</mat-label>
-        <input matInput formControlName="quantiteStock" />
-      </mat-form-field>
-    </div>
-
-    <div class="form-row">
-      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Description</mat-label>
         <input matInput formControlName="descriptionArticle" />
       </mat-form-field>
@@ -55,10 +54,17 @@
 
     <!-- Add image upload component -->
 
-    <div class="form-row">
-      <button mat-button (click)="updateArticle()" class="update">
-        Modifier détails article
-      </button>
+    <div class="buttons-container">
+      <div class="form-row">
+        <button mat-button (click)="updateArticle()" class="update">
+          Modifier détails article
+        </button>
+      </div>
+      <div class="button-row">
+        <button mat-button class="annuler" (click)="navigateArticles()">
+          Annuler
+        </button>
+      </div>
     </div>
   </form>
 </div>

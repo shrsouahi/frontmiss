@@ -16,13 +16,13 @@ export class EditArticleComponent implements OnInit {
   articleForm: FormGroup;
   categories: Category[] = [];
   article: Article = {
-    idArticle: 0, // Assuming idArticle is a number, initialize it appropriately
+    idArticle: 0,
     bareCode: 0,
     nomArticle: '',
     descriptionArticle: '',
-    prixArticle: 0, // Assuming prixArticle is a number, initialize it appropriately
-    prixSolde: 0, // Assuming prixSolde is a number, initialize it appropriately
-    quantiteStock: 0, // Assuming quantiteStock is a number, initialize it appropriately
+    prixArticle: 0,
+    prixSolde: 0,
+    quantiteStock: 0,
     categories: [],
     images: [],
   };
@@ -41,7 +41,7 @@ export class EditArticleComponent implements OnInit {
       descriptionArticle: [''],
       prixArticle: ['', Validators.required],
       prixSolde: [''],
-      quantiteStock: ['', Validators.required],
+      // Remove quantiteStock from form controls
       categories: [[]],
       images: [[]],
     });
@@ -50,14 +50,11 @@ export class EditArticleComponent implements OnInit {
   ngOnInit(): void {
     this.getCategories();
 
-    // Get the articleId from the route parameters
     this.route.params.subscribe((params) => {
-      const idArticle = +params['idArticle']; // Assuming 'id' is the route parameter
+      const idArticle = +params['idArticle'];
 
-      // Call the getArticleById method to fetch the article
       this.articleService.getArticleById(idArticle).subscribe(
         (result) => {
-          // Handle the result, for example, patch the form with the fetched data
           this.article = result;
           this.patchFormWithArticleData();
         },
@@ -87,7 +84,6 @@ export class EditArticleComponent implements OnInit {
       descriptionArticle: this.article.descriptionArticle,
       prixArticle: this.article.prixArticle,
       prixSolde: this.article.prixSolde,
-      quantiteStock: this.article.quantiteStock,
       categories: this.article.categories,
       images: this.article.images,
     });
@@ -96,13 +92,17 @@ export class EditArticleComponent implements OnInit {
   updateArticle() {
     if (this.articleForm.valid) {
       const updatedArticle: Article = this.articleForm.value;
-      // Assuming you have an updateArticle method in your ArticleService
+
+      // Check if this.article is defined before accessing quantiteStock
+      updatedArticle.quantiteStock = this.article
+        ? this.article.quantiteStock
+        : 0;
+
       this.articleService
         .updateArticle(this.article.idArticle, updatedArticle)
         .subscribe(
           (updatedArticle) => {
             console.log('Article updated successfully:', updatedArticle);
-            // Display a success message using MatSnackBar
             this.snackBar.open('Article mis à jour avec succès', 'OK', {
               duration: 4000,
             });
@@ -114,5 +114,9 @@ export class EditArticleComponent implements OnInit {
           }
         );
     }
+  }
+
+  navigateArticles() {
+    this.router.navigate(['/articles']);
   }
 }

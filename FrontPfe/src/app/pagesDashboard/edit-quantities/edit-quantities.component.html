@@ -1,0 +1,102 @@
+<!-- Mat Table for QuantitySize -->
+<div class="container">
+  <div class="quantitysize-table">
+    <h3>Quantités par taille</h3>
+
+    <mat-table [dataSource]="quantitySizeDataSource" class="mat-elevation-z8">
+      <!-- Number Column -->
+      <ng-container matColumnDef="number">
+        <mat-header-cell *matHeaderCellDef>Ordre</mat-header-cell>
+        <mat-cell *matCellDef="let i = index"> {{ i + 1 }} </mat-cell>
+      </ng-container>
+
+      <!-- Label-taille Column -->
+      <ng-container matColumnDef="labelTaille">
+        <mat-header-cell *matHeaderCellDef> Taille </mat-header-cell>
+        <mat-cell *matCellDef="let quantitySizeData">
+          {{ quantitySizeData.size.labelSize }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Quantity-taille Column -->
+      <ng-container matColumnDef="quantityTaille">
+        <mat-header-cell *matHeaderCellDef> Quantité </mat-header-cell>
+        <mat-cell *matCellDef="let quantitySizeData">
+          {{ quantitySizeData.quantityStockArticle }}
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row
+        *matHeaderRowDef="quantitySizeDisplayedColumns"
+      ></mat-header-row>
+      <mat-row
+        *matRowDef="let row; columns: quantitySizeDisplayedColumns"
+      ></mat-row>
+    </mat-table>
+  </div>
+
+  <div class="form">
+    <h2 class="form-title">Gérer quantités par taille</h2>
+    <form [formGroup]="articleForm" class="article-form">
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Bare Code</mat-label>
+          <input matInput formControlName="bareCode" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nom article</mat-label>
+          <input matInput formControlName="nomArticle" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Quantité stock</mat-label>
+          <input matInput formControlName="quantiteStock" />
+        </mat-form-field>
+      </div>
+
+      <!-- New section for adding/editing QuantitySize -->
+      <div class="add-quantity-size">
+        <h3>Ajouter/Modifier Quantité</h3>
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Label Taille</mat-label>
+            <mat-select formControlName="selectedSize">
+              <mat-option *ngFor="let size of sizes" [value]="size.labelSize">
+                {{ size.labelSize }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-row">
+          <mat-form-field
+            appearance="outline"
+            class="full-width"
+            aria-placeholder="Donne une quantité "
+          >
+            <mat-label>Quantité</mat-label>
+            <input matInput formControlName="newQuantity" />
+          </mat-form-field>
+        </div>
+
+        <div class="buttons-container">
+          <div class="button-row">
+            <button mat-button class="ajout" (click)="saveQuantitySize()">
+              Ajouter
+            </button>
+          </div>
+
+          <div class="button-row">
+            <button mat-button class="update" (click)="changeQuantitySize()">
+              Modifier
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

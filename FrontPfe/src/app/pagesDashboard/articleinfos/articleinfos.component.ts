@@ -114,4 +114,10 @@ export class ArticleinfosComponent implements OnInit {
       this.router.navigate(['edit-article', articleId]);
     }
   }
+  navigateToQuantitiesTaille(): void {
+    const articleId = this.article?.idArticle;
+    if (articleId) {
+      this.router.navigate(['quantities', articleId]);
+    }
+  }
 }

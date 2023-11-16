@@ -21,6 +21,7 @@ import { EditArticleComponent } from './pagesDashboard/edit-article/edit-article
 import { ClientsComponent } from './pagesDashboard/clients/clients.component';
 import { AjoutClienteComponent } from './pagesDashboard/ajout-cliente/ajout-cliente.component';
 import { CategoriesComponent } from './pagesDashboard/categories/categories.component';
+import { EditQuantitiesComponent } from './pagesDashboard/edit-quantities/edit-quantities.component';
 const routes: Routes = [
   { path: 'acceuil', component: HomeComponent },
   { path: 'login', component: LoginComponent },
@@ -42,7 +43,8 @@ const routes: Routes = [
   { path: 'add-article', component: AddArticleComponent },
   { path: 'edit-article/:idArticle', component: EditArticleComponent },
   { path: 'ajout-cliente', component: AjoutClienteComponent },
-  {path:'categories',component:CategoriesComponent}
+  { path: 'categories', component: CategoriesComponent },
+  { path: 'quantities/:idArticle', component: EditQuantitiesComponent },
 ];
 
 @NgModule({

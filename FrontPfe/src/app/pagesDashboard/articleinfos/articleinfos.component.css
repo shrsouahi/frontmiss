@@ -87,7 +87,19 @@ p {
   cursor: pointer;
   border-radius: 4px;
 }
-
 .modifier-button:hover {
   background-color: #F4DBD8; 
+}
+.gérer-button{
+  background-color: #775144; 
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 25px 2px;
+  cursor: pointer;
+  border-radius: 4px;
 }

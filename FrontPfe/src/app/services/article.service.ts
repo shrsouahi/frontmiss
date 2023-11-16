@@ -73,4 +73,19 @@ export class ArticleService {
     const url = `${this.apiUrl}/articles/deleteArticle/${idarticle}`;
     return this.http.delete<void>(url);
   }
+
+  updateGlobalQuantityInArticle(
+    idArticle: number,
+    quantityStock: number
+  ): Observable<Article> {
+    const url = `${this.apiUrl}/articles/updateGlobalQuantity/${idArticle}`;
+
+    // Append the quantityStock as a query parameter
+    const params = new HttpParams().set(
+      'quantiteStock',
+      quantityStock.toString()
+    );
+
+    return this.http.put<Article>(url, null, { params });
+  }
 }

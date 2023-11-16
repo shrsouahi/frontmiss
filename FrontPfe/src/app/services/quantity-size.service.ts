@@ -15,16 +15,34 @@ export class QuantitySizeService {
     const url = `${this.baseUrl}/quantitysizes/article/${idArticle}`;
     return this.http.get<QuantitySize[]>(url);
   }
-  createQuantitySize(quantitySize: QuantitySize): Observable<QuantitySize> {
+
+  createQuantitySize(data: {
+    idArticle: number;
+    labelSize: string;
+    quantity: number;
+  }): Observable<QuantitySize> {
     const url = `${this.baseUrl}/quantitysizes/addQuantity`;
-    return this.http.post<QuantitySize>(url, quantitySize);
+    const params = {
+      idArticle: data.idArticle.toString(),
+      labelSize: data.labelSize.toString(),
+      quantity: data.quantity.toString(),
+    };
+    return this.http.post<QuantitySize>(url, null, { params });
   }
 
-  public updateQuantitySize(
-    quantitySize: QuantitySize,
-    newQuantity: number
-  ): Observable<QuantitySize> {
-    const url = `${this.baseUrl}/quantitysizes/update/${quantitySize.id}`;
-    return this.http.put<QuantitySize>(url, quantitySize);
+  updateQuantitySize(data: {
+    idArticle: number;
+    labelSize: string;
+    quantity: number;
+  }): Observable<QuantitySize> {
+    const url = `${this.baseUrl}/quantitysizes/update`;
+
+    const params = {
+      idArticle: data.idArticle.toString(),
+      labelSize: data.labelSize.toString(),
+      quantity: data.quantity.toString(),
+    };
+
+    return this.http.put<QuantitySize>(url, null, { params });
   }
 }

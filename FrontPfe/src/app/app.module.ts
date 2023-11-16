@@ -40,6 +40,7 @@ import { ClientsComponent } from './pagesDashboard/clients/clients.component';
 import { DeleteclientDialogComponent } from './pagesDashboard/deleteclient-dialog/deleteclient-dialog.component';
 import { AjoutClienteComponent } from './pagesDashboard/ajout-cliente/ajout-cliente.component';
 import { CategoriesComponent } from './pagesDashboard/categories/categories.component';
+import { EditQuantitiesComponent } from './pagesDashboard/edit-quantities/edit-quantities.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { CategoriesComponent } from './pagesDashboard/categories/categories.comp
     DeleteclientDialogComponent,
     AjoutClienteComponent,
     CategoriesComponent,
+    EditQuantitiesComponent,
   ],
   imports: [
     BrowserModule,

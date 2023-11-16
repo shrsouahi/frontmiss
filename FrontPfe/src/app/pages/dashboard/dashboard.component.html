@@ -14,36 +14,35 @@
     <mat-sidenav [(opened)]="opened" mode="side">
       <mat-list>
         <mat-list-item>
-          <mat-icon>dashboard</mat-icon>
-          <a routerLink="/acceuildashboard">Tableau de bord</a>
+          <a routerLink="/acceuildashboard">
+            <mat-icon>dashboard</mat-icon> Tableau de bord</a
+          >
+        </mat-list-item>
+
+        <mat-list-item>
+          <a routerLink="/clients"> <mat-icon>groups_2</mat-icon>Clientes</a>
         </mat-list-item>
         <mat-list-item>
-          <mat-icon>analytics</mat-icon>
-          <a routerLink="/statistiques">Statistiques</a>
+          <a routerLink="/categories">
+            <mat-icon>category</mat-icon>Catégories</a
+          >
         </mat-list-item>
         <mat-list-item>
-          <mat-icon>groups_2</mat-icon>
-          <a routerLink="/clients">Clientes</a>
+          <a routerLink="/articles"> <mat-icon>checkroom</mat-icon>Articles</a>
         </mat-list-item>
         <mat-list-item>
-          <mat-icon>category</mat-icon>
-          <a routerLink="/categories">Catégories</a>
+          <a routerLink="/commandes">
+            <mat-icon>shopping_cart_checkout</mat-icon>Commandes</a
+          >
         </mat-list-item>
         <mat-list-item>
-          <mat-icon>checkroom</mat-icon>
-          <a routerLink="/articles">Articles</a>
+          <a routerLink="/vendeurs">
+            <mat-icon>support_agent</mat-icon>Vendeurs</a
+          >
         </mat-list-item>
         <mat-list-item>
-          <mat-icon>shopping_cart_checkout</mat-icon>
-          <a routerLink="/commandes">Commandes</a>
-        </mat-list-item>
-        <mat-list-item>
-          <mat-icon>support_agent</mat-icon>
-          <a routerLink="/vendeurs">Vendeurs</a>
-        </mat-list-item>
-        <mat-list-item>
-          <mat-icon>logout</mat-icon>
           <button mat-button (click)="logout()" class="logout">
+            <mat-icon>logout</mat-icon>
             Se déconnecter
           </button>
         </mat-list-item>

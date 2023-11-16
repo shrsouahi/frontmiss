@@ -1,7 +1,8 @@
 <h2>Détails Article</h2>
 <div class="page-content">
   <div class="article-details">
-    <!-- Add a section to display images -->
+    <!--  section to display images -->
+
     <div class="article-images" *ngIf="article && article.images">
       <div *ngIf="article.images.length > 0; else noImages">
         <div class="big-image">
@@ -19,15 +20,24 @@
             />
           </li>
         </ul>
-        <!--   MatButton for updating article takes to the page of update -->
-        <button
-          mat-button
-          class="modifier-button"
-          (click)="navigateToEditArticle()"
-        >
-          Modifier détails article
-        </button>
       </div>
+
+      <!--   MatButton for updating article takes to the page of update -->
+      <button
+        mat-button
+        class="modifier-button"
+        (click)="navigateToEditArticle()"
+      >
+        Modifier détails article
+      </button>
+
+      <button
+        mat-button
+        class="gérer-button"
+        (click)="navigateToQuantitiesTaille()"
+      >
+        Gérer Quantités par taille
+      </button>
       <ng-template #noImages>
         <p>Pas d'images disponibles pour cet article.</p>
       </ng-template>
@@ -52,14 +62,6 @@
           [dataSource]="quantitySizeDataSource"
           class="mat-elevation-z8"
         >
-          <!-- Id-taille Column 
-          <ng-container matColumnDef="idTaille">
-            <mat-header-cell *matHeaderCellDef> Id-taille </mat-header-cell>
-            <mat-cell *matCellDef="let quantitySizeData">
-              {{ quantitySizeData.size.idSize }}
-            </mat-cell>
-          </ng-container>-->
-
           <!-- Label-taille Column -->
           <ng-container matColumnDef="labelTaille">
             <mat-header-cell *matHeaderCellDef> Label Taille </mat-header-cell>
