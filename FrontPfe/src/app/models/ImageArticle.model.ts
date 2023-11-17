@@ -1,7 +1,7 @@
 import { Article } from './Article.model';
 
 export class ImageArticle {
-  id: number;
+  id?: number;
   url_image: string;
   article: Article;
 

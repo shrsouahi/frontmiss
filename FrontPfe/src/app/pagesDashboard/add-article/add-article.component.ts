@@ -7,8 +7,6 @@ import { ArticleService } from 'src/app/services/article.service';
 import { CategoryService } from 'src/app/services/category-service.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FileHandle } from 'src/app/models/file-handle.model';
-import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-add-article',
   templateUrl: './add-article.component.html',
@@ -18,6 +16,8 @@ export class AddArticleComponent implements OnInit {
   articleForm: FormGroup;
   categories: Category[] = [];
   article: Article = {
+    // Initialize Article object with default values
+    idArticle: 0,
     bareCode: 0,
     nomArticle: '',
     descriptionArticle: '',
@@ -26,7 +26,6 @@ export class AddArticleComponent implements OnInit {
     quantiteStock: 0,
     categories: [],
     images: [],
-    idArticle: 0,
   };
 
   constructor(
@@ -34,8 +33,7 @@ export class AddArticleComponent implements OnInit {
     private articleService: ArticleService,
     private categoryService: CategoryService,
     private router: Router,
-    private snackBar: MatSnackBar,
-    private sanitizer: DomSanitizer
+    private snackBar: MatSnackBar
   ) {
     this.articleForm = this.fb.group({
       bareCode: ['', Validators.required],
@@ -45,7 +43,6 @@ export class AddArticleComponent implements OnInit {
       prixSolde: [''],
       quantiteStock: ['', Validators.required],
       categories: [[]],
-      images: [[]],
     });
   }
 
@@ -67,6 +64,7 @@ export class AddArticleComponent implements OnInit {
   addArticle() {
     if (this.articleForm.valid) {
       const newArticle: Article = this.articleForm.value;
+
       this.articleService.addArticle(newArticle).subscribe(
         (addedArticle) => {
           console.log('Article added successfully:', addedArticle);
@@ -84,17 +82,9 @@ export class AddArticleComponent implements OnInit {
     }
   }
 
-  onFileSelected(event: any) {
+  /*onFileSelected(event: any) {
     if (event.target.files) {
       const file = event.target.files[0];
-
-      const FileHandle: FileHandle = {
-        file: file,
-        url: this.sanitizer.bypassSecurityTrustUrl(
-          window.URL.createObjectURL(file)
-        ),
-      };
-      this.article.images.push(FileHandle);
     }
-  }
+  }*/
 }

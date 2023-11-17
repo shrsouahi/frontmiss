@@ -1,10 +1,10 @@
 <div class="add-container">
   <h1 class="form-title">Modifier détails article</h1>
 
-  <div class="total-stock-container">
-    <label for="quantiteStock">Quantité totale en stock:</label>
+  <mat-chip selected>
+    <label for="quantiteStock">Quantité totale en stock : </label>
     <span id="quantiteStockValue">{{ article.quantiteStock }}</span>
-  </div>
+  </mat-chip>
 
   <form [formGroup]="articleForm" class="article-form">
     <div class="form-row">
@@ -52,8 +52,15 @@
       </mat-select>
     </mat-form-field>
 
-    <!-- Add image upload component -->
+    <!-- Add image  -->
+    <!-- Input for image URL -->
 
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Ajouter une Image avec son URL</mat-label>
+        <input matInput formControlName="imageUrl" />
+      </mat-form-field>
+    </div>
     <div class="buttons-container">
       <div class="form-row">
         <button mat-button (click)="updateArticle()" class="update">

@@ -11,7 +11,7 @@ export class Article {
   prixSolde: number;
   quantiteStock: number;
   categories: Category[];
-  images: ImageArticle[];
+  images: ImageArticle[] = [];
 
   constructor(
     idArticle: number,

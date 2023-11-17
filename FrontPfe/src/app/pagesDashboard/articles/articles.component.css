@@ -121,3 +121,24 @@ mat-form-field {
     overflow-x: auto;
   }
 }
+
+.article-cell {
+  text-align: center;
+}
+
+.article-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.article-image {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 5px; /* Adjust as needed */
+}
+
+.article-name {
+  text-align: center;
+ font-weight: bold;
+}

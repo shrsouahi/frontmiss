@@ -11,8 +11,20 @@ export class ImageArticleService {
 
   constructor(private http: HttpClient) {}
 
-  getImagesForArticle(articleId: number): Observable<ImageArticle[]> {
-    const url = `${this.apiUrl}/images/article/${articleId}`;
+  getImagesForArticle(idArticle: number): Observable<ImageArticle[]> {
+    const url = `${this.apiUrl}/images/article/${idArticle}`;
     return this.http.get<ImageArticle[]>(url);
+  }
+
+  addImageForArticle(
+    idArticle: number,
+    imageUrl: string
+  ): Observable<ImageArticle> {
+    const url = `${
+      this.apiUrl
+    }/images/add?idArticle=${idArticle}&imageUrl=${encodeURIComponent(
+      imageUrl
+    )}`;
+    return this.http.post<ImageArticle>(url, {});
   }
 }

@@ -34,19 +34,25 @@
     <!-- Article Column -->
     <ng-container matColumnDef="articlename">
       <th mat-header-cell *matHeaderCellDef>Article</th>
-      <td mat-cell *matCellDef="let article of dataSource.data">
-        <img
-          *ngIf="article.images && article.images.length > 0"
-          [src]="article.images[0].url_image"
-          alt="Article Image"
-          style="width: 50px; height: 50px"
-        />
-        {{ article.nomArticle }}
+      <td
+        mat-cell
+        *matCellDef="let article of dataSource.data"
+        class="article-cell"
+      >
+        <div class="article-content">
+          <img
+            *ngIf="article.images && article.images.length > 0"
+            [src]="article.images[0].url_image"
+            alt="Article Image"
+            class="article-image"
+          />
+          <div class="article-name">{{ article.nomArticle }}</div>
+        </div>
       </td>
     </ng-container>
     <!-- Categorie Column -->
     <ng-container matColumnDef="categoriename">
-      <th mat-header-cell *matHeaderCellDef>Categorie</th>
+      <th mat-header-cell *matHeaderCellDef>Catégories</th>
       <td mat-cell *matCellDef="let article of dataSource.data">
         {{ getCategoriesNames(article) }}
       </td>
@@ -62,7 +68,7 @@
 
     <!-- prix solde Column -->
     <ng-container matColumnDef="prixsolde">
-      <th mat-header-cell *matHeaderCellDef>Prix Solde</th>
+      <th mat-header-cell *matHeaderCellDef>Prix Soldé</th>
       <td mat-cell *matCellDef="let article of dataSource.data">
         {{ article.prixSolde }} TND
       </td>
@@ -116,7 +122,7 @@
     #paginator
     [length]="totalItems"
     [pageSize]="selectedPageSize"
-    [pageSizeOptions]="[5, 7, 10, 15]"
+    [pageSizeOptions]="[3, 5, 7, 10, 15]"
     (page)="onPageChange($event)"
     aria-label="Choisir Page"
   ></mat-paginator>

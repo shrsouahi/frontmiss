@@ -6,6 +6,7 @@ import { Article } from 'src/app/models/Article.model';
 import { Category } from 'src/app/models/Category.model';
 import { ArticleService } from 'src/app/services/article.service';
 import { CategoryService } from 'src/app/services/category-service.service';
+import { ImageArticleService } from 'src/app/services/image-article-service.service';
 
 @Component({
   selector: 'app-edit-article',
@@ -33,7 +34,8 @@ export class EditArticleComponent implements OnInit {
     private categoryService: CategoryService,
     private router: Router,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private imageArticleService: ImageArticleService
   ) {
     this.articleForm = this.fb.group({
       bareCode: ['', Validators.required],
@@ -41,9 +43,9 @@ export class EditArticleComponent implements OnInit {
       descriptionArticle: [''],
       prixArticle: ['', Validators.required],
       prixSolde: [''],
-      // Remove quantiteStock from form controls
       categories: [[]],
-      images: [[]],
+      //images: [[]],
+      imageUrl: [''],
     });
   }
 
@@ -75,7 +77,6 @@ export class EditArticleComponent implements OnInit {
       }
     );
   }
-
   patchFormWithArticleData() {
     // Patch the form with the fetched article data
     this.articleForm.patchValue({
@@ -85,7 +86,7 @@ export class EditArticleComponent implements OnInit {
       prixArticle: this.article.prixArticle,
       prixSolde: this.article.prixSolde,
       categories: this.article.categories,
-      images: this.article.images,
+      // images: this.article.images,
     });
   }
 
@@ -97,7 +98,26 @@ export class EditArticleComponent implements OnInit {
       updatedArticle.quantiteStock = this.article
         ? this.article.quantiteStock
         : 0;
+      // After updating the article, add the image
+      const idArticle = this.article.idArticle; // Get the article ID
+      const imageUrl = this.articleForm.get('imageUrl')?.value;
 
+      console.log('idArticle:', idArticle);
+      console.log('imageUrl:', imageUrl);
+
+      if (imageUrl) {
+        // If imageUrl is not empty, call the addImageForArticle method
+        this.imageArticleService
+          .addImageForArticle(idArticle, imageUrl)
+          .subscribe(
+            (addedImage) => {
+              console.log('Image added successfully:', addedImage);
+            },
+            (error) => {
+              console.error('Error adding image:', error);
+            }
+          );
+      }
       this.articleService
         .updateArticle(this.article.idArticle, updatedArticle)
         .subscribe(
@@ -115,7 +135,6 @@ export class EditArticleComponent implements OnInit {
         );
     }
   }
-
   navigateArticles() {
     this.router.navigate(['/articles']);
   }

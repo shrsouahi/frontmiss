@@ -18,7 +18,7 @@ export class ArticlesComponent implements OnInit {
   keywordFilter: string = '';
   selectedCategory: string = '';
   categories: Category[] = [];
-  selectedPageSize: number = 7;
+  selectedPageSize: number = 3;
 
   displayedColumns: string[] = [
     'articlename',

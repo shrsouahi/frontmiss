@@ -43,3 +43,10 @@
   color: white;
   margin-left: 30px;
 }
+
+
+mat-chip {
+  background-color: #C09891;
+  color: white;
+  align-items: center;
+}
