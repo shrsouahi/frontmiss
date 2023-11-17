@@ -53,7 +53,17 @@
       </mat-select>
     </mat-form-field>
 
-    <!-- Add image upload component -->
+    <div class="image-upload-container">
+      <!-- Your image upload component goes here -->
+      <input
+        type="file"
+        multiple
+        value="select"
+        #selectFile
+        (change)="onFileSelected($event)"
+      />
+      <!-- ... -->
+    </div>
 
     <div class="form-row">
       <button mat-button (click)="addArticle()" class="ajout">
