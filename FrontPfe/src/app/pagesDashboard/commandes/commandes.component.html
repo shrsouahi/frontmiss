@@ -1,1 +1,102 @@
-<p>commandes works!</p>
+<!-- orders.component.html -->
+
+<div class="container">
+  <h1>Commandes</h1>
+  <!-- Add filters for orders if needed -->
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Reference Column -->
+    <ng-container matColumnDef="reference">
+      <th mat-header-cell *matHeaderCellDef>Référence</th>
+      <td mat-cell *matCellDef="let order of dataSource.data">
+        {{ order.reference }}
+      </td>
+    </ng-container>
+
+    <!-- Order Date Column -->
+    <ng-container matColumnDef="orderDate">
+      <th mat-header-cell *matHeaderCellDef>Date de commande</th>
+      <td mat-cell *matCellDef="let order of dataSource.data">
+        {{ order.orderDate | date }}
+      </td>
+    </ng-container>
+
+    <!-- User Column -->
+    <ng-container matColumnDef="user">
+      <th mat-header-cell *matHeaderCellDef>Cliente</th>
+      <td mat-cell *matCellDef="let order of dataSource.data">
+        {{ order.user.fName }} {{ order.user.lName }}
+      </td>
+    </ng-container>
+
+    <!-- Total Column -->
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef>Total</th>
+      <td mat-cell *matCellDef="let order of dataSource.data">
+        {{ order.total }} TND
+      </td>
+    </ng-container>
+
+    <!-- Shipping Method Column -->
+    <ng-container matColumnDef="shippingMethod">
+      <th mat-header-cell *matHeaderCellDef>Méthode d'expédition</th>
+      <td mat-cell *matCellDef="let order of dataSource.data">
+        {{ order.shippingMethod }}
+      </td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Statut</th>
+      <td mat-cell *matCellDef="let order of dataSource.data">
+        {{ order.status }}
+      </td>
+    </ng-container>
+
+    <!--  status change -->
+    <!-- Add this column for status change -->
+    <ng-container matColumnDef="statusChange">
+      <th mat-header-cell *matHeaderCellDef class="small-column">Changer</th>
+      <td mat-cell *matCellDef="let order" class="small-column">
+        <mat-form-field appearance="outline" class="status-change-field">
+          <mat-label>Statut</mat-label>
+          <mat-select
+            [(value)]="order.statusChange"
+            (selectionChange)="onStatusChange($event, order)"
+          >
+            <mat-option *ngFor="let status of orderStatuses" [value]="status">
+              {{ status }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </td>
+    </ng-container>
+
+    <!-- Details Column -->
+    <ng-container matColumnDef="details">
+      <th mat-header-cell *matHeaderCellDef>Détails</th>
+      <td mat-cell *matCellDef="let order">
+        <button mat-icon-button>
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    #paginator
+    [length]="totalItems"
+    [pageSize]="selectedPageSize"
+    [pageSizeOptions]="[3, 5, 7, 10, 15]"
+    (page)="onPageChange($event)"
+    aria-label="Choisir Page"
+  ></mat-paginator>
+  <div
+    class="empty-table-message-container"
+    *ngIf="dataSource.data.length === 0"
+  >
+    <p>Désolé, pas de commandes correspondantes.</p>
+  </div>
+</div>

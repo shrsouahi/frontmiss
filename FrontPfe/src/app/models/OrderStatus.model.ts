@@ -1,8 +1,9 @@
 export enum OrderStatus {
-  CREATED = 'Créée',
-  VALIDATED = 'Validée',
-  SHIPPED = 'Expédiée',
-  DELIVERED = 'Livrée',
+  Créée = 'Créée',
+  Validée = 'Validée',
+  Expédiée = 'Expédiée',
+  Livrée = 'Livrée',
+  Annulée = 'Annulée',
 }
 
 export default OrderStatus;

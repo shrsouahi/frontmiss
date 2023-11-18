@@ -114,11 +114,10 @@ export class CommandeComponent implements OnInit {
       // Create an instance of the CommandeDTO class
       const commandeDTO = new CommandeDTO(
         '', // The reference might be generated on the server
-
         this.total + this.deliveryCost,
         new Date().toISOString(), // Format on the server if needed
         this.deliveryChoice,
-        'CREATED',
+        'Créée',
         this.userFromLocalStorage
       );
 
@@ -141,7 +140,7 @@ export class CommandeComponent implements OnInit {
         user: this.userFromLocalStorage,
       };
 
-      // Call your service to save the orderData
+      // Call the service to save the orderData
       this.userService
         .updateUserProfile(updatedUser, updatedUser.idUser)
         .subscribe(
