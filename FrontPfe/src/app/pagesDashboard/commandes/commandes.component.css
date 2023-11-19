@@ -91,4 +91,6 @@ mat-paginator button:hover {
   min-height: 30px;  
   line-height: 30px;  
 }
-
+mat-chip{
+  color:black;
+}

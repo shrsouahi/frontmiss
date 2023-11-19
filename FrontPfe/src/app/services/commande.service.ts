@@ -35,7 +35,6 @@ export class CommandeService {
 
     return this.http.put(endpoint, {}, { params, responseType: 'text' }).pipe(
       catchError((error) => {
-        // Handle the error here
         console.error('Error updating order status:', error);
         throw error;
       })

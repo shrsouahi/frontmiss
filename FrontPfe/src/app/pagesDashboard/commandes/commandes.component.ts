@@ -16,6 +16,8 @@ import { CommandeService } from 'src/app/services/commande.service';
 export class CommandesComponent {
   orders: Commande[] = [];
   keywordFilter: string = '';
+  referenceFilter: string = '';
+  dateFilter!: Date;
   selectedPageSize = 3;
 
   // Add a property for the order statuses
@@ -60,22 +62,27 @@ export class CommandesComponent {
       this.orders = filteredOrders;
       this.dataSource.data = this.orders;
       this.totalItems = this.orders.length;
-
       this.paginator.length = this.totalItems;
       this.paginator._changePageSize(this.paginator.pageSize);
     });
   }
 
   filterOrders(commandes: Commande[]): Commande[] {
-    // Apply filters based on keyword and other criteria
-    // You can extend this method based on your needs
     return commandes.filter((commandes) => {
-      const matchesKeyword = commandes.reference
+      const matchesKeyword = `${commandes.user.fName} ${commandes.user.lName}`
         .toLowerCase()
         .includes(this.keywordFilter.toLowerCase());
-      // Add other filter conditions as needed
 
-      return matchesKeyword; // Add other conditions as needed
+      const matchesReference = commandes.reference
+        .toLowerCase()
+        .includes(this.referenceFilter.toLowerCase());
+
+      const orderDateAsDate = commandes.orderDate;
+
+      const matchesDate =
+        !this.dateFilter || this.dateFilter.toDateString() === orderDateAsDate;
+
+      return matchesKeyword && matchesReference;
     });
   }
 
@@ -83,7 +90,8 @@ export class CommandesComponent {
 
   resetFilters() {
     this.keywordFilter = '';
-    // Reset other filters if needed
+    this.referenceFilter = '';
+
     this.loadOrders();
   }
 
@@ -101,5 +109,21 @@ export class CommandesComponent {
         console.error('Error updating order status:', error);
       }
     );
+  }
+  getStatusChipStyle(status: OrderStatus): any {
+    switch (status) {
+      case OrderStatus.Créée:
+        return { 'background-color': '#4caf50', color: 'black' }; // Green color for 'Créée' status
+      case OrderStatus.Validée:
+        return { 'background-color': '#2196f3', color: 'black' }; // Blue color for 'Validée' status
+      case OrderStatus.Expédiée:
+        return { 'background-color': '#ff9800', color: 'black' }; // Orange color for 'Expédiée' status
+      case OrderStatus.Livrée:
+        return { 'background-color': '#ffeb3b', color: 'black' }; // yellow color for 'Livrée' status
+      case OrderStatus.Annulée:
+        return { 'background-color': '#f44336', color: 'black' }; // Red color for 'Annulée' status
+      default:
+        return {};
+    }
   }
 }

@@ -16,6 +16,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [],
@@ -37,6 +38,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatTableModule,
     MatSnackBarModule,
     MatChipsModule,
+    MatDatepickerModule,
   ],
 })
 export class MaterialDesignModule {}
