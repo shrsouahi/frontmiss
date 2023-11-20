@@ -1,9 +1,45 @@
-<!-- edit-category-modal.component.html -->
-<h2>Edit Category</h2>
-<!-- Include form controls for editing category details -->
-<!-- Use [(ngModel)] or form controls based on your preference -->
-<form>
-  <!-- Form fields go here -->
-  <button mat-button (click)="onSave()">Save</button>
-  <button mat-button (click)="onCancel()">Cancel</button>
-</form>
+<div class="mat-dialog-container">
+  <h2>Modifier détails catégorie</h2>
+  <!-- Include form controls for editing category details -->
+  <form [formGroup]="editCategoryForm" class="mat-dialog-content">
+    <!-- Mat form field for category name -->
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Catégorie</mat-label>
+        <input
+          matInput
+          [(ngModel)]="category.nomCategory"
+          type="text"
+          name="nomCategory"
+          required
+          formControlName="nomCategory"
+        />
+        <mat-error
+          *ngIf="editCategoryForm?.get('categoriename')?.hasError('required')"
+        >
+          Nom de catégorie est requis
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- Mat form field for description -->
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          type="text"
+          name="description"
+          formControlName="description"
+          required
+        ></textarea>
+      </mat-form-field>
+    </div>
+    <!-- Save and Cancel buttons -->
+    <button mat-button (click)="onSave()" class="save-button">
+      Enregistrer
+    </button>
+    <button mat-button (click)="onCancel()" class="cancel-button">
+      Fermer
+    </button>
+  </form>
+</div>

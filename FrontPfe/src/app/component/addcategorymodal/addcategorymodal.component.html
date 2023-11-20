@@ -1,0 +1,55 @@
+<div class="mat-dialog-content">
+  <h2>Ajouter une catégorie</h2>
+  <!-- Include form controls for adding category details -->
+  <form [formGroup]="addCategoryForm">
+    <!-- Mat form field for category name -->
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Catégorie</mat-label>
+        <input matInput formControlName="nomCategory" />
+        <mat-error
+          *ngIf="addCategoryForm?.get('nomCategory')?.hasError('required')"
+        >
+          Nom de catégorie est requis
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- Mat form field for description -->
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+    </div>
+    <!-- Checkbox for parent category -->
+    <div class="form-group">
+      <mat-checkbox
+        formControlName="parentCategoryCheckbox"
+        (change)="onParentCategoryChange()"
+      >
+        Choisissez une catégorie parente
+      </mat-checkbox>
+      <!-- Select dropdown for parent category -->
+      <mat-form-field
+        *ngIf="addCategoryForm.get('parentCategoryCheckbox')?.value"
+      >
+        <mat-label>Catégorie Parente</mat-label>
+        <mat-select formControlName="parentCategory">
+          <mat-option
+            *ngFor="let category of availableCategories"
+            [value]="category"
+          >
+            {{ category.nomCategory }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <!-- Save and Cancel buttons -->
+    <button mat-button (click)="onSave()" class="save-button">
+      Enregister
+    </button>
+    <button mat-button (click)="onCancel()" class="cancel-button">
+      Fermer
+    </button>
+  </form>
+</div>

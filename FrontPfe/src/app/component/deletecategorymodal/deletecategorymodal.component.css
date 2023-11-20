@@ -1,6 +1,13 @@
-/* delete-category-modal.component.css */
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+ 
+}
+
 h2 {
-  color: #d9534f; /* Red color for emphasis */
+  color: #d9534f;
 }
 
 p {
@@ -10,6 +17,28 @@ p {
 
 button {
   margin-top: 10px;
-  background-color: #d9534f; /* Red color for emphasis */
-  color: #fff; /* White text for contrast */
+  margin-bottom: 10px;
+}
+
+/* Style the "Save" button */
+.btn-delete {
+  background-color: #c09891;
+  color: white;
+  border: none;
+  padding: 15px 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 15px;
+  height: 40px;
+}
+
+/* Style the "Cancel" button */
+.btn-cancel {
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  padding: 15px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  height: 40px;
 }

@@ -44,6 +44,7 @@ import { EditQuantitiesComponent } from './pagesDashboard/edit-quantities/edit-q
 import { DetailsCommandeComponent } from './pagesDashboard/details-commande/details-commande.component';
 import { EditcategorymodalComponent } from './component/editcategorymodal/editcategorymodal.component';
 import { DeletecategorymodalComponent } from './component/deletecategorymodal/deletecategorymodal.component';
+import { AddcategorymodalComponent } from './component/addcategorymodal/addcategorymodal.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { DeletecategorymodalComponent } from './component/deletecategorymodal/de
     EditQuantitiesComponent,
     DetailsCommandeComponent,
     EditcategorymodalComponent,
+    AddcategorymodalComponent,
   ],
   imports: [
     BrowserModule,

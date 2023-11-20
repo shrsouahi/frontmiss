@@ -22,7 +22,7 @@ export class EditProfileModalComponent {
     private userService: UserService,
     private httpClient: HttpClient
   ) {
-    this.user = data; // Initialize user data from the injected data
+    this.user = data;
 
     this.editProfileForm = this.fb.group({
       name: [this.user.fName, Validators.required],
