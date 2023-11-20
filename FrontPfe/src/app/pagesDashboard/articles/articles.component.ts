@@ -19,18 +19,17 @@ export class ArticlesComponent implements OnInit {
   selectedCategory: string = '';
   categories: Category[] = [];
   selectedPageSize: number = 3;
+  codeFilter: string = '';
 
   displayedColumns: string[] = [
+    'bareCode',
     'articlename',
     'categoriename',
     'prix',
     'prixsolde',
     'quantité',
-    'bareCode',
     'actions',
   ];
-
-  // Add the totalItems property
   totalItems: number = 0;
 
   @ViewChild('paginator') paginator!: MatPaginator;
@@ -82,6 +81,7 @@ export class ArticlesComponent implements OnInit {
   }
   filterArticles(articles: Article[]): Article[] {
     // Apply filters based on keyword and selected category
+
     return articles.filter((article) => {
       const matchesKeyword = article.nomArticle
         .toLowerCase()
@@ -95,7 +95,12 @@ export class ArticlesComponent implements OnInit {
             .includes(this.selectedCategory.toLowerCase())
         );
 
-      return matchesKeyword && matchesCategory;
+      const matchesCode = article.bareCode
+        .toString()
+        .toLowerCase()
+        .includes(this.codeFilter);
+
+      return matchesKeyword && matchesCategory && matchesCode;
     });
   }
 
@@ -112,6 +117,7 @@ export class ArticlesComponent implements OnInit {
   resetFilters() {
     this.keywordFilter = '';
     this.selectedCategory = '';
+    this.codeFilter = '';
     this.loadArticles();
   }
 

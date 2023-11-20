@@ -1,0 +1,82 @@
+<div class="container" *ngIf="commande">
+  <h2>Détails de la commande</h2>
+  <!-- Commande Informations -->
+  <div class="commande-info">
+    <p>
+      <span>Status </span>
+
+      <mat-chip [ngStyle]="getStatusChipStyle(commande.status)" disabled>
+        {{ commande.status }}
+      </mat-chip>
+    </p>
+    <p><span class="detail"> Date: </span> {{ commande.orderDate }}</p>
+    <p><span class="detail">Référence: </span> {{ commande.reference }}</p>
+    <div class="user-info">
+      <p class="title-cliente">Cordonnées de la cliente</p>
+      <p>{{ commande.user.fName }} {{ commande.user.lName }}</p>
+      <p>{{ commande.user.email }}</p>
+      <p>{{ commande.user.phone }}</p>
+      <p>
+        {{ commande.user.adresse }} , {{ commande.user.region }},
+        {{ commande.user.ville }}
+      </p>
+    </div>
+  </div>
+  <!-- QuantityOrders Table -->
+
+  <div class="quantity-orders">
+    <table mat-table [dataSource]="quantityOrders" class="mat-table">
+      <ng-container matColumnDef="articleName">
+        <th mat-header-cell *matHeaderCellDef>Article</th>
+        <td mat-cell *matCellDef="let quantityOrder">
+          <ng-container>
+            {{ quantityOrder.article.nomArticle }}
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="taille">
+        <th mat-header-cell *matHeaderCellDef>Taille</th>
+        <td mat-cell *matCellDef="let quantityOrder">
+          {{ quantityOrder.selectedSize }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>quantité</th>
+        <td mat-cell *matCellDef="let quantityOrder">
+          {{ quantityOrder.quantity }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Prix unitaire</th>
+        <td mat-cell *matCellDef="let quantityOrder">
+          <ng-container>
+            {{ quantityOrder.article.prixArticle }} TND
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="priceTotal">
+        <th mat-header-cell *matHeaderCellDef>Total</th>
+        <td mat-cell *matCellDef="let quantityOrder">
+          {{ calculateTotalPrice(quantityOrder) }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+  <!-- Shipping Information  -->
+  <mat-card class="shipping-info-card">
+    <div class="shipping-info">
+      <p>
+        <span class="payer">Mode de livraison: </span
+        >{{ commande.shippingMethod }}
+      </p>
+      <p><span class="payer">Montant total: </span> {{ commande.total }} TND</p>
+    </div>
+  </mat-card>
+</div>

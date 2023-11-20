@@ -1,1 +1,40 @@
-<p>categories works!</p>
+<div class="container">
+  <h2>Catégories</h2>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="categories">
+      <!-- Column definitions -->
+      <ng-container matColumnDef="nomCategory">
+        <th mat-header-cell *matHeaderCellDef>Nom Catégorie</th>
+        <td mat-cell *matCellDef="let category">{{ category.nomCategory }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let category">{{ category.description }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="parentCategory">
+        <th mat-header-cell *matHeaderCellDef>Catégorie Père</th>
+        <td mat-cell *matCellDef="let category">
+          {{
+            category.parentCategory
+              ? category.parentCategory.nomCategory
+              : "N/A"
+          }}
+        </td>
+      </ng-container>
+      <!-- Header and row definitions -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <!-- Add the mat-paginator -->
+    <mat-paginator
+      #paginator
+      [length]="totalItems"
+      [pageSize]="selectedPageSize"
+      [pageSizeOptions]="[5, 7, 10, 15]"
+      (page)="onPageChange($event)"
+    ></mat-paginator>
+  </div>
+</div>

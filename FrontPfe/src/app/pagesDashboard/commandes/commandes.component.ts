@@ -17,13 +17,12 @@ export class CommandesComponent {
   orders: Commande[] = [];
   keywordFilter: string = '';
   referenceFilter: string = '';
-  dateFilter!: Date;
-  selectedPageSize = 3;
+  //dateFilter!: Date;
+  statusFilter: OrderStatus | null = null;
+  selectedPageSize = 5;
 
-  // Add a property for the order statuses
+  // property for the order statuses
   orderStatuses = Object.values(OrderStatus);
-
-  // Add any additional filters for orders as needed
 
   displayedColumns: string[] = [
     'reference',
@@ -40,6 +39,11 @@ export class CommandesComponent {
 
   @ViewChild('paginator') paginator!: MatPaginator;
   dataSource = new MatTableDataSource<Commande>(this.orders);
+
+  ngAfterViewInit() {
+    this.dataSource = new MatTableDataSource(this.orders);
+    this.dataSource.paginator = this.paginator;
+  }
 
   constructor(
     private commandeService: CommandeService,
@@ -77,21 +81,21 @@ export class CommandesComponent {
         .toLowerCase()
         .includes(this.referenceFilter.toLowerCase());
 
-      const orderDateAsDate = commandes.orderDate;
+      const matchesStatus =
+        !this.statusFilter || commandes.status === this.statusFilter;
 
-      const matchesDate =
-        !this.dateFilter || this.dateFilter.toDateString() === orderDateAsDate;
-
-      return matchesKeyword && matchesReference;
+      return matchesKeyword && matchesReference && matchesStatus;
     });
   }
 
-  onPageChange(event: PageEvent): void {}
+  onPageChange(event: PageEvent): void {
+    this.selectedPageSize = event.pageSize;
+  }
 
   resetFilters() {
     this.keywordFilter = '';
     this.referenceFilter = '';
-
+    this.statusFilter = null;
     this.loadOrders();
   }
 
@@ -125,5 +129,9 @@ export class CommandesComponent {
       default:
         return {};
     }
+  }
+  navigateToDetails(idCommande: number): void {
+    // Navigate to the details page with the commande ID
+    this.router.navigate(['/commande-details', idCommande]);
   }
 }

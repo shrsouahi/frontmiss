@@ -20,7 +20,7 @@
     <h2 class="text-center">Récupulatif de paiement :</h2>
     <ul class="list-group" *ngIf="commande && commande.quantityOrders">
       <li class="list-group-item" *ngFor="let item of commande.quantityOrders">
-        {{ item.article.nomArticle }} - {{ item.quantity }} unités
+        {{ item.article.nomArticle }} - {{ item.quantity }} piéces
       </li>
     </ul>
     <p class="text-center">Frais de livraison : {{ deliveryCost }} TND</p>

@@ -41,6 +41,7 @@ import { DeleteclientDialogComponent } from './pagesDashboard/deleteclient-dialo
 import { AjoutClienteComponent } from './pagesDashboard/ajout-cliente/ajout-cliente.component';
 import { CategoriesComponent } from './pagesDashboard/categories/categories.component';
 import { EditQuantitiesComponent } from './pagesDashboard/edit-quantities/edit-quantities.component';
+import { DetailsCommandeComponent } from './pagesDashboard/details-commande/details-commande.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { EditQuantitiesComponent } from './pagesDashboard/edit-quantities/edit-q
     AjoutClienteComponent,
     CategoriesComponent,
     EditQuantitiesComponent,
+    DetailsCommandeComponent,
   ],
   imports: [
     BrowserModule,

@@ -53,16 +53,13 @@ td {
   gap: 10px;
 }
 mat-form-field {
-  min-width: 150px; /* Adjust as needed */
+  min-width: 150px; 
 }
 
 .apply {
   background-color: #BEABA7;
   color: white;
 }
-
-
-/* articles.component.css */
 
 .pagination {
   display: flex;

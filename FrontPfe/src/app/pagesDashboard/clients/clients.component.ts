@@ -20,7 +20,7 @@ export class ClientsComponent implements OnInit {
   clients: User[] = [];
   keywordFilter: string = '';
   selectedPageSize: number = 7;
-
+  emailFilter: string = '';
   displayedColumns: string[] = [
     'clientname',
     'email',
@@ -31,7 +31,6 @@ export class ClientsComponent implements OnInit {
     'actions',
   ];
 
-  // Add the totalItems property
   totalItems: number = 0;
   phoneFilter: string = '';
 
@@ -81,6 +80,7 @@ export class ClientsComponent implements OnInit {
     // Separate filters for name and phone
     const nameFilter = this.keywordFilter.toLowerCase();
     const phoneFilter = this.phoneFilter.toLowerCase();
+    const emailFilter = this.emailFilter.toLowerCase();
 
     // Apply filters based on name and phone
     return clients.filter((client) => {
@@ -93,7 +93,12 @@ export class ClientsComponent implements OnInit {
         .toLowerCase()
         .includes(phoneFilter);
 
-      return nameMatches && phoneMatches;
+      const EmailMatches = client.email
+        .toString()
+        .toLowerCase()
+        .includes(emailFilter);
+
+      return nameMatches && phoneMatches && EmailMatches;
     });
   }
 
@@ -103,6 +108,8 @@ export class ClientsComponent implements OnInit {
 
   resetFilters() {
     this.keywordFilter = '';
+    this.phoneFilter = '';
+    this.emailFilter = '';
     this.loadClients();
   }
 

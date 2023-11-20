@@ -21,6 +21,14 @@
         placeholder="Chercher par téléphone"
       />
     </mat-form-field>
+    <!--Email filter-->
+    <mat-form-field>
+      <input
+        matInput
+        [(ngModel)]="emailFilter"
+        placeholder="Chercher par Email"
+      />
+    </mat-form-field>
 
     <button mat-button class="apply" (click)="loadClients()">Filtrer</button>
     <button mat-button class="reset" (click)="resetFilters()">

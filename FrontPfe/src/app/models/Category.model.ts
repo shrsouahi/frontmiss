@@ -4,8 +4,8 @@ export class Category {
   codeCategory: number;
   nomCategory: string;
   description: string;
-  parentCategory: Category | null; // Adjust the type as needed
-  articles: Article[]; // Assuming you have an Article model
+  parentCategory: Category | null;
+  articles: Article[];
 
   constructor(
     codeCategory: number,

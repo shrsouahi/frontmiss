@@ -7,7 +7,7 @@ import Commande from '../models/Commande.model';
   providedIn: 'root',
 })
 export class CommandeService {
-  private apiUrl = 'http://localhost:8081'; // Replace with your actual API URL
+  private apiUrl = 'http://localhost:8081';
 
   constructor(private http: HttpClient) {}
 

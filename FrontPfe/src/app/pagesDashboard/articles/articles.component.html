@@ -4,6 +4,13 @@
     <mat-form-field>
       <input
         matInput
+        [(ngModel)]="codeFilter"
+        placeholder="Chercher par code"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
         [(ngModel)]="keywordFilter"
         placeholder="Chercher par article"
       />
@@ -31,6 +38,13 @@
     </button>
   </div>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Bare code Column -->
+    <ng-container matColumnDef="bareCode">
+      <th mat-header-cell *matHeaderCellDef>Code</th>
+      <td mat-cell *matCellDef="let article of dataSource.data">
+        {{ article.bareCode }}
+      </td>
+    </ng-container>
     <!-- Article Column -->
     <ng-container matColumnDef="articlename">
       <th mat-header-cell *matHeaderCellDef>Article</th>
@@ -82,13 +96,6 @@
       </td>
     </ng-container>
 
-    <!-- Bare code Column -->
-    <ng-container matColumnDef="bareCode">
-      <th mat-header-cell *matHeaderCellDef>Code</th>
-      <td mat-cell *matCellDef="let article of dataSource.data">
-        {{ article.bareCode }}
-      </td>
-    </ng-container>
     <!-- Actions Column -->
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
