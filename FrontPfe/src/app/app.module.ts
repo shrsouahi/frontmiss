@@ -42,6 +42,8 @@ import { AjoutClienteComponent } from './pagesDashboard/ajout-cliente/ajout-clie
 import { CategoriesComponent } from './pagesDashboard/categories/categories.component';
 import { EditQuantitiesComponent } from './pagesDashboard/edit-quantities/edit-quantities.component';
 import { DetailsCommandeComponent } from './pagesDashboard/details-commande/details-commande.component';
+import { EditcategorymodalComponent } from './component/editcategorymodal/editcategorymodal.component';
+import { DeletecategorymodalComponent } from './component/deletecategorymodal/deletecategorymodal.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,7 @@ import { DetailsCommandeComponent } from './pagesDashboard/details-commande/deta
     CategoriesComponent,
     EditQuantitiesComponent,
     DetailsCommandeComponent,
+    EditcategorymodalComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { DeletecategorymodalComponent } from 'src/app/component/deletecategorymodal/deletecategorymodal.component';
+import { EditcategorymodalComponent } from 'src/app/component/editcategorymodal/editcategorymodal.component';
 import { Category } from 'src/app/models/Category.model';
 import { CategoryService } from 'src/app/services/category-service.service';
 
@@ -10,14 +13,22 @@ import { CategoryService } from 'src/app/services/category-service.service';
   styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements OnInit {
-  displayedColumns: string[] = ['nomCategory', 'description', 'parentCategory'];
+  displayedColumns: string[] = [
+    'nomCategory',
+    'description',
+    'parentCategory',
+    'actions',
+  ];
   categories: Category[] = [];
   totalItems: number = 0;
-  selectedPageSize: number = 5;
+  selectedPageSize: number = 10;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   dataSource = new MatTableDataSource<Category>(this.categories);
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(
+    private categoryService: CategoryService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.loadCategories();
@@ -27,19 +38,47 @@ export class CategoriesComponent implements OnInit {
     this.selectedPageSize = event.pageSize;
   }
 
+  ngAfterViewInit() {
+    this.dataSource = new MatTableDataSource(this.categories);
+    this.dataSource.paginator = this.paginator;
+  }
   loadCategories() {
     this.categoryService.getCategories().subscribe(
       (data) => {
         this.categories = data;
 
-        // Update the data source
         this.dataSource.data = this.categories;
 
-        this.dataSource.paginator = this.paginator;
+        this.totalItems = this.categories.length;
+
+        this.paginator.length = this.totalItems;
+
+        this.paginator._changePageSize(this.paginator.pageSize);
       },
       (error) => {
         console.error('Error fetching categories:', error);
       }
     );
+  }
+  openEditModal(category: Category): void {
+    // Open the edit modal with data
+    const dialogRef = this.dialog.open(EditcategorymodalComponent, {
+      data: category,
+    });
+  }
+
+  openDeleteModal(category: Category): void {
+    // Open the delete modal with data
+    const dialogRef = this.dialog.open(DeletecategorymodalComponent, {
+      data: category,
+    });
+
+    // Subscribe to the afterClosed event to get the result after modal is closed
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // Handle the result, e.g., delete the category
+        console.log('Delete Modal Result:', result);
+      }
+    });
   }
 }

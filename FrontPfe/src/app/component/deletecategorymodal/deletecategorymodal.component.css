@@ -1,0 +1,15 @@
+/* delete-category-modal.component.css */
+h2 {
+  color: #d9534f; /* Red color for emphasis */
+}
+
+p {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+button {
+  margin-top: 10px;
+  background-color: #d9534f; /* Red color for emphasis */
+  color: #fff; /* White text for contrast */
+}

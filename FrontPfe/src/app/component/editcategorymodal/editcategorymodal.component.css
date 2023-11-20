@@ -1,0 +1,15 @@
+/* edit-category-modal.component.css */
+h2 {
+  color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 20px;
+}
+
+button {
+  margin-top: 10px;
+}
