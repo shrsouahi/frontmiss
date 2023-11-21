@@ -160,14 +160,16 @@ export class ArticleDetailsComponent implements OnInit {
         // Fetch the user from local storage
         const user = this.userService.getUserFromLocalStorage();
         const userId = user ? user.idUser : defaultUserId; // Set userId if a user is logged in; otherwise, use the default for visitors
-
+        // Use prixSolde if not null, otherwise use prixArticle
+        const price =
+          article.prixSolde !== null ? article.prixSolde : article.prixArticle;
         const cartItem: CartItem = {
           idArticle: article.idArticle,
           selectedSize: this.selectedSize,
           quantity: 1,
           price: article.prixArticle,
           name: article.nomArticle,
-          originalPrice: article.prixArticle,
+          originalPrice: price,
           userId: userId, // Set userId if a user is logged in,
           image: article.images.length > 0 ? article.images[0].url_image : '',
         };

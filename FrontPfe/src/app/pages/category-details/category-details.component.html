@@ -19,6 +19,23 @@
           <div class="article-details">
             <mat-card-title>{{ article.nomArticle }}</mat-card-title>
             <p class="prix">Prix : {{ article.prixArticle }} TND</p>
+            <!-- Display Prix Soldé only if it has a non-null value -->
+            <p class="prix" *ngIf="article.prixSolde !== null">
+              <span
+                class="original-price"
+                [ngClass]="{
+                  discounted: article.prixSolde !== article.prixArticle
+                }"
+              >
+                {{ article.prixArticle }} TND
+              </span>
+              <span
+                *ngIf="article.prixSolde !== article.prixArticle"
+                class="discounted-price"
+              >
+                Prix Soldé: {{ article.prixSolde }} TND
+              </span>
+            </p>
           </div>
         </mat-card-content>
       </mat-card>
@@ -26,7 +43,6 @@
   </div>
   <!-- Separator line -->
   <div class="separator"></div>
-
   <!-- Category description -->
   <div class="category-description">
     <h2>Description de la catégorie {{ category?.nomCategory }}</h2>

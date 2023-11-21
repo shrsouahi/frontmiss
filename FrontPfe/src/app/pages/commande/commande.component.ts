@@ -10,6 +10,7 @@ import { Commande } from 'src/app/models/Commande.model'; // Import Commande and
 import { QuantityOrder } from 'src/app/models/QuantityOrder.model'; // Import QuantityOrder
 import { OrderStatus } from 'src/app/models/OrderStatus.model';
 import { CommandeDTO } from 'src/app/models/CommandeDTO.model';
+import { QuantitySizeService } from 'src/app/services/quantity-size.service';
 
 @Component({
   selector: 'app-commande',
@@ -31,7 +32,8 @@ export class CommandeComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private commandeService: CommandeService,
-    private router: Router
+    private router: Router,
+    private quantitySizeService: QuantitySizeService
   ) {
     this.orderForm = this.fb.group({
       name: [{ value: '', disabled: true }, [Validators.required]],
@@ -153,6 +155,10 @@ export class CommandeComponent implements OnInit {
 
                 // Store idCommande in localStorage
                 localStorage.setItem('idCommande', response.idCommande);
+
+                // Update quantity sizes for each cart item
+                this.updateQuantitySizes();
+
                 this.cartService.clearCart();
                 // Navigate to the "ordersucess" page
                 this.router.navigate(['/ordersucess']);
@@ -167,5 +173,54 @@ export class CommandeComponent implements OnInit {
           }
         );
     }
+  }
+  private updateQuantitySizes(): void {
+    // Call the updateQuantitySize method for each cart item
+    this.cartItems.forEach((cartItem) => {
+      // Retrieve the available sizes for the article
+      this.quantitySizeService
+        .getAvailableSizesForArticle(cartItem.idArticle)
+        .subscribe(
+          (availableSizes) => {
+            // Find the quantity size that matches the selected size in the cart
+            const selectedSize = availableSizes.find(
+              (size) => size.size.labelSize === cartItem.selectedSize
+            );
+
+            // If the selected size is found, update its quantity
+            if (selectedSize) {
+              const remainingQuantity =
+                selectedSize.quantityStockArticle - cartItem.quantity;
+
+              // Ensure remainingQuantity is not negative
+              const updatedQuantity =
+                remainingQuantity >= 0 ? remainingQuantity : 0;
+
+              // Update the quantity size with the calculated value
+              this.quantitySizeService
+                .updateQuantitySize({
+                  idArticle: cartItem.idArticle,
+                  labelSize: cartItem.selectedSize,
+                  quantity: updatedQuantity,
+                })
+                .subscribe(
+                  (response) => {
+                    console.log('QuantitySize updated successfully:', response);
+                  },
+                  (error) => {
+                    console.error('Error updating QuantitySize:', error);
+                  }
+                );
+            } else {
+              console.warn(
+                `Selected size '${cartItem.selectedSize}' not found for article '${cartItem.idArticle}'.`
+              );
+            }
+          },
+          (error) => {
+            console.error('Error retrieving available sizes:', error);
+          }
+        );
+    });
   }
 }

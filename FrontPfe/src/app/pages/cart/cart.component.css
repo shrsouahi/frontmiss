@@ -181,8 +181,6 @@ h3{
 
 h1 {
   margin: 30px;  
-  position: absolute; 
-  
 }
 
 @media (max-width: 768px) {

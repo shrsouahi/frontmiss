@@ -28,6 +28,16 @@
     <div class="other-content">
       <h2>{{ article?.nomArticle }}</h2>
       <p>Prix : {{ article?.prixArticle }} TND</p>
+      <p
+        *ngIf="
+          article?.prixSolde !== null &&
+          article?.prixSolde !== article?.prixArticle
+        "
+        class="prix"
+        style="color: brown"
+      >
+        Prix Soldé: {{ article?.prixSolde }} TND
+      </p>
 
       <!-- Add a dropdown list for sizes -->
       <div class="Size-selection">

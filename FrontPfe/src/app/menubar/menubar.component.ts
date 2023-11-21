@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { CartService } from '../services/cart.service';
 import { Subscription } from 'rxjs';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
   selector: 'app-menubar',
@@ -16,10 +17,13 @@ import { Subscription } from 'rxjs';
 export class MenubarComponent implements OnInit {
   @ViewChild('sidenav') sidenav!: MatSidenav;
   categories: Category[] = [];
-  currentCategory: string | null = null;
+
+  currentCategory: string | number | null = null;
+  @ViewChild(MatMenuTrigger) menuTrigger!: MatMenuTrigger;
+
   selectedChildCategory: Category | null = null;
   isUserConnected: boolean = !!localStorage.getItem('user');
-  cartItemCount: number | undefined;
+  cartItemCount!: number;
 
   constructor(
     private categoryService: CategoryService,
@@ -35,18 +39,31 @@ export class MenubarComponent implements OnInit {
 
   ngOnDestroy(): void {}
 
+  hasChildren(category: Category): boolean {
+    return this.categories.some(
+      (c) => c.parentCategory?.codeCategory === category.codeCategory
+    );
+  }
+
   fetchCategories() {
     this.categoryService.getCategories().subscribe((data) => {
       this.categories = data;
     });
   }
 
-  toggleMenu(category: string) {
-    this.currentCategory = this.currentCategory === category ? null : category;
-  }
-
   isMenuOpen(categoryName: string): boolean {
     return this.currentCategory === categoryName;
+  }
+
+  getChildrenForCategory(parentCode: number): Category[] {
+    return this.categories.filter(
+      (category) => category.parentCategory?.codeCategory === parentCode
+    );
+  }
+
+  toggleMenu(categoryCode: number | string) {
+    this.currentCategory =
+      this.currentCategory === categoryCode ? null : categoryCode;
   }
 
   selectChildCategory(childCategory: Category) {
@@ -71,5 +88,9 @@ export class MenubarComponent implements OnInit {
   shouldDisplayMenubar(): boolean {
     const user = this.userService.getUserFromLocalStorage(); // Implement a method to get the current user from your user service
     return !user || (user.roleUser && user.roleUser.roleName === 'Client');
+  }
+
+  hasAnyChildren(category: Category): boolean {
+    return category.articles && category.articles.length > 0;
   }
 }
