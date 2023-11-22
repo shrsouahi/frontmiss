@@ -1,0 +1,7 @@
+<div class="carousel-container">
+  <div class="carousel" [@slide]="currentIndex">
+    <img [src]="images[currentIndex]" alt="Carousel Image" />
+  </div>
+  <button mat-button (click)="prevImage()" class="mat-btn">></button>
+  <button mat-button (click)="nextImage()" class="mat-btn">></button>
+</div>

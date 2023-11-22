@@ -34,7 +34,6 @@ import { VendeursComponent } from './pagesDashboard/vendeurs/vendeurs.component'
 import { ArticleinfosComponent } from './pagesDashboard/articleinfos/articleinfos.component';
 import { DeleteConfirmationDialogComponent } from './pagesDashboard/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { AddArticleComponent } from './pagesDashboard/add-article/add-article.component';
-import { ImageUploadComponent } from './component/image-upload/image-upload.component';
 import { EditArticleComponent } from './pagesDashboard/edit-article/edit-article.component';
 import { ClientsComponent } from './pagesDashboard/clients/clients.component';
 import { DeleteclientDialogComponent } from './pagesDashboard/deleteclient-dialog/deleteclient-dialog.component';
@@ -45,6 +44,7 @@ import { DetailsCommandeComponent } from './pagesDashboard/details-commande/deta
 import { EditcategorymodalComponent } from './component/editcategorymodal/editcategorymodal.component';
 import { DeletecategorymodalComponent } from './component/deletecategorymodal/deletecategorymodal.component';
 import { AddcategorymodalComponent } from './component/addcategorymodal/addcategorymodal.component';
+import { ImageCarouselComponent } from './component/image-carousel/image-carousel.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +72,6 @@ import { AddcategorymodalComponent } from './component/addcategorymodal/addcateg
     ArticleinfosComponent,
     DeleteConfirmationDialogComponent,
     AddArticleComponent,
-    ImageUploadComponent,
     EditArticleComponent,
     ClientsComponent,
     DeleteclientDialogComponent,
@@ -82,6 +81,7 @@ import { AddcategorymodalComponent } from './component/addcategorymodal/addcateg
     DetailsCommandeComponent,
     EditcategorymodalComponent,
     AddcategorymodalComponent,
+    ImageCarouselComponent,
   ],
   imports: [
     BrowserModule,

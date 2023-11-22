@@ -30,14 +30,20 @@
 /* Style the size selection container */
 .Size-selection {
   max-width: 200px;
-  margin-bottom: 20px; /* Add space below the size selection */
+  margin-bottom: 20px; 
+  transition: border-color 0.3s;  
 }
 
 /* Style the size selection label and select box */
 .Size-selection label {
   font-size: 16px;
   display: block;
-  margin-bottom: 10px; /* Add space below the label */
+  margin-bottom: 10px;  
+}
+
+/* Change border color on hover */
+.Size-selection select:hover {
+  border-color: #ddd;  
 }
 
 .Size-selection select {
@@ -84,10 +90,10 @@ p {
 }
 
 .big-image img {
-  width: 100%;      /* Fill its container's width */
-  max-width: 500px; /* Limit the maximum width */
-  height: auto;     /* Maintain the aspect ratio */
-  max-height: 500px;/* Limit the maximum height */
+  width: 100%;      
+  max-width: 500px;  
+  height: auto;     
+  max-height: 500px; 
 }
 .big-image{
   display: flex;
@@ -122,12 +128,9 @@ p {
   cursor: not-allowed;
 }
 
- 
-
 .size-not-available-message {
   color: red; /* Change the text color to red */
   font-size: 16px; /* Change the font size to 16 pixels */
- 
 }
 
 .add-to-cart-message {

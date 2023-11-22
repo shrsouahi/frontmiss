@@ -41,7 +41,7 @@ export class AddArticleComponent implements OnInit {
       descriptionArticle: [''],
       prixArticle: ['', Validators.required],
       prixSolde: [''],
-      quantiteStock: ['', Validators.required],
+      quantiteStock: [''],
       categories: [[]],
     });
   }

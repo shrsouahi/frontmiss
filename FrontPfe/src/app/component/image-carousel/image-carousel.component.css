@@ -1,0 +1,28 @@
+.carousel-container {
+  position: relative;
+  width: 60%;
+  margin: auto;
+  margin-left: 30%;
+}
+.carousel {
+  display: flex;
+  transition: transform 500ms ease-out;
+}
+
+img {
+  width: 50%;
+  height: auto;
+}
+ 
+.mat-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  background-color: #ccc;
+  border-radius: 0;  
+}
+
+ 
+
+

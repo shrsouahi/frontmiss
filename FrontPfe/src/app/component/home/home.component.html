@@ -1,0 +1,164 @@
+<div class="cta-container">
+  <img
+    src="assets/images/imagectaleft.png"
+    alt="Left Image"
+    class="cta-image left"
+  />
+  <div class="cta-content">
+    <h2>Miss Rose</h2>
+    <h3>Boutique</h3>
+    <p>Découvrez notre collection exclusive</p>
+    <p>Et mettez à jour votre garde-robe dés aujourd'hui.</p>
+    <button class="cta-button">EXPLOREZ NOS NOUVEAUX ARTICLES UNIQUES</button>
+  </div>
+  <img
+    src="assets/images/imagectaright.png"
+    alt="Right Image"
+    class="cta-image right"
+  />
+</div>
+<div class="features-container">
+  <!-- Feature 1: Livraison Rapide -->
+  <div class="feature">
+    <mat-icon class="feature-icon">local_shipping</mat-icon>
+    <p class="feature-text">Livraison Rapide</p>
+    <p class="feature-description">Expédition rapide de vos commandes</p>
+  </div>
+
+  <!-- Feature 2: Support 7j/7 -->
+  <div class="feature">
+    <mat-icon class="feature-icon">support_agent</mat-icon>
+    <p class="feature-text">Support 7j/7</p>
+    <p class="feature-description">Assistance disponible 7 jours sur 7</p>
+  </div>
+
+  <!-- Feature 3: Échange Possible -->
+  <div class="feature">
+    <mat-icon class="feature-icon">sync_alt</mat-icon>
+    <p class="feature-text">Échange Possible</p>
+    <p class="feature-description">Possibilité d'échanger vos articles</p>
+  </div>
+
+  <!-- Feature 4: Bon Rapport Qualité Prix -->
+  <div class="feature">
+    <mat-icon class="feature-icon">monetization_on</mat-icon>
+    <p class="feature-text">Bon Rapport Qualité Prix</p>
+    <p class="feature-description">
+      Des produits de qualité à des prix compétitifs
+    </p>
+  </div>
+</div>
+
+<div class="collection-section">
+  <h1>Nouvelle Collection</h1>
+  <div class="collection-articles">
+    <mat-card
+      *ngFor="let article of newCollectionArticles"
+      class="mat-card"
+      [routerLink]="'/article/' + article.idArticle"
+    >
+      <mat-card-content class="article-content">
+        <div class="article-image">
+          <img
+            src="{{ article.images[1]?.url_image }}"
+            alt="{{ article.nomArticle }}"
+          />
+          <div class="details-button">voir détails</div>
+        </div>
+        <div class="article-details">
+          <mat-card-title>{{ article.nomArticle }}</mat-card-title>
+          <p class="prix">Prix : {{ article.prixArticle }} TND</p>
+          <!-- Display Prix Soldé only if it has a non-null value -->
+          <p class="prix" *ngIf="article.prixSolde !== null">
+            <span
+              class="original-price"
+              [ngClass]="{
+                discounted: article.prixSolde !== article.prixArticle
+              }"
+            >
+              {{ article.prixArticle }} TND
+            </span>
+            <span
+              *ngIf="article.prixSolde !== article.prixArticle"
+              class="discounted-price"
+            >
+              Prix Soldé: {{ article.prixSolde }} TND
+            </span>
+          </p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <button
+    class="cta-button"
+    [routerLink]="'/category/' + nouvelleCollectionCategoryId"
+  >
+    Voir tout les articles
+  </button>
+</div>
+<div class="collection-section">
+  <h1>Vêtements Automne/Hiver</h1>
+  <div class="collection-articles">
+    <mat-card
+      *ngFor="let article of vetementsAutomneHiverArticles"
+      class="mat-card"
+      [routerLink]="'/article/' + article.idArticle"
+    >
+      <mat-card-content class="article-content">
+        <div class="article-image">
+          <img
+            src="{{ article.images[1]?.url_image }}"
+            alt="{{ article.nomArticle }}"
+          />
+          <div class="details-button">voir détails</div>
+        </div>
+        <div class="article-details">
+          <mat-card-title>{{ article.nomArticle }}</mat-card-title>
+          <p class="prix">Prix : {{ article.prixArticle }} TND</p>
+
+          <!-- Display Prix Soldé only if it has a non-null value -->
+          <p class="prix" *ngIf="article.prixSolde !== null">
+            <span
+              class="original-price"
+              [ngClass]="{
+                discounted: article.prixSolde !== article.prixArticle
+              }"
+            >
+              {{ article.prixArticle }} TND
+            </span>
+            <span
+              *ngIf="article.prixSolde !== article.prixArticle"
+              class="discounted-price"
+            >
+              Prix Soldé: {{ article.prixSolde }} TND
+            </span>
+          </p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <button
+    class="cta-button"
+    [routerLink]="'/category/' + vetementsAutomneHiverCategoryId"
+  >
+    Voir tout les articles
+  </button>
+</div>
+
+<a class="sale-section-link" [routerLink]="'/category/' + soldesCategoryId">
+  <div class="sale-section"></div>
+</a>
+<div class="testimonial-section">
+  <p class="testimonial-text">
+    Vivez la vie avec Miss Rose en apprenant à vous aimer et à aimer le monde
+    autour de vous.
+  </p>
+  <p class="testimonial-text">
+    Chaque collection est conçue en Turquie avec des tissus performants
+    complexes pour que vous vous sentiez belle, confiante et forte.
+  </p>
+</div>
+<div class="avis">
+  <h2>Avis des clientes par messages en Instagram</h2>
+  <app-image-carousel></app-image-carousel>
+</div>
