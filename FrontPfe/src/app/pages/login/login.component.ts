@@ -76,7 +76,10 @@ export class LoginComponent implements OnInit {
 
             if (registeredUser.roleUser.idRole === 1) {
               this.router.navigate(['/acceuil']);
-            } else if (registeredUser.roleUser.idRole === 2) {
+            } else if (
+              registeredUser.roleUser.idRole === 2 ||
+              registeredUser.roleUser.idRole === 3
+            ) {
               this.router.navigate(['/dashboard']);
             }
           } else {

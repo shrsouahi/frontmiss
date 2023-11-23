@@ -14,6 +14,12 @@ export class AppComponent {
     return {} || (user.roleUser && user.roleUser.roleName === 'Client');
   }
 
+  isAdmin(): boolean {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    // Check if the user is adminstartor(proprétaire de boutique)
+    return user.roleUser && user.roleUser.roleName === 'Administrateur';
+  }
+
   DashboardAdminstration(): boolean {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
 
@@ -22,7 +28,7 @@ export class AppComponent {
       // Check if the user has the role 'Vendeuse' or 'Admin'
       return (
         user.roleUser.roleName === 'Vendeuse' ||
-        user.roleUser.roleName === 'Admin'
+        user.roleUser.roleName === 'Administrateur'
       );
     }
 

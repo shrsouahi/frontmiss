@@ -1,0 +1,41 @@
+.register-container {
+  margin: auto;
+}
+
+/* Error message styling */
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+}
+
+/* Form field styling */
+mat-form-field {
+  margin-right: 5px;
+}
+
+/* Title styling */
+.title {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.title2 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+mat-button {
+  margin-right: 10px;
+}
+
+mat-icon-button {
+  cursor: pointer;
+}
+
+/* Responsive styling (optional) */
+@media (max-width: 480px) {
+  .register-container {
+    max-width: 100%;
+  }
+}

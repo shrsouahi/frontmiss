@@ -31,14 +31,25 @@ export class DashboardComponent implements OnInit {
   DashboardAdminstration(): boolean {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     // Check if user is defined and has the expected structure
-    if (user && user.roleUser && user.roleUser.roleName) {
+    if (user && user.roleUser) {
       // Check if the user has the role 'Vendeuse' or 'Admin'
-      return (
-        user.roleUser.roleName === 'Vendeuse' ||
-        user.roleUser.roleName === 'Admin'
-      );
+      return user.roleUser.idRole === 2 || user.roleUser.idRole === 3;
     }
 
     return false; // Return false if user or role information is missing
+  }
+
+  isVendeure(): boolean {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    if (user && user.roleUser) {
+      return user.roleUser.idRole === 2;
+    }
+    return false;
+  }
+
+  isAdmin(): boolean {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    // Check if the user is adminstartor(proprétaire de boutique)
+    return user.roleUser.idRole === 3;
   }
 }

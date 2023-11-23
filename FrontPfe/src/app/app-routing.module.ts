@@ -23,6 +23,7 @@ import { AjoutClienteComponent } from './pagesDashboard/ajout-cliente/ajout-clie
 import { CategoriesComponent } from './pagesDashboard/categories/categories.component';
 import { EditQuantitiesComponent } from './pagesDashboard/edit-quantities/edit-quantities.component';
 import { DetailsCommandeComponent } from './pagesDashboard/details-commande/details-commande.component';
+import { AjoutvendeuseComponent } from './pagesDashboard/ajoutvendeuse/ajoutvendeuse.component';
 const routes: Routes = [
   { path: 'acceuil', component: HomeComponent },
   { path: 'login', component: LoginComponent },
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: 'categories', component: CategoriesComponent },
   { path: 'quantities/:idArticle', component: EditQuantitiesComponent },
   { path: 'commande-details/:idCommande', component: DetailsCommandeComponent },
+  { path: 'ajout-vendeuse', component: AjoutvendeuseComponent },
 ];
 
 @NgModule({

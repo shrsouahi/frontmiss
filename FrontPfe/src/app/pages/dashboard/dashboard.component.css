@@ -1,6 +1,3 @@
-/*mat-sidenav-container {
-  height: 100vh;
-}*/
 
 mat-sidenav {
   position: fixed;
@@ -31,8 +28,7 @@ mat-sidenav-content {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden; 
-   
+  overflow: hidden;  
 }
 
 mat-icon {

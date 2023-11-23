@@ -24,9 +24,17 @@ export class UserService {
   constructor(private http: HttpClient) {
     this.idUser = 0;
   }
-
   registerUser(user: User): Observable<User> {
     return this.http.post<User>(`${this.apiUrl}/users/adduser`, user);
+  }
+
+  registerVendeuse(user: User): Observable<User> {
+    return this.http.post<User>(`${this.apiUrl}/users/addvendeuse`, user);
+  }
+
+  updateUserSeller(updatedUser: User, idUser: number): Observable<User> {
+    const url = `${this.apiUrl}/users/updateUser/${idUser}`;
+    return this.http.put<User>(url, updatedUser);
   }
 
   signIn(email: string, password: string): Observable<User> {
@@ -43,7 +51,6 @@ export class UserService {
 
   deleteUserById(idUser: number): Observable<string> {
     const url = `${this.apiUrl}/users/deleteUser/${idUser}`;
-
     return this.http.delete<string>(url);
   }
   logout() {
@@ -93,19 +100,22 @@ export class UserService {
     if (currentUserDataString) {
       const currentUserData = JSON.parse(currentUserDataString);
 
-      // Merge the updated user data with the current user data (if needed)
+      // Merge the updated user data with the current user data
       const updatedUserDataMerged = {
         ...currentUserData,
         ...updatedUserData,
       };
-
-      // Store the updated user data in local storage
       localStorage.setItem('user', JSON.stringify(updatedUserDataMerged));
     }
   }
 
   getUsersByRole(roleName: string): Observable<User[]> {
     const url = `${this.apiUrl}/users/byRole/${roleName}`;
+    return this.http.get<User[]>(url);
+  }
+
+  getAllSellers(): Observable<User[]> {
+    const url = `${this.apiUrl}/users/getAllSellers`;
     return this.http.get<User[]>(url);
   }
 }

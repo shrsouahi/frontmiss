@@ -20,24 +20,26 @@
         </mat-list-item>
 
         <mat-list-item>
-          <a routerLink="/clients"> <mat-icon>groups_2</mat-icon>Clientes</a>
+          <a routerLink="/clients" *ngIf="isVendeure()">
+            <mat-icon>groups_2</mat-icon>Clientes</a
+          >
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item *ngIf="isVendeure()">
           <a routerLink="/categories">
             <mat-icon>category</mat-icon>Catégories</a
           >
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item *ngIf="isVendeure()">
           <a routerLink="/articles"> <mat-icon>checkroom</mat-icon>Articles</a>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item *ngIf="isVendeure()">
           <a routerLink="/commandes">
             <mat-icon>shopping_cart_checkout</mat-icon>Commandes</a
           >
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item *ngIf="isAdmin()">
           <a routerLink="/vendeurs">
-            <mat-icon>support_agent</mat-icon>Vendeurs</a
+            <mat-icon>support_agent</mat-icon>Vendeuses</a
           >
         </mat-list-item>
         <mat-list-item>

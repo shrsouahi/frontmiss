@@ -1,32 +1,26 @@
-/* Add this code to your styles.css or your component's style file */
+
 .cta-container {
   position: relative;
   background-color: #F4DBD8;
   overflow: hidden;
 }
-
 .cta-image {
   position: absolute;
   top: 0;
   height: 100%;
   max-height: 100vh;
-
 }
-
 .cta-container .cta-image.left {
   position: absolute;
   top: 0;
   left: 0;
   width: 43%;  
-
-   
 }
-
 .cta-container .cta-image.right {
   position: absolute;
   right: 0;
   top: 0;
-  width: 35%;  
+  width: 33%;  
 }
 
 .left {
@@ -36,7 +30,6 @@
 .right {
   right: 0;
 }
-
 .cta-content {
   display: flex;
   flex-direction: column;
@@ -64,8 +57,6 @@
   margin-bottom: 30px;
   color:#2A0800;
 }
-
-
 .cta-content h3::after {
   content: '';
   display: block;
@@ -82,8 +73,8 @@
 
 .cta-button {
   padding: 10px 20px;
-  background-color: #C09891; /* Adjust the button background color */
-  color: #fff; /* Adjust the button text color */
+  background-color: #C09891;  
+  color: #fff;  
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -111,7 +102,6 @@
 .feature-icon {
   margin-bottom: 5px;
   color: #555;
- 
 }
 
 .feature-text {
@@ -123,7 +113,7 @@
 
 .feature-description {
   font-size: 0.9rem;
-  color: #555; /* Adjust the color of the description text as needed */
+  color: #555; 
 }
 
 .mat-card {
@@ -131,14 +121,6 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
 }
-
-/* Media query for mobile devices */
-@media (max-width: 768px) {
-  .articles-container {
-    grid-template-columns: 1fr; /* One card per column on mobile devices */
-  }
-}
-
 .mat-card.mat-card-title {
   font-size: 16px;
 }
@@ -172,7 +154,6 @@
 .mat-card-content a {
   text-decoration: none;
 }
-
  
 a {
   text-decoration: none;
@@ -205,14 +186,23 @@ display: grid;
 grid-template-columns: repeat(3, 1fr);
 gap: 20px;
 }
- 
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .collection-articles {
+    grid-template-columns: 1fr; /* One card per column on mobile devices */
+  }
+}
+@media screen and (max-width: 767px) {
+  .hide-on-mobile {
+    display: none;
+  }
+}
 .sale-section {
   position: relative;
   background: url('/assets/images/soldesbackground.jpg') center/cover no-repeat; 
   text-align: center;
   padding: 220px 20px;  
 }
-
 .details-button {
   position: absolute;
   bottom: 10px;  
@@ -227,13 +217,10 @@ gap: 20px;
   transition: opacity 0.3s;
   font-size: 14px;
 }
-
-
 .testimonial-section {
   text-align: center;
   padding: 50px;
 }
-
 .testimonial-text {
   font-size: 1.2rem;
   margin-bottom: 20px;
@@ -259,26 +246,6 @@ gap: 20px;
   border-radius: 10px;
 }
 
-.prev-btn,
-.next-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #333;
-  color: #fff;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-}
-
-.prev-btn {
-  left: 0;
-}
-
-.next-btn {
-  right: 0;
-}
-
 .avis{
   margin-top: 50px;
   margin-bottom: 100px;
@@ -287,7 +254,7 @@ gap: 20px;
 }
 
 .avis h2 {
-  font-size: 1.3rem;
+  font-size: 18px;
   margin-bottom: 20px;
   color: #2A0800;
 }

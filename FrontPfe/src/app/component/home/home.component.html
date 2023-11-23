@@ -2,19 +2,24 @@
   <img
     src="assets/images/imagectaleft.png"
     alt="Left Image"
-    class="cta-image left"
+    class="cta-image left hide-on-mobile"
   />
   <div class="cta-content">
     <h2>Miss Rose</h2>
     <h3>Boutique</h3>
     <p>Découvrez notre collection exclusive</p>
     <p>Et mettez à jour votre garde-robe dés aujourd'hui.</p>
-    <button class="cta-button">EXPLOREZ NOS NOUVEAUX ARTICLES UNIQUES</button>
+    <button
+      class="cta-button"
+      [routerLink]="'/category/' + nouvelleCollectionCategoryId"
+    >
+      EXPLOREZ NOS NOUVEAUX ARTICLES UNIQUES
+    </button>
   </div>
   <img
     src="assets/images/imagectaright.png"
     alt="Right Image"
-    class="cta-image right"
+    class="cta-image right hide-on-mobile"
   />
 </div>
 <div class="features-container">
@@ -150,8 +155,8 @@
 </a>
 <div class="testimonial-section">
   <p class="testimonial-text">
-    Vivez la vie avec Miss Rose en apprenant à vous aimer et à aimer le monde
-    autour de vous.
+    Explorez la mode aux côtés de Miss Rose en découvrant de magnifiques
+    vêtements.
   </p>
   <p class="testimonial-text">
     Chaque collection est conçue en Turquie avec des tissus performants

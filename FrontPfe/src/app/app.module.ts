@@ -45,6 +45,9 @@ import { EditcategorymodalComponent } from './component/editcategorymodal/editca
 import { DeletecategorymodalComponent } from './component/deletecategorymodal/deletecategorymodal.component';
 import { AddcategorymodalComponent } from './component/addcategorymodal/addcategorymodal.component';
 import { ImageCarouselComponent } from './component/image-carousel/image-carousel.component';
+import { AjoutvendeuseComponent } from './pagesDashboard/ajoutvendeuse/ajoutvendeuse.component';
+
+import { UpdateSellerDialogComponent } from './pagesDashboard/update-seller-dialog/update-seller-dialog.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +85,9 @@ import { ImageCarouselComponent } from './component/image-carousel/image-carouse
     EditcategorymodalComponent,
     AddcategorymodalComponent,
     ImageCarouselComponent,
+    AjoutvendeuseComponent,
+
+    UpdateSellerDialogComponent,
   ],
   imports: [
     BrowserModule,
