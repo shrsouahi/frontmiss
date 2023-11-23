@@ -29,16 +29,13 @@
         Tappez Votre E-mail !
       </mat-error>
     </mat-form-field>
-
     <mat-form-field appearance="outline">
       <mat-label>Numéro</mat-label>
       <input formControlName="phone" matInput type="number" />
-
       <mat-error *ngIf="registerForm.controls['phone']?.hasError('required')">
         Tappez Votre numéro de téléphone!
       </mat-error>
     </mat-form-field>
-
     <mat-form-field appearance="outline">
       <mat-label>Mot de passe</mat-label>
       <input

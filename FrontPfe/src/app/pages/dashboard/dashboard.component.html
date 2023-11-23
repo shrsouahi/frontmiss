@@ -1,6 +1,6 @@
-<div *ngIf="DashboardAdminstration()">
+<div *ngIf="DashboardAdminstration()" class="dashboard-container">
   <mat-toolbar color="secondary">
-    <mat-toolbar-row>
+    <mat-toolbar-row class="row">
       <a href="/acceuildashboard">
         <img src="assets\images\miss.png" alt="Miss Rose Logo" class="logo" />
       </a>
@@ -9,7 +9,6 @@
       </button>
     </mat-toolbar-row>
   </mat-toolbar>
-
   <mat-sidenav-container>
     <mat-sidenav [(opened)]="opened" mode="side">
       <mat-list>
@@ -18,7 +17,6 @@
             <mat-icon>dashboard</mat-icon> Tableau de bord</a
           >
         </mat-list-item>
-
         <mat-list-item>
           <a routerLink="/clients" *ngIf="isVendeure()">
             <mat-icon>groups_2</mat-icon>Clientes</a

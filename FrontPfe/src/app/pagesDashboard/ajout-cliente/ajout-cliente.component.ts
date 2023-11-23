@@ -30,7 +30,6 @@ export class AjoutClienteComponent implements OnInit {
 
     return null;
   }
-
   showEmailExistsError: boolean = false;
   hide: boolean = true;
   hideConfirmPassword: boolean = true;

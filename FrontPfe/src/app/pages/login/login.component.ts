@@ -80,7 +80,8 @@ export class LoginComponent implements OnInit {
               registeredUser.roleUser.idRole === 2 ||
               registeredUser.roleUser.idRole === 3
             ) {
-              this.router.navigate(['/dashboard']);
+              // this.router.navigate(['/acceuildashboard']);
+              window.location.href = '/acceuildashboard';
             }
           } else {
             console.error('Authentication failed');

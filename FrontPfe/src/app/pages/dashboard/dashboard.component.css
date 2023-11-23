@@ -1,6 +1,11 @@
-
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+ 
+}
 mat-sidenav {
-  position: fixed;
+  position:fixed;
   margin-top: 65px;
   width:15%;
   border-right: none;
@@ -10,6 +15,13 @@ mat-sidenav {
   padding: 16px;
   text-align: center;
 }
+.row {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 2;
+}
+
 a{
   text-decoration: none;
   color:#555;
@@ -37,7 +49,7 @@ mat-icon {
 }
 
 mat-list-item {
-  padding: 40px;
+  padding: 35px;
   transition: background-color 0.3s;
   text-align: left;
   display: flex;

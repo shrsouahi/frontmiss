@@ -52,10 +52,8 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-bottom: 20px; /* Add space below the select box */
+  margin-bottom: 20px; 
 }
-
-/* Style the button */
 .button_ajout{
   padding: 10px 40px;
   background-color: #F4DBD8;
@@ -71,7 +69,6 @@
   background-color: #C09891;
 }
 
-/* Additional styles for h2 and p elements */
 h2 {
   margin-bottom: 20px;
   color: #C09891;;
@@ -118,7 +115,7 @@ p {
   cursor: pointer;
 }
 
-/* Style the "Disponible en stock" button */
+
 .non-disponible-button {
   padding: 10px 20px;
   background-color: #775144;  
@@ -129,14 +126,14 @@ p {
 }
 
 .size-not-available-message {
-  color: red; /* Change the text color to red */
-  font-size: 16px; /* Change the font size to 16 pixels */
+  color: red; 
+  font-size: 16px; 
 }
 
 .add-to-cart-message {
-  color: green; /* You can choose your desired color */
+  color: green; 
   font-size: 16px;
-  margin-top: 10px; /* Adjust the margin as needed */
+  margin-top: 10px; 
 }
 
 .button_ajout {
@@ -164,7 +161,12 @@ p {
   color: #fff;
   transition: opacity 0.3s;
 }
-
 .button_ajout:hover::before {
   opacity: 1;
+}
+.original-price {
+  text-decoration: line-through;  
+}
+.discounted-price {
+  color: brown;  
 }

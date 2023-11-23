@@ -75,7 +75,6 @@ export class EditQuantitiesComponent implements OnInit {
       }
     );
   }
-
   loadArticleDetails(idArticle: number) {
     this.articleService.getArticleById(idArticle).subscribe(
       (article) => {
@@ -225,8 +224,6 @@ export class EditQuantitiesComponent implements OnInit {
         .subscribe(
           (updatedArticle) => {
             console.log('Article updated on the server:', updatedArticle);
-
-            // Optionally, you can perform additional actions after the server update
             // this.snackBar.open(
             // 'La Quantité de Stock est mise à jour avec succès',
             // 'Fermer',

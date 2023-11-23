@@ -110,3 +110,7 @@ mat-form-field {
   background-color: #775144;
   color: white;
   margin-right: 10px;}
+
+  .status{
+    color: #2a0800;
+  }

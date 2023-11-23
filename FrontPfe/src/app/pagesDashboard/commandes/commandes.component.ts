@@ -184,7 +184,7 @@ export class CommandesComponent {
   getStatusChipStyle(status: OrderStatus): any {
     switch (status) {
       case OrderStatus.Créée:
-        return { 'background-color': '#4caf50', color: 'black' }; // Green color for 'Créée' status
+        return { 'background-color': '#4caf50', color: 'black !important' }; // Green color for 'Créée' status
       case OrderStatus.Validée:
         return { 'background-color': '#2196f3', color: 'black' }; // Blue color for 'Validée' status
       case OrderStatus.Expédiée:

@@ -25,7 +25,8 @@ export class DashboardComponent implements OnInit {
     //localStorage.removeItem('isLoggedIn');
     this.userservice.logout();
     //this.isAdmin = false; // Set isAdmin to false on logout
-    this.router.navigate(['/acceuil']);
+    // this.router.navigate(['/acceuil']);
+    window.location.href = '/acceuil';
   }
 
   DashboardAdminstration(): boolean {

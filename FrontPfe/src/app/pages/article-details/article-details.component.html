@@ -27,18 +27,27 @@
 
     <div class="other-content">
       <h2>{{ article?.nomArticle }}</h2>
-      <p>Prix : {{ article?.prixArticle }} TND</p>
-      <p
-        *ngIf="
-          article?.prixSolde !== null &&
-          article?.prixSolde !== article?.prixArticle
-        "
-        class="prix"
-        style="color: brown"
-      >
-        Prix Soldé: {{ article?.prixSolde }} TND
+      <p *ngIf="article?.prixSolde == null">
+        Prix : {{ article?.prixArticle }} TND
       </p>
 
+      <!-- Display Prix Soldé only if it has a non-null value -->
+      <p class="prix" *ngIf="article?.prixSolde !== null">
+        <span
+          class="original-price"
+          [ngClass]="{
+            discounted: article?.prixSolde !== article?.prixArticle
+          }"
+        >
+          {{ article?.prixArticle }} TND
+        </span>
+        <span
+          *ngIf="article?.prixSolde !== article?.prixArticle"
+          class="discounted-price"
+        >
+          Prix Soldé: {{ article?.prixSolde }} TND
+        </span>
+      </p>
       <!-- Add a dropdown list for sizes -->
       <div class="Size-selection">
         <label for="size">Taille:</label>
