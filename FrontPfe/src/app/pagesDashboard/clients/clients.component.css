@@ -117,3 +117,10 @@ mat-form-field {
     overflow-x: auto;
   }
 }
+.active-style {
+  color: green; 
+}
+
+.inactive-style {
+  color:brown;   
+}

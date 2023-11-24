@@ -109,6 +109,7 @@ export class CommandeComponent implements OnInit {
         region: this.orderForm.get('region')?.value,
         password: this.userFromLocalStorage?.password,
         roleUser: this.userFromLocalStorage.roleUser,
+        valide: this.userFromLocalStorage.valide,
       };
 
       console.log('User before saving Commande:', this.userFromLocalStorage);

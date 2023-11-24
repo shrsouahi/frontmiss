@@ -48,6 +48,7 @@ import { ImageCarouselComponent } from './component/image-carousel/image-carouse
 import { AjoutvendeuseComponent } from './pagesDashboard/ajoutvendeuse/ajoutvendeuse.component';
 
 import { UpdateSellerDialogComponent } from './pagesDashboard/update-seller-dialog/update-seller-dialog.component';
+import { DeactivateAccountDialogComponent } from './componenet/deactivate-account-dialog/deactivate-account-dialog.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { UpdateSellerDialogComponent } from './pagesDashboard/update-seller-dial
     AjoutvendeuseComponent,
 
     UpdateSellerDialogComponent,
+     DeactivateAccountDialogComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Désactivation de compte</h2>
+<div mat-dialog-content>
+  <p>
+    Vous êtes sûr de désactiver le compte de
+    {{ data?.seller?.fName }} {{ data?.seller?.lName }}?
+  </p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Annuler</button>
+
+  <button mat-button color="warn" (click)="onDeactivateClick()">
+    Désactiver
+  </button>
+</div>

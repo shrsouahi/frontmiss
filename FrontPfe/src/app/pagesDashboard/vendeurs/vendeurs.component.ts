@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { DeactivateAccountDialogComponent } from 'src/app/componenet/deactivate-account-dialog/deactivate-account-dialog.component';
 import { User } from 'src/app/models/User.model';
 import { UserService } from 'src/app/services/user.service';
 import { UpdateSellerDialogComponent } from '../update-seller-dialog/update-seller-dialog.component';
@@ -20,6 +21,7 @@ export class VendeursComponent implements OnInit {
     'region',
     'ville',
     'phone',
+    'status',
     'actions',
   ];
 
@@ -61,7 +63,11 @@ export class VendeursComponent implements OnInit {
   loadSellers() {
     // Call your user service to retrieve sellers with role "Vendeuse"
     this.userService.getAllSellers().subscribe((data) => {
-      this.sellers = data;
+      // Update the status for each seller
+      this.sellers = data.map((seller) => ({
+        ...seller,
+        status: seller.valide ? 'Active' : 'Désactivé',
+      }));
 
       // Update the data source
       this.dataSource.data = this.sellers;
@@ -69,5 +75,17 @@ export class VendeursComponent implements OnInit {
   }
   navigateToAddSellerPage() {
     this.router.navigate(['/ajout-vendeuse']);
+  }
+
+  openDeactivateAccountDialog(seller: any): void {
+    const dialogRef = this.dialog.open(DeactivateAccountDialogComponent, {
+      width: '400px',
+      data: { seller },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      // Handle the result if needed
+      console.log('The dialog was closed');
+    });
   }
 }

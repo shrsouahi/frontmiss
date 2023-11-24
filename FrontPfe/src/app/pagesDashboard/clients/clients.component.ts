@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -28,6 +28,7 @@ export class ClientsComponent implements OnInit {
     'region',
     'ville',
     'phone',
+    'status',
     'actions',
   ];
 
@@ -46,7 +47,8 @@ export class ClientsComponent implements OnInit {
     private userService: UserService, // Assuming you have a UserService
     private dialog: MatDialog,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -54,10 +56,17 @@ export class ClientsComponent implements OnInit {
   }
 
   loadClients() {
-    // Call your user service to retrieve clients with role "Client"
     this.userService.getUsersByRole('Client').subscribe((data) => {
-      this.clients = data;
+      console.log('Received data:', data);
 
+      this.clients = data.map((client) => ({
+        ...client,
+        status: client.valide ? 'Active' : 'Désactivé',
+      }));
+
+      console.log('Processed clients:', this.clients);
+
+      //this.clients = data;
       // Apply filters
       let filteredClients = this.filterClients(data);
 
@@ -73,6 +82,8 @@ export class ClientsComponent implements OnInit {
 
       // Refresh the paginator
       this.paginator._changePageSize(this.paginator.pageSize);
+
+      this.cdr.detectChanges();
     });
   }
 
@@ -119,7 +130,7 @@ export class ClientsComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         // Call the deleteUserById method when confirmed
-        this.userService.deleteUserById(idUser).subscribe(
+        this.userService.deactivateUserById(idUser).subscribe(
           () => {
             // Reload the clients or update the data source as needed
             this.loadClients();

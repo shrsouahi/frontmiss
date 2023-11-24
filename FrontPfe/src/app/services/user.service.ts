@@ -118,4 +118,9 @@ export class UserService {
     const url = `${this.apiUrl}/users/getAllSellers`;
     return this.http.get<User[]>(url);
   }
+
+  deactivateUserById(idUser: number): Observable<void> {
+    const url = `${this.apiUrl}/users/deactivate/${idUser}`;
+    return this.http.post<void>(url, {});
+  }
 }

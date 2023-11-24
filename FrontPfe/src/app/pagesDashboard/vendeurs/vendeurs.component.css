@@ -72,4 +72,10 @@ td {
   }
 }
 
- 
+.active-style {
+  color: green; 
+}
+
+.inactive-style {
+  color:brown;   
+}

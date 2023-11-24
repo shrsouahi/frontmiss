@@ -41,6 +41,19 @@
       <td mat-cell *matCellDef="let seller">{{ seller.phone }}</td>
     </ng-container>
 
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td
+        mat-cell
+        *matCellDef="let seller"
+        [ngClass]="{
+          'active-style': seller.status === 'Active',
+          'inactive-style': seller.status === 'Désactivé'
+        }"
+      >
+        {{ seller.status }}
+      </td>
+    </ng-container>
     <!-- Actions Column -->
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
@@ -48,8 +61,11 @@
         <button mat-icon-button (click)="openUpdateSellerDialog(seller)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="openDeactivateAccountDialog(seller)">
           <mat-icon>power_settings_new</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon>delete</mat-icon>
         </button>
       </td>
     </ng-container>

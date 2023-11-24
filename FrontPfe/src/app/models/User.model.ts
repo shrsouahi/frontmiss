@@ -11,6 +11,7 @@ export class User {
   ville: String;
   phone: number;
   roleUser: Role;
+  valide: boolean;
 
   constructor(
     idUser: number,
@@ -22,7 +23,8 @@ export class User {
     region: string,
     ville: string,
     phone: number,
-    roleUser: Role
+    roleUser: Role,
+    valide: boolean
   ) {
     this.idUser = idUser;
     this.fName = fName;
@@ -34,5 +36,6 @@ export class User {
     this.ville = ville;
     this.phone = phone;
     this.roleUser = roleUser;
+    this.valide = valide;
   }
 }
