@@ -1,29 +1,39 @@
 .dashboard-container {
   display: flex;
-  flex-wrap: wrap; /* Allow cards to wrap to the next line */
+  flex-wrap: wrap;
   justify-content: space-around;
   padding: 20px;
+  background-color: #FAFAFA;
 }
 
 .dashboard-card {
-  width: 300px;
-  height: 150px;
-  margin: 20px;  
+  width: 275px;
+  height: 140px;
+  margin: 20px;
 }
 
 .cards-container {
   display: flex;
-  gap: 20px;  
+  gap: 20px;
 }
 
 .chart-container {
-  width: 25%; 
-  margin-top: 50px;  
+  width: 23%;
+  margin-top: 50px;
+}
+
+.chart2-container{
+  width:30%;
+  height:20%;
+  margin-left:70px;
+  margin-top: 70px;
 }
 
 .chart-title {
   text-align: center;
-  margin-bottom: 10px;  
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #555;
 }
 
 mat-card {
@@ -35,17 +45,50 @@ mat-card {
   height: 100%;
 }
 
-mat-card-title {
-  font-size: 16px;
-  color: black;
+ mat-card-title {
+  font-size: 18px;
+  color: #555;
 }
 
 mat-card-content {
-  margin-top: 10px;  
+  margin-top: 10px;
   font-size: 20px;
   color: black;
 }
 
-.card-icon {
+.image {
+  width: 36px;
+  height: 36px;
+}
+
+.top-ordered-articles {
+  margin-top: 70px;
   color: #555;
+  font-size: 16px;
+}
+
+.second-line {
+  display: flex;
+  justify-content: space-around;
+  align-items: center; 
+}
+
+.articles-table-container {
+  margin-top: 20px;
+}
+
+mat-table {
+  width: 100%;
+  overflow: auto;
+  max-height: 600px; 
+  max-width: 600px; 
+}
+
+th ,
+td {
+  text-align: center;
+  font-size: 16px;
+}
+td {
+  color:brown;
 }

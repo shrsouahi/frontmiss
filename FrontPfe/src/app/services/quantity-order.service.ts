@@ -17,4 +17,10 @@ export class QuantityOrderService {
       `${this.apiUrl}/quantityorder/${idCommande}`
     );
   }
+
+  getQuantitiesOrders(): Observable<QuantityOrder[]> {
+    return this.http.get<QuantityOrder[]>(
+      `${this.apiUrl}/quantityorder/allQuantities`
+    );
+  }
 }

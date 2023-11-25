@@ -3,7 +3,12 @@
     <mat-card class="dashboard-card" *ngFor="let card of cards">
       <mat-card-header>
         <div class="card-header-content">
-          <mat-icon class="card-icon">{{ card.icon }}</mat-icon>
+          <img
+            class="card-icon"
+            [src]="card.iconPath"
+            alt="{{ card.title }} Icon"
+            class="image"
+          />
           <mat-card-title>{{ card.title }}</mat-card-title>
         </div>
       </mat-card-header>
@@ -14,7 +19,7 @@
   </div>
   <div class="chart-container" *ngIf="chartData && chartData.labels.length > 0">
     <h2 class="chart-title">Articles commandés par catégorie</h2>
-    <div style="display: block">
+    <div style="display: block" class="first">
       <canvas
         baseChart
         [data]="chartData"
@@ -24,5 +29,78 @@
       >
       </canvas>
     </div>
+  </div>
+  <div
+    class="chart-container"
+    *ngIf="statusChartData && statusChartData.labels.length > 0"
+  >
+    <h2 class="chart-title">Commandes par statut</h2>
+    <div style="display: block" class="second">
+      <canvas
+        baseChart
+        [data]="statusChartData"
+        [labels]="statusChartData.labels"
+        [type]="'doughnut'"
+      >
+      </canvas>
+    </div>
+  </div>
+  <div
+    class="chart-container"
+    *ngIf="topOrderedArticles && topOrderedArticles.length > 0"
+  >
+    <h2 class="chart-title">Les articles les plus populaires</h2>
+    <div style="display: block">
+      <canvas
+        baseChart
+        [data]="topArticlesChartData"
+        [labels]="topArticlesChartLabels"
+        [type]="'polarArea'"
+      >
+      </canvas>
+    </div>
+  </div>
+</div>
+<div class="second-line">
+  <div
+    class="chart2-container"
+    *ngIf="totalOrdersChartData && totalOrdersChartData.labels.length > 0"
+  >
+    <h2 class="chart-title">Commandes par mois</h2>
+    <div style="display: block">
+      <canvas
+        baseChart
+        [data]="totalOrdersChartData"
+        [options]="totalOrdersChartData.title"
+        [type]="'bar'"
+      >
+      </canvas>
+    </div>
+  </div>
+  <div class="articles-table-container">
+    <h2 class="chart-title">Articles avec stock faible</h2>
+    <table mat-table [dataSource]="lowStockDataSource" class="mat-elevation-z8">
+      <!-- Article Name Column -->
+      <ng-container matColumnDef="articleName">
+        <th mat-header-cell *matHeaderCellDef>Article</th>
+        <td mat-cell *matCellDef="let article">{{ article.nomArticle }}</td>
+      </ng-container>
+
+      <!-- Current Quantity Column -->
+      <ng-container matColumnDef="currentQuantity">
+        <th mat-header-cell *matHeaderCellDef>Quantité totale de stock</th>
+        <td mat-cell *matCellDef="let article">{{ article.quantiteStock }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="lowStockDisplayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: lowStockDisplayedColumns"></tr>
+    </table>
+    <!-- <mat-paginator
+      #paginator
+      [length]="totalItems"
+      [pageSize]="selectedPageSize"
+      [pageSizeOptions]="[3, 5]"
+      (page)="onPageChange($event)"
+    ></mat-paginator>-->
   </div>
 </div>
