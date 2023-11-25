@@ -40,4 +40,17 @@ export class CommandeService {
       })
     );
   }
+
+  getTotalRevenue(orders: Commande[]): number {
+    // Filter the delivered orders
+    const deliveredOrders = orders.filter((order) => order.status === 'Livrée');
+
+    // Calculate the total revenue
+    const totalRevenue = deliveredOrders.reduce(
+      (sum, order) => sum + order.total,
+      0
+    );
+
+    return totalRevenue;
+  }
 }

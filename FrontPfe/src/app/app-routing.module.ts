@@ -24,6 +24,7 @@ import { CategoriesComponent } from './pagesDashboard/categories/categories.comp
 import { EditQuantitiesComponent } from './pagesDashboard/edit-quantities/edit-quantities.component';
 import { DetailsCommandeComponent } from './pagesDashboard/details-commande/details-commande.component';
 import { AjoutvendeuseComponent } from './pagesDashboard/ajoutvendeuse/ajoutvendeuse.component';
+import { TableaubordComponent } from './tableaubord/tableaubord.component';
 const routes: Routes = [
   { path: 'acceuil', component: HomeComponent },
   { path: 'login', component: LoginComponent },
@@ -49,6 +50,7 @@ const routes: Routes = [
   { path: 'quantities/:idArticle', component: EditQuantitiesComponent },
   { path: 'commande-details/:idCommande', component: DetailsCommandeComponent },
   { path: 'ajout-vendeuse', component: AjoutvendeuseComponent },
+  { path: 'tableaudebord', component: TableaubordComponent },
 ];
 
 @NgModule({

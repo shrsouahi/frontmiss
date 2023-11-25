@@ -92,11 +92,11 @@
         mat-cell
         *matCellDef="let client"
         [ngClass]="{
-          'active-style': client.status === 'Active',
-          'inactive-style': client.status === 'Désactivé'
+          'active-style': client.valide,
+          'inactive-style': !client.valide
         }"
       >
-        {{ client.status }}
+        {{ client.valide ? "Active" : "Désactivé" }}
       </td>
     </ng-container>
 

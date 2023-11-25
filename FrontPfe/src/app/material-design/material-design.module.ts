@@ -19,7 +19,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuTrigger } from '@angular/material/menu';
-
+import { MatGridListModule } from '@angular/material/grid-list';
 @NgModule({
   declarations: [],
   imports: [CommonModule, MatMenuModule],
@@ -43,6 +43,7 @@ import { MatMenuTrigger } from '@angular/material/menu';
     MatDatepickerModule,
     MatCheckboxModule,
     MatMenuTrigger,
+    MatGridListModule,
   ],
 })
 export class MaterialDesignModule {}

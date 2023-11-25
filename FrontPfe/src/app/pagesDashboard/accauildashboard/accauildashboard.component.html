@@ -1,13 +1,28 @@
-okeeeeeeeeeeey ia scsdsq rdhd thdhdrh I AM COMING IA I CAN DO IT .Holidays
-sooooon okeeeeeeeeeeey ia scsdsq rdhd thdhdrh I AM COMING IA I CAN DO IT
-.Holidays sooooon okeeeeeeeeeeey ia scsdsq rdhd thdhdrh I AM COMING IA I CAN DO
-IT .Holidays sooooon okeeeeeeeeeeey ia scsdsq rdhd thdhdrh I AM COMING IA I CAN
-DO IT .Holidays sooooon okeeeeeeeeeeey ia scsdsq rdhd thdhdrh I AM COMING IA I
-CAN DO IT .Holidays sooooon okeeeeeeeeeeey ia scsdsq rdhd thdhdrh I AM COMING IA
-I CAN DO IT .Holidays sooooon okeeeeeeeeeeey ia scsdsq rdhd thdhdrh I AM COMING
-IA I CAN DO IT .Holidays sooooon okeeeeeeeeeeey ia scsdsq rdhd thdhdrh I AM
-COMING IA I CAN DO IT .Holidays sooooon okeeeeeeeeeeey ia scsdsq rdhd thdhdrh I
-AM COMING IA I CAN DO IT .Holidays sooooon okeeeeeeeeeeey ia scsdsq rdhd thdhdrh
-I AM COMING IA I CAN DO IT .Holidays sooooon okeeeeeeeeeeey ia scsdsq rdhd
-thdhdrh I AM COMING IA I CAN DO IT .Holidays sooooon okeeeeeeeeeeey ia scsdsq
-rdhd thdhdrh I AM COMING IA I CAN DO IT .Holidays sooooon
+<div class="dashboard-container">
+  <div class="cards-container">
+    <mat-card class="dashboard-card" *ngFor="let card of cards">
+      <mat-card-header>
+        <div class="card-header-content">
+          <mat-icon class="card-icon">{{ card.icon }}</mat-icon>
+          <mat-card-title>{{ card.title }}</mat-card-title>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        {{ card.content }}
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="chart-container" *ngIf="chartData && chartData.labels.length > 0">
+    <h2 class="chart-title">Articles commandés par catégorie</h2>
+    <div style="display: block">
+      <canvas
+        baseChart
+        [data]="chartData"
+        [options]="chartData.title"
+        [type]="'pie'"
+        [legend]="pieChartLegend"
+      >
+      </canvas>
+    </div>
+  </div>
+</div>

@@ -59,14 +59,8 @@ export class ClientsComponent implements OnInit {
     this.userService.getUsersByRole('Client').subscribe((data) => {
       console.log('Received data:', data);
 
-      this.clients = data.map((client) => ({
-        ...client,
-        status: client.valide ? 'Active' : 'Désactivé',
-      }));
+      this.clients = data;
 
-      console.log('Processed clients:', this.clients);
-
-      //this.clients = data;
       // Apply filters
       let filteredClients = this.filterClients(data);
 

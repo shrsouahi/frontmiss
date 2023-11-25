@@ -49,6 +49,8 @@ import { AjoutvendeuseComponent } from './pagesDashboard/ajoutvendeuse/ajoutvend
 
 import { UpdateSellerDialogComponent } from './pagesDashboard/update-seller-dialog/update-seller-dialog.component';
 import { DeactivateAccountDialogComponent } from './componenet/deactivate-account-dialog/deactivate-account-dialog.component';
+import { NgChartsModule } from 'ng2-charts';
+import { TableaubordComponent } from './tableaubord/tableaubord.component';
 
 @NgModule({
   declarations: [
@@ -87,9 +89,9 @@ import { DeactivateAccountDialogComponent } from './componenet/deactivate-accoun
     AddcategorymodalComponent,
     ImageCarouselComponent,
     AjoutvendeuseComponent,
-
     UpdateSellerDialogComponent,
-     DeactivateAccountDialogComponent,
+    DeactivateAccountDialogComponent,
+    TableaubordComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,6 +106,7 @@ import { DeactivateAccountDialogComponent } from './componenet/deactivate-accoun
     HttpClientModule,
     MatMenuModule,
     MatDialogModule,
+    NgChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
