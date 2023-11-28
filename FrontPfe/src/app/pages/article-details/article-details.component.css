@@ -10,14 +10,14 @@
 .article-details {
   display: flex; /* Use flexbox to create a horizontal layout */
   align-items: flex-start; /* Align content at the top */
-  padding: 20px;
+  padding: 30px;
   text-align: left;
 }
 
 /* Style the left column for images */
 .article-images {
   flex: 1; /* Make the images take up available space */
-  margin-right: 20px; /* Add spacing between the columns */
+  margin-right: 50px; /* Add spacing between the columns */
   margin-top: 100px;
 }
 
@@ -87,10 +87,8 @@ p {
 }
 
 .big-image img {
-  width: 100%;      
-  max-width: 500px;  
-  height: auto;     
-  max-height: 500px; 
+  width: 500px;           
+  height: 670px; 
 }
 .big-image{
   display: flex;
@@ -131,7 +129,7 @@ p {
 }
 
 .add-to-cart-message {
-  color: green; 
+  color: brown; 
   font-size: 16px;
   margin-top: 10px; 
 }
@@ -169,4 +167,13 @@ p {
 }
 .discounted-price {
   color: brown;  
+}
+
+.article-description{
+  width:320px;
+ 
+}
+
+.description-text{
+  color:#555;
 }

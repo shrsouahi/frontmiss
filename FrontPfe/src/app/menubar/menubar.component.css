@@ -6,7 +6,7 @@ a {
 
 /* Styles for the entire navigation bar */
 .navbar {
-  background-color: white;
+  background-color: #F4DBD8;
   color: black;
   display: flex;
   justify-content: space-between;

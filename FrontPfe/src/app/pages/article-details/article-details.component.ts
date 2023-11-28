@@ -129,18 +129,15 @@ export class ArticleDetailsComponent implements OnInit {
       }
     );
   }
-
   checkSizeAvailability() {
     if (this.selectedSize) {
       this.sizeAvailable = this.availableSizes.includes(this.selectedSize);
     }
   }
-
   selectSize(size: string) {
     this.selectedSize = size;
     this.checkSizeAvailability(); // Check size availability when the size is selected
   }
-
   onSizeChange() {
     if (this.selectedSize) {
       // Check if the selected size is available
@@ -150,12 +147,16 @@ export class ArticleDetailsComponent implements OnInit {
       this.sizeAvailable = selectedSizeAvailable;
     }
   }
-
   addToCart(article: Article) {
-    //const defaultUserId = -1; // Use a default integer value
+    if (!this.selectedSize) {
+      // If no size is selected, display an error message
+      this.addToCartMessage = 'Veuillez choisir une taille.';
+      return;
+    }
     const defaultUserId = -1; // Use a default integer value for visitors
     if (this.sizeAvailable) {
       this.isAddingToCart = true;
+
       if (this.selectedSize) {
         // Fetch the user from local storage
         const user = this.userService.getUserFromLocalStorage();
@@ -173,6 +174,7 @@ export class ArticleDetailsComponent implements OnInit {
           userId: userId, // Set userId if a user is logged in,
           image: article.images.length > 0 ? article.images[0].url_image : '',
         };
+
         console.log('user ID:', userId);
 
         console.log('article.images:', cartItem.image);
@@ -199,7 +201,6 @@ export class ArticleDetailsComponent implements OnInit {
           // If it doesn't exist, add it to the cart
           this.cartService.addToCart(cartItem);
         }
-
         setTimeout(() => {
           this.addToCartMessage = 'Article ajouté au panier.';
           this.isAddingToCart = false;

@@ -27,21 +27,14 @@ footer .sec p {
 footer .sci {
   margin-top: 20px;
   display: grid;
-  grid-template-columns: repeat(4, 50px);
+  grid-template-columns: repeat(2, 50px);
+  margin-left: 40%;
 }
 
 footer .sci li {
   list-style: none;
 }
 
-footer .sci li a {
-  display: flex;
-  width: 36px;
-  height: 36px;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-}
 
 footer .sci li a i {
   font-size: 20px;
