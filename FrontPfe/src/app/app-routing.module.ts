@@ -25,6 +25,12 @@ import { EditQuantitiesComponent } from './pagesDashboard/edit-quantities/edit-q
 import { DetailsCommandeComponent } from './pagesDashboard/details-commande/details-commande.component';
 import { AjoutvendeuseComponent } from './pagesDashboard/ajoutvendeuse/ajoutvendeuse.component';
 import { TableaubordComponent } from './tableaubord/tableaubord.component';
+import { AproposComponent } from './pagesfooter/apropos/apropos.component';
+import { ContactComponent } from './pagesfooter/contact/contact.component';
+import { LivraisonComponent } from './pagesfooter/livraison/livraison.component';
+import { RetoursComponent } from './pagesfooter/retours/retours.component';
+import { ConfidentialiteComponent } from './pagesfooter/confidentialite/confidentialite.component';
+import { FaqComponent } from './pagesfooter/faq/faq.component';
 const routes: Routes = [
   { path: 'acceuil', component: HomeComponent },
   { path: 'login', component: LoginComponent },
@@ -51,6 +57,12 @@ const routes: Routes = [
   { path: 'commande-details/:idCommande', component: DetailsCommandeComponent },
   { path: 'ajout-vendeuse', component: AjoutvendeuseComponent },
   { path: 'tableaudebord', component: TableaubordComponent },
+  { path: 'apropos', component: AproposComponent },
+  { path: 'contacts', component: ContactComponent },
+  { path: 'livraison', component: LivraisonComponent },
+  { path: 'retours', component: RetoursComponent },
+  { path: 'confidentialite', component: ConfidentialiteComponent },
+  { path: 'faq', component: FaqComponent },
 ];
 
 @NgModule({

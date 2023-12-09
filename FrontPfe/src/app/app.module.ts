@@ -51,6 +51,12 @@ import { UpdateSellerDialogComponent } from './pagesDashboard/update-seller-dial
 import { DeactivateAccountDialogComponent } from './componenet/deactivate-account-dialog/deactivate-account-dialog.component';
 import { NgChartsModule } from 'ng2-charts';
 import { TableaubordComponent } from './tableaubord/tableaubord.component';
+import { AproposComponent } from './pagesfooter/apropos/apropos.component';
+import { ContactComponent } from './pagesfooter/contact/contact.component';
+import { LivraisonComponent } from './pagesfooter/livraison/livraison.component';
+import { RetoursComponent } from './pagesfooter/retours/retours.component';
+import { ConfidentialiteComponent } from './pagesfooter/confidentialite/confidentialite.component';
+import { FaqComponent } from './pagesfooter/faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +98,12 @@ import { TableaubordComponent } from './tableaubord/tableaubord.component';
     UpdateSellerDialogComponent,
     DeactivateAccountDialogComponent,
     TableaubordComponent,
+    AproposComponent,
+    ContactComponent,
+    LivraisonComponent,
+    RetoursComponent,
+    ConfidentialiteComponent,
+    FaqComponent,
   ],
   imports: [
     BrowserModule,

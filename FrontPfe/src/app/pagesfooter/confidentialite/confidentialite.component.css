@@ -1,0 +1,27 @@
+.privacy-policy {
+  text-align: left;
+  max-width: 700px;
+  margin: 100px auto;
+  padding: 0 20px; 
+}
+
+h3 {
+  text-transform: uppercase;
+}
+
+p, ol, li {
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+/* Media query for smaller screens */
+@media only screen and (max-width: 600px) {
+  .privacy-policy {
+    margin: 50px auto;  
+  }
+}

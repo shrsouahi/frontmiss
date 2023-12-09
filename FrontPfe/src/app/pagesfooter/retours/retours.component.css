@@ -1,0 +1,27 @@
+.return-policy {
+  text-align: left;
+  max-width: 700px;
+  margin: 100px auto;
+  padding: 0 20px; 
+}
+
+h3 {
+  text-transform: uppercase;
+  color: #c09891;
+}
+
+p, ul, li {
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+/* Media query for smaller screens */
+@media only screen and (max-width: 600px) {
+  .return-policy {
+    margin: 50px auto;  
+  }
+}
