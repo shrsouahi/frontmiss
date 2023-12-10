@@ -85,7 +85,7 @@ export class CategoriesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        // Handle the result, e.g., delete the category
+        this.loadCategories();
         console.log('Delete Modal Result:', result);
       }
     });
@@ -95,7 +95,6 @@ export class CategoriesComponent implements OnInit {
     const dialogRef = this.dialog.open(AddcategorymodalComponent, {
       panelClass: 'custom-modal',
     });
-
     // Subscribe to the afterClosed event to get the result after the modal is closed
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {

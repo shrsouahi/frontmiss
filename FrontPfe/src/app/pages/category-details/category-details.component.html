@@ -1,6 +1,5 @@
 <div class="category-details">
-  <h1>{{ category?.nomCategory }} Articles</h1>
-
+  <h1>{{ category?.nomCategory }}</h1>
   <p *ngIf="articles.length === 0">Pas d'articles pour cette catégorie.</p>
   <div class="articles-container">
     <a
@@ -41,11 +40,13 @@
       </mat-card>
     </a>
   </div>
+
   <!-- Separator line -->
   <div class="separator"></div>
-  <!-- Category description -->
+
+  <!-- description -->
   <div class="category-description">
-    <h2>Description de la catégorie {{ category?.nomCategory }}</h2>
+    <h2>La catégorie {{ category?.nomCategory }}</h2>
     <p>{{ category?.description }}</p>
   </div>
 </div>

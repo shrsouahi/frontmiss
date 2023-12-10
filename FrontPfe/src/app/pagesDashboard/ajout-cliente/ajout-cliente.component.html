@@ -3,37 +3,37 @@
     L'adresse e-mail existe déjà.
   </div>
   <div [formGroup]="registerForm" class="register-content">
-    <p class="title">Ajouter un compte Cliente</p>
-    <p class="title2">Informations personnelles de la cliente</p>
+    <p class="title">Ajouter un compte Client</p>
+    <p class="title2">Informations personnelles de client</p>
     <mat-form-field appearance="outline">
-      <mat-label>Nom de la cliente</mat-label>
+      <mat-label>Nom de client</mat-label>
       <input formControlName="lName" matInput type="text" />
       <mat-error *ngIf="registerForm.get('lName')?.hasError('required')"
-        >Tapez le nom de la cliente!</mat-error
+        >Tapez le nom de client!</mat-error
       >
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-label>Prénom de la cliente</mat-label>
+      <mat-label>Prénom de client</mat-label>
       <input formControlName="fName" matInput type="text" />
       <mat-error *ngIf="registerForm.get('fName')?.hasError('required')"
-        >Tappez le prénom de la cliente!</mat-error
+        >Tappez le prénom de cliene!</mat-error
       >
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-label>E-mail de la cliente</mat-label>
+      <mat-label>E-mail de client</mat-label>
       <input formControlName="email" matInput type="email" />
 
       <mat-error *ngIf="registerForm.controls['email']?.hasError('required')">
-        Tappez E-mail de la cliente !
+        Tappez E-mail de client !
       </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Numéro télephone de la cliente</mat-label>
+      <mat-label>Numéro télephone de client</mat-label>
       <input formControlName="phone" matInput type="number" />
 
       <mat-error *ngIf="registerForm.controls['phone']?.hasError('required')">
-        Tappez le numéro de téléphone de la cliente!
+        Tappez le numéro de téléphone de client!
       </mat-error>
     </mat-form-field>
 
@@ -48,7 +48,7 @@
         hide ? "visibility_off" : "visibility"
       }}</mat-icon>
       <mat-error *ngIf="registerForm.get('password')?.hasError('required')">
-        Tappez mot de passe pour la cliente!
+        Tappez mot de passe pour client!
       </mat-error>
     </mat-form-field>
 

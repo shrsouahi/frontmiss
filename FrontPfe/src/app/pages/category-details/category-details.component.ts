@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./category-details.component.css'],
 })
 export class CategoryDetailsComponent implements OnInit {
-  category: Category | undefined;
+  category!: Category | undefined;
   categoryId: number | null = null; // Initialize as null
   articles: any[] = [];
 

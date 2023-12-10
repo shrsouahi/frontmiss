@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-signup',
@@ -22,7 +23,6 @@ export class SignupComponent implements OnInit {
         return { passwordMismatch: true };
       }
     }
-
     return null;
   }
 
@@ -49,14 +49,21 @@ export class SignupComponent implements OnInit {
   onCreateAccountClick() {
     if (this.registerForm.valid) {
       const user = this.registerForm.value;
-
       // Proceed with registration
       this.userService.registerUser(user).subscribe(
         (registeredUser) => {
           // Handle successful registration
-          console.log('User registered successfully:', registeredUser);
+          //console.log('User registered successfully:', registeredUser);
+          // Show snackbar
+          this.snackBar.open('Inscription effectuée', 'Fermer', {
+            duration: 5000,
+          });
 
-          this.router.navigate(['/acceuil']);
+          // Reload the page
+          //window.location.reload();
+
+          // Reset the form
+          this.registerForm.reset();
         },
         (error) => {
           if (error.status === 409) {
@@ -72,8 +79,11 @@ export class SignupComponent implements OnInit {
       );
     }
   }
-
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {}
 }

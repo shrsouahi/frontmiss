@@ -83,8 +83,12 @@ export class DetailsCommandeComponent implements OnInit {
   }*/
 
   calculateTotalPrice(quantityOrder: QuantityOrder): number {
-    const totalPrice =
-      quantityOrder.article.prixArticle * quantityOrder.quantity;
+    const price =
+      quantityOrder.article.prixSolde !== null
+        ? quantityOrder.article.prixSolde
+        : quantityOrder.article.prixArticle;
+
+    const totalPrice = price * quantityOrder.quantity;
 
     return totalPrice;
   }

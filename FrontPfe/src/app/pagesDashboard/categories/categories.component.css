@@ -14,3 +14,7 @@
 th{
   font-weight: bold;
 }
+
+.description{
+ max-width: 500px;
+}

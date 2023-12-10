@@ -52,9 +52,14 @@
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef>Prix unitaire</th>
         <td mat-cell *matCellDef="let quantityOrder">
-          <ng-container>
-            {{ quantityOrder.article.prixArticle }} TND
+          <ng-container
+            *ngIf="quantityOrder.article.prixSole !== null; else defaultPrice"
+          >
+            {{ quantityOrder.article.prixSolde }} TND
           </ng-container>
+          <ng-template #defaultPrice>
+            {{ quantityOrder.article.prixArticle }} TND
+          </ng-template>
         </td>
       </ng-container>
 
