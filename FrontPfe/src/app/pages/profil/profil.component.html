@@ -8,22 +8,26 @@
   <p>Prénom : {{ user.lName }}</p>
   <p><span>Email: </span>{{ user.email }}</p>
   <p><span>Numéro de Téléphone:</span> {{ user.phone }}</p>
-  <a href="javascript:void(0)" (click)="openEditProfileModal()"
-    >éditer informations
-  </a>
-  <a href="javascript:void(0)" (click)="openEditPasswordModal()"
-    >éditer mot de passe
-  </a>
+  <button
+    mat-stroked-button
+    color="accent"
+    class="infos"
+    (click)="openEditProfileModal()"
+  >
+    éditer informations
+  </button>
+  <button mat-stroked-button color="accent" (click)="openEditPasswordModal()">
+    éditer mot de passe
+  </button>
 </div>
 <div class="shipping-address-section">
   <h2>Adresse de Livraison par Défaut</h2>
   <p>Adresse : {{ user?.adresse }}</p>
   <p>Ville : {{ user?.ville }}</p>
   <p>region : {{ user?.region }}</p>
-
-  <a href="javascript:void(0)" (click)="openEditAdresseModal()"
-    >Modifier l'adresse par défaut
-  </a>
+  <button mat-stroked-button color="accent" (click)="openEditAdresseModal()">
+    Modifier l'adresse par défaut
+  </button>
 </div>
 <div class="command-section">
   <h2>Historique des commandes</h2>

@@ -24,7 +24,6 @@ import { CategoriesComponent } from './pagesDashboard/categories/categories.comp
 import { EditQuantitiesComponent } from './pagesDashboard/edit-quantities/edit-quantities.component';
 import { DetailsCommandeComponent } from './pagesDashboard/details-commande/details-commande.component';
 import { AjoutvendeuseComponent } from './pagesDashboard/ajoutvendeuse/ajoutvendeuse.component';
-import { TableaubordComponent } from './tableaubord/tableaubord.component';
 import { AproposComponent } from './pagesfooter/apropos/apropos.component';
 import { ContactComponent } from './pagesfooter/contact/contact.component';
 import { LivraisonComponent } from './pagesfooter/livraison/livraison.component';
@@ -56,7 +55,6 @@ const routes: Routes = [
   { path: 'quantities/:idArticle', component: EditQuantitiesComponent },
   { path: 'commande-details/:idCommande', component: DetailsCommandeComponent },
   { path: 'ajout-vendeuse', component: AjoutvendeuseComponent },
-  { path: 'tableaudebord', component: TableaubordComponent },
   { path: 'apropos', component: AproposComponent },
   { path: 'contacts', component: ContactComponent },
   { path: 'livraison', component: LivraisonComponent },

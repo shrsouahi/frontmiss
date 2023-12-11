@@ -50,7 +50,6 @@ import { AjoutvendeuseComponent } from './pagesDashboard/ajoutvendeuse/ajoutvend
 import { UpdateSellerDialogComponent } from './pagesDashboard/update-seller-dialog/update-seller-dialog.component';
 import { DeactivateAccountDialogComponent } from './componenet/deactivate-account-dialog/deactivate-account-dialog.component';
 import { NgChartsModule } from 'ng2-charts';
-import { TableaubordComponent } from './tableaubord/tableaubord.component';
 import { AproposComponent } from './pagesfooter/apropos/apropos.component';
 import { ContactComponent } from './pagesfooter/contact/contact.component';
 import { LivraisonComponent } from './pagesfooter/livraison/livraison.component';
@@ -97,7 +96,6 @@ import { FaqComponent } from './pagesfooter/faq/faq.component';
     AjoutvendeuseComponent,
     UpdateSellerDialogComponent,
     DeactivateAccountDialogComponent,
-    TableaubordComponent,
     AproposComponent,
     ContactComponent,
     LivraisonComponent,
